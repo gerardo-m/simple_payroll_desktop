@@ -1,7 +1,7 @@
 ﻿
 namespace simple_payroll_desktop.forms
 {
-    partial class ManagePaySchedulesForm
+    partial class PaySchedulesForm
     {
         /// <summary>
         /// Required designer variable.

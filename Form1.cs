@@ -20,7 +20,7 @@ namespace simple_payroll_desktop
 
         private void manageWorkersButton_Click(object sender, EventArgs e)
         {
-            ManageWorkersForm manageWorkersForm = new ManageWorkersForm();
+            WorkersForm manageWorkersForm = new WorkersForm();
             this.Visible = false;
             manageWorkersForm.ShowDialog(this);
         }
@@ -41,7 +41,7 @@ namespace simple_payroll_desktop
 
         private void managePaySchedulesButton_Click(object sender, EventArgs e)
         {
-            ManagePaySchedulesForm managePaySchedulesForm = new ManagePaySchedulesForm();
+            PaySchedulesForm managePaySchedulesForm = new PaySchedulesForm();
             this.Visible = false;
             managePaySchedulesForm.ShowDialog(this);
         }

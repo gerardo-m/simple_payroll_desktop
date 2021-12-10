@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\SQLite.3.13.0\build\net45\SQLite.props" Condition="Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,6 +28,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +40,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,8 +52,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoreSharp.Common.Abstractions, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\CoreSharp.Common.Abstractions.0.7.1\lib\netstandard2.0\CoreSharp.Common.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="CoreSharp.Common.Extensions, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\CoreSharp.Common.Extensions.0.7.1\lib\netstandard2.0\CoreSharp.Common.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="CoreSharp.Common.Internationalization, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\CoreSharp.Common.Internationalization.0.7.1\lib\netstandard2.0\CoreSharp.Common.Internationalization.dll</HintPath>
+    </Reference>
+    <Reference Include="NGettext, Version=0.6.1.0, Culture=neutral, PublicKeyToken=08d3d1c89dfd2985, processorArchitecture=MSIL">
+      <HintPath>packages\NGettext.0.6.6\lib\net46\NGettext.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\..\resources\sqlite-netFx46-binary-x64-2015-1.0.115.5\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,11 +80,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="business\DenominationsManager.cs" />
+    <Compile Include="dao\DenominationDAO.cs" />
+    <Compile Include="DependencyInjection.cs" />
+    <Compile Include="entities\Denomination.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\DenominationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\DenominationsForm.Designer.cs">
+      <DependentUpon>DenominationsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\GeneratePayrollForm.cs">
       <SubType>Form</SubType>
@@ -73,17 +102,17 @@
     <Compile Include="forms\GeneratePayrollForm.Designer.cs">
       <DependentUpon>GeneratePayrollForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\ManagePaySchedulesForm.cs">
+    <Compile Include="forms\PaySchedulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\ManagePaySchedulesForm.Designer.cs">
-      <DependentUpon>ManagePaySchedulesForm.cs</DependentUpon>
+    <Compile Include="forms\PaySchedulesForm.Designer.cs">
+      <DependentUpon>PaySchedulesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\ManageWorkersForm.cs">
+    <Compile Include="forms\WorkersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\ManageWorkersForm.Designer.cs">
-      <DependentUpon>ManageWorkersForm.cs</DependentUpon>
+    <Compile Include="forms\WorkersForm.Designer.cs">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\PaySlipForm.cs">
       <SubType>Form</SubType>
@@ -97,19 +126,25 @@
     <Compile Include="forms\TrackWorkForm.Designer.cs">
       <DependentUpon>TrackWorkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="local_dao\DbContext.cs" />
+    <Compile Include="local_dao\DbExecuter.cs" />
+    <Compile Include="local_dao\DenominationDAOLocal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\DenominationsForm.resx">
+      <DependentUpon>DenominationsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\GeneratePayrollForm.resx">
       <DependentUpon>GeneratePayrollForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\ManagePaySchedulesForm.resx">
-      <DependentUpon>ManagePaySchedulesForm.cs</DependentUpon>
+    <EmbeddedResource Include="forms\PaySchedulesForm.resx">
+      <DependentUpon>PaySchedulesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\ManageWorkersForm.resx">
-      <DependentUpon>ManageWorkersForm.cs</DependentUpon>
+    <EmbeddedResource Include="forms\WorkersForm.resx">
+      <DependentUpon>WorkersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\PaySlipForm.resx">
       <DependentUpon>PaySlipForm.cs</DependentUpon>
@@ -127,6 +162,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,5 +188,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\SQLite.3.13.0\build\net45\SQLite.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLite.3.13.0\build\net45\SQLite.props'))" />
+  </Target>
 </Project>

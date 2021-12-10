@@ -1,7 +1,7 @@
 ﻿
 namespace simple_payroll_desktop.forms
 {
-    partial class ManageWorkersForm
+    partial class WorkersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@ namespace simple_payroll_desktop.forms
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.lastName2TextBox = new System.Windows.Forms.TextBox();
+            this.ciTextBox = new System.Windows.Forms.TextBox();
+            this.payRateTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.payRateSpinner = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,8 +48,11 @@ namespace simple_payroll_desktop.forms
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.payScheduleComboBox = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.denominationComboBox = new System.Windows.Forms.ComboBox();
+            this.manageDenominationsButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.payRateSpinner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,48 +66,48 @@ namespace simple_payroll_desktop.forms
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // textBox1
+            // firstNameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(118, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 20);
-            this.textBox1.TabIndex = 1;
+            this.firstNameTextBox.Location = new System.Drawing.Point(118, 56);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(220, 20);
+            this.firstNameTextBox.TabIndex = 1;
             // 
-            // textBox2
+            // lastNameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(118, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 20);
-            this.textBox2.TabIndex = 2;
+            this.lastNameTextBox.Location = new System.Drawing.Point(118, 109);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(220, 20);
+            this.lastNameTextBox.TabIndex = 2;
             // 
-            // textBox3
+            // lastName2TextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(118, 165);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(220, 20);
-            this.textBox3.TabIndex = 3;
+            this.lastName2TextBox.Location = new System.Drawing.Point(118, 165);
+            this.lastName2TextBox.Name = "lastName2TextBox";
+            this.lastName2TextBox.Size = new System.Drawing.Size(220, 20);
+            this.lastName2TextBox.TabIndex = 3;
             // 
-            // textBox4
+            // ciTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(118, 219);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(220, 20);
-            this.textBox4.TabIndex = 4;
+            this.ciTextBox.Location = new System.Drawing.Point(118, 219);
+            this.ciTextBox.Name = "ciTextBox";
+            this.ciTextBox.Size = new System.Drawing.Size(220, 20);
+            this.ciTextBox.TabIndex = 4;
             // 
-            // comboBox1
+            // payRateTypeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(605, 109);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(220, 21);
-            this.comboBox1.TabIndex = 5;
+            this.payRateTypeComboBox.FormattingEnabled = true;
+            this.payRateTypeComboBox.Location = new System.Drawing.Point(605, 109);
+            this.payRateTypeComboBox.Name = "payRateTypeComboBox";
+            this.payRateTypeComboBox.Size = new System.Drawing.Size(220, 21);
+            this.payRateTypeComboBox.TabIndex = 5;
             // 
-            // numericUpDown1
+            // payRateSpinner
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(605, 166);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(220, 20);
-            this.numericUpDown1.TabIndex = 6;
+            this.payRateSpinner.Location = new System.Drawing.Point(605, 166);
+            this.payRateSpinner.Name = "payRateSpinner";
+            this.payRateSpinner.Size = new System.Drawing.Size(220, 20);
+            this.payRateSpinner.TabIndex = 6;
             // 
             // label2
             // 
@@ -185,6 +188,7 @@ namespace simple_payroll_desktop.forms
             this.newWorkerButton.TabIndex = 15;
             this.newWorkerButton.Text = "Nuevo";
             this.newWorkerButton.UseVisualStyleBackColor = true;
+            this.newWorkerButton.Click += new System.EventHandler(this.newWorkerButton_Click);
             // 
             // statusStrip1
             // 
@@ -212,20 +216,50 @@ namespace simple_payroll_desktop.forms
             this.label7.TabIndex = 17;
             this.label7.Text = "Calendario de pagos";
             // 
-            // comboBox2
+            // payScheduleComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(605, 56);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(220, 21);
-            this.comboBox2.TabIndex = 18;
+            this.payScheduleComboBox.FormattingEnabled = true;
+            this.payScheduleComboBox.Location = new System.Drawing.Point(605, 56);
+            this.payScheduleComboBox.Name = "payScheduleComboBox";
+            this.payScheduleComboBox.Size = new System.Drawing.Size(220, 21);
+            this.payScheduleComboBox.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 271);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Denominación";
+            // 
+            // denominationComboBox
+            // 
+            this.denominationComboBox.FormattingEnabled = true;
+            this.denominationComboBox.Location = new System.Drawing.Point(118, 268);
+            this.denominationComboBox.Name = "denominationComboBox";
+            this.denominationComboBox.Size = new System.Drawing.Size(180, 21);
+            this.denominationComboBox.TabIndex = 20;
+            // 
+            // manageDenominationsButton
+            // 
+            this.manageDenominationsButton.Location = new System.Drawing.Point(305, 266);
+            this.manageDenominationsButton.Name = "manageDenominationsButton";
+            this.manageDenominationsButton.Size = new System.Drawing.Size(33, 23);
+            this.manageDenominationsButton.TabIndex = 21;
+            this.manageDenominationsButton.Text = "...";
+            this.manageDenominationsButton.UseVisualStyleBackColor = true;
+            this.manageDenominationsButton.Click += new System.EventHandler(this.manageDenominationsButton_Click);
             // 
             // ManageWorkersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 594);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.manageDenominationsButton);
+            this.Controls.Add(this.denominationComboBox);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.payScheduleComboBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.newWorkerButton);
@@ -237,18 +271,18 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.payRateSpinner);
+            this.Controls.Add(this.payRateTypeComboBox);
+            this.Controls.Add(this.ciTextBox);
+            this.Controls.Add(this.lastName2TextBox);
+            this.Controls.Add(this.lastNameTextBox);
+            this.Controls.Add(this.firstNameTextBox);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ManageWorkersForm";
             this.Text = "Gestionar trabajadores";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageWorkersForm_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.payRateSpinner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -260,12 +294,12 @@ namespace simple_payroll_desktop.forms
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox firstNameTextBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.TextBox lastName2TextBox;
+        private System.Windows.Forms.TextBox ciTextBox;
+        private System.Windows.Forms.ComboBox payRateTypeComboBox;
+        private System.Windows.Forms.NumericUpDown payRateSpinner;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -278,6 +312,9 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox payScheduleComboBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox denominationComboBox;
+        private System.Windows.Forms.Button manageDenominationsButton;
     }
 }

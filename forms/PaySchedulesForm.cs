@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace simple_payroll_desktop.forms
 {
-    public partial class ManageWorkersForm : Form
+    public partial class PaySchedulesForm : Form
     {
-        public ManageWorkersForm()
+        public PaySchedulesForm()
         {
             InitializeComponent();
         }
 
-        private void ManageWorkersForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void ManagePaySchedulesForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Owner.Visible = true;
         }
