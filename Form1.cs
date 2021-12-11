@@ -29,6 +29,15 @@ namespace simple_payroll_desktop
             InitializeComponent();
         }
 
+        private void loadStrings()
+        {
+            trackWorkButton.Text = i18n.Form1_Controls(trackWorkButton.Name);
+            generatePayrollButton.Text = i18n.Form1_Controls(generatePayrollButton.Name);
+            manageWorkersButton.Text = i18n.Form1_Controls(manageWorkersButton.Name);
+            managePaySchedulesButton.Text = i18n.Form1_Controls(managePaySchedulesButton.Name);
+            exitButton.Text = i18n.Form1_Controls(exitButton.Name);
+        }
+
         private void manageWorkersButton_Click(object sender, EventArgs e)
         {
             logger.LogInformation("[Form1] Manage Workers clicked");
@@ -62,7 +71,7 @@ namespace simple_payroll_desktop
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            trackWorkButton.Text = i18n.Form1_trackWorkButton();
+            loadStrings();
         }
     }
 }

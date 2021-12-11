@@ -26,7 +26,7 @@ namespace simple_payroll_desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("es");
             var services = new ServiceCollection();
             configureServices(services);
             using (ServiceProvider serviceProvider = services.BuildServiceProvider())

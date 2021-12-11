@@ -12,9 +12,11 @@ namespace simple_payroll_desktop.business
     public class DenominationsManager
     {
 
+        private readonly I18nService i18n;
         private DenominationDAO denominationDAO;
 
-        public DenominationsManager(DenominationDAO denominationDAO) {
+        public DenominationsManager(I18nService i18n, DenominationDAO denominationDAO) {
+            this.i18n = i18n;
             this.denominationDAO = denominationDAO;
         }
 
@@ -29,7 +31,7 @@ namespace simple_payroll_desktop.business
             {
                 if (existWithName(denomination.Name))
                 {
-                    throw new ArgumentException("El nombre de la denominación ya existe");
+                    throw new ArgumentException(i18n.DenominationManager_Messages("duplicatedName"));
                 }
                 else
                 {
@@ -51,14 +53,14 @@ namespace simple_payroll_desktop.business
             }
             else
             {
-                throw new InvalidOperationException("La denominación está en uso, debes eliminar a los trabajadores con la denominación primero");
+                throw new InvalidOperationException(i18n.DenominationManager_Messages("inUse"));
             }
         }
 
         public bool existWithName(String denominationName)
         {
             //TODO must check the existance of a denomination with this name in the DB
-            return false;
+            return true;
         }
 
         public bool canDelete(Denomination denomination)

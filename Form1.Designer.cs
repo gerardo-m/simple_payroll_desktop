@@ -33,7 +33,7 @@ namespace simple_payroll_desktop
             this.generatePayrollButton = new System.Windows.Forms.Button();
             this.manageWorkersButton = new System.Windows.Forms.Button();
             this.managePaySchedulesButton = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // trackWorkButton
@@ -76,21 +76,21 @@ namespace simple_payroll_desktop
             this.managePaySchedulesButton.UseVisualStyleBackColor = true;
             this.managePaySchedulesButton.Click += new System.EventHandler(this.managePaySchedulesButton_Click);
             // 
-            // button4
+            // exitButton
             // 
-            this.button4.Location = new System.Drawing.Point(387, 490);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 24);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "SALIR";
-            this.button4.UseVisualStyleBackColor = true;
+            this.exitButton.Location = new System.Drawing.Point(387, 490);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(86, 24);
+            this.exitButton.TabIndex = 4;
+            this.exitButton.Text = "SALIR";
+            this.exitButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 541);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.managePaySchedulesButton);
             this.Controls.Add(this.manageWorkersButton);
             this.Controls.Add(this.generatePayrollButton);
@@ -109,7 +109,7 @@ namespace simple_payroll_desktop
         private System.Windows.Forms.Button generatePayrollButton;
         private System.Windows.Forms.Button manageWorkersButton;
         private System.Windows.Forms.Button managePaySchedulesButton;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button exitButton;
     }
 }
 

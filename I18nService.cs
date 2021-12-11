@@ -17,9 +17,20 @@ namespace simple_payroll_desktop
             this.stringLocalizer = stringLocalizer;
         }
 
-        public string Form1_trackWorkButton()
+        public string Placeholder(string message)
         {
-            return stringLocalizer.GetString("Form1_trackWorkButton");
+            return $"P {message}";
         }
+
+        public string Form1_Controls(string controlName)
+        {
+            return stringLocalizer.GetString($"Form1_{controlName}");
+        }
+
+        public string DenominationManager_Messages(string messageName)
+        {
+            return stringLocalizer.GetString($"DenominationManager_{messageName}");
+        }
+
     }
 }
