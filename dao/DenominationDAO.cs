@@ -7,12 +7,14 @@ using simple_payroll_desktop.entities;
 
 namespace simple_payroll_desktop.dao
 {
-    interface DenominationDAO
+    public interface DenominationDAO
     {
 
         IList<Denomination> allDenominations();
 
         void saveDenomination(Denomination denomination);
+
+        void updateDenomination(Denomination denomination);
 
         void deleteDenomination(Denomination denomination);
     }

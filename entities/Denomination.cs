@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace simple_payroll_desktop.entities
 {
-    class Denomination
+    public class Denomination
     {
 
         public Denomination() {}

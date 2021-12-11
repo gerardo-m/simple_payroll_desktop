@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using System.Windows.Forms;
 using simple_payroll_desktop.business;
 using simple_payroll_desktop.entities;
@@ -15,15 +16,22 @@ namespace simple_payroll_desktop.forms
     public partial class DenominationsForm : Form
     {
 
-        private DenominationsManager denominationsManager;
+        private readonly ILogger logger;
+        private readonly DenominationsManager denominationsManager;
+
+
         private Denomination currentDenomination;
-        public DenominationsForm()
+        public DenominationsForm(ILogger<DenominationsForm> logger, DenominationsManager denominationsManager)
         {
+            this.logger = logger;
+            this.denominationsManager = denominationsManager;
             InitializeComponent();
         }
 
         private void handleException(Exception ex)
         {
+            logger.LogError(ex.Message);
+            logger.LogTrace(ex, ex.Message);
             MessageBox.Show(ex.Message);
             throw ex;
         }
@@ -41,29 +49,6 @@ namespace simple_payroll_desktop.forms
             {
                 denominationsManager.saveDenomination(currentDenomination);
                 updateDenominationsListBox();
-                changeCurrentDenomination(new Denomination());
-            }
-        }
-
-        private void changeCurrentDenomination(Denomination denomination)
-        {
-            currentDenomination = denomination;
-            loadCurrentDenomination();
-        }
-
-        private void loadCurrentDenomination()
-        {
-            if (currentDenomination == null)
-            {
-                nameTextBox.Text = "";
-            }
-            else
-            {
-                nameTextBox.Text = currentDenomination.Name;
-                if (currentDenomination.Id == 0)
-                {
-                    denominationsListBox.SelectedIndex = -1;
-                }
             }
         }
 
@@ -84,7 +69,6 @@ namespace simple_payroll_desktop.forms
             {
                 denominationsManager.deleteDenomination(currentDenomination);
                 updateDenominationsListBox();
-                changeCurrentDenomination(new Denomination());
             }
         }
 
@@ -102,13 +86,28 @@ namespace simple_payroll_desktop.forms
             }
         }
 
+        private void switchToUnselectedState()
+        {
+            currentDenomination = new Denomination();
+            denominationsListBox.SelectedIndex = -1;
+            nameTextBox.Text = "";
+        }
+
+        private void switchToSelectedState(Denomination selectedDenomination)
+        {
+            currentDenomination = selectedDenomination;
+            if (currentDenomination != null)
+            {
+                nameTextBox.Text = currentDenomination.Name;
+            }
+        }
+
 
         private void newDenominationButton_Click(object sender, EventArgs e)
         {
             try
             {
-                changeCurrentDenomination(new Denomination());
-                updateControlsStates();
+                switchToUnselectedState();
             }
             catch (Exception ex)
             {
@@ -120,9 +119,9 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
-                denominationsManager = DenominationsManager.getInstance();
+                //denominationsManager = DenominationsManager.getInstance();
                 initializeListBox();
-                changeCurrentDenomination(new Denomination());
+                switchToUnselectedState();
                 updateControlsStates();
             }
             catch (Exception ex)
@@ -137,6 +136,7 @@ namespace simple_payroll_desktop.forms
             {
                 captureCurrentDenomination();
                 saveCurrentDenomination();
+                switchToUnselectedState();
                 updateControlsStates();
             }
             catch (Exception ex)
@@ -150,6 +150,7 @@ namespace simple_payroll_desktop.forms
             try
             {
                 deleteCurrentDenomination();
+                switchToUnselectedState();
                 updateControlsStates();
             }
             catch (Exception ex)
@@ -162,7 +163,7 @@ namespace simple_payroll_desktop.forms
         {
             if (denominationsListBox.SelectedIndex != -1)
             {
-                changeCurrentDenomination((Denomination)denominationsListBox.SelectedItem);
+                switchToSelectedState((Denomination)denominationsListBox.SelectedItem);
                 updateControlsStates();
             }
         }

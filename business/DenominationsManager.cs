@@ -9,23 +9,13 @@ using simple_payroll_desktop;
 
 namespace simple_payroll_desktop.business
 {
-    class DenominationsManager
+    public class DenominationsManager
     {
 
         private DenominationDAO denominationDAO;
 
-        private DenominationsManager() {
-            denominationDAO = DependencyInjection.get<DenominationDAO>();
-        }
-
-        private static DenominationsManager instance;
-        public static DenominationsManager getInstance()
-        {
-            if (instance == null)
-            {
-                instance = new DenominationsManager();
-            }
-            return instance;
+        public DenominationsManager(DenominationDAO denominationDAO) {
+            this.denominationDAO = denominationDAO;
         }
 
         public IList<Denomination> allDenominations()
@@ -35,14 +25,22 @@ namespace simple_payroll_desktop.business
 
         public void saveDenomination(Denomination denomination)
         {
-            if (existWithName(denomination.Name))
+            if (denomination.Id == 0)
             {
-                throw new ArgumentException("El nombre de la denominación ya existe");
+                if (existWithName(denomination.Name))
+                {
+                    throw new ArgumentException("El nombre de la denominación ya existe");
+                }
+                else
+                {
+                    denominationDAO.saveDenomination(denomination);
+                }
             }
             else
             {
-                denominationDAO.saveDenomination(denomination);
+                denominationDAO.updateDenomination(denomination);
             }
+            
         }
 
         public void deleteDenomination(Denomination denomination)

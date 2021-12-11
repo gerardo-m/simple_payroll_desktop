@@ -12,8 +12,11 @@ namespace simple_payroll_desktop.forms
 {
     public partial class WorkersForm : Form
     {
-        public WorkersForm()
+
+        private readonly DenominationsForm denominationsForm;
+        public WorkersForm(DenominationsForm denominationsForm)
         {
+            this.denominationsForm = denominationsForm;
             InitializeComponent();
         }
 
@@ -41,7 +44,6 @@ namespace simple_payroll_desktop.forms
 
         private void manageDenominationsButton_Click(object sender, EventArgs e)
         {
-            DenominationsForm denominationsForm = new DenominationsForm();
             denominationsForm.ShowDialog(this);
         }
     }

@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CoreSharp.Common.Internationalization;
-using NGettext;
+using System.Globalization;
+using simple_payroll_desktop.forms;
+using simple_payroll_desktop.business;
+using simple_payroll_desktop.dao;
+using simple_payroll_desktop.local_dao;
 using simple_payroll_desktop.entities;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Localization;
+
 
 namespace simple_payroll_desktop
 {
@@ -17,10 +24,34 @@ namespace simple_payroll_desktop
         [STAThread]
         static void Main()
         {
-            DependencyInjection.registerSingletons();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var services = new ServiceCollection();
+            configureServices(services);
+            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            {
+                var form = serviceProvider.GetRequiredService<Form1>();
+                Application.Run(form);
+            }
+        }
+
+        private static void configureServices(ServiceCollection services)
+        {
+            services.AddSingleton<Form1>()
+                    .AddLogging((configure) => configure.AddDebug())
+                    .AddLocalization(options =>
+                    {
+                        options.ResourcesPath = "resources";
+                    })
+                    .AddSingleton<I18nService>()
+                    //FORMS
+                    .AddSingleton<WorkersForm>()
+                    .AddSingleton<DenominationsForm>()
+                    //BUSINESS
+                    .AddSingleton<DenominationsManager>()
+                    //DAO
+                    .AddSingleton<DenominationDAO, DenominationDAOLocal>();
         }
     }
 }

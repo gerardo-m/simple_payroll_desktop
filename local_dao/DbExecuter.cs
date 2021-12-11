@@ -16,7 +16,10 @@ namespace simple_payroll_desktop.local_dao
             {
                 using (var command = new SQLiteCommand(query, connection))
                 {
-                    parameters.ForEach<KeyValuePair<string, Object>>((pair) => command.Parameters.AddWithValue(pair.Key, pair.Value));
+                    foreach (KeyValuePair<string, Object> entry in parameters)
+                    {
+                        command.Parameters.AddWithValue(entry.Key, entry.Value);
+                    }
                     command.ExecuteNonQuery();
                 }
             }
