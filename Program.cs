@@ -26,6 +26,7 @@ namespace simple_payroll_desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DbContext.up();
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("es");
             var services = new ServiceCollection();
             configureServices(services);
@@ -53,7 +54,8 @@ namespace simple_payroll_desktop
                     .AddSingleton<DenominationsManager>()
                     .AddSingleton<PaySchedulesManager>()
                     //DAO
-                    .AddSingleton<DenominationDAO, DenominationDAOLocal>();
+                    .AddSingleton<DenominationDAO, DenominationDAOLocal>()
+                    .AddSingleton<PayScheduleDAO, PayScheduleDAOLocal>();
         }
     }
 }

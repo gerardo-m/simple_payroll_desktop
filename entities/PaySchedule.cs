@@ -51,5 +51,6 @@ namespace simple_payroll_desktop.entities
         public DateTime BasePeriodEnd { get; set; }
         public DateTime BasePayDay { get; set; }
 
+
     }
 }

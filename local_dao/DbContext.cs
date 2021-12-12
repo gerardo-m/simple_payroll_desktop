@@ -47,8 +47,12 @@ namespace simple_payroll_desktop.local_dao
 
         private static void createTables(SQLiteConnection context)
         {
-            String query = "CREATE TABLE Denominations(id INTEGER PRIMARY KEY, name TEXT);";
+            string query = "CREATE TABLE Denominations(id INTEGER PRIMARY KEY, name TEXT);";
             var command = new SQLiteCommand(query, context);
+            command.ExecuteNonQuery();
+            query = "CREATE TABLE pay_schedules(id INTEGER PRIMARY KEY, name TEXT, type INTEGER, pay_rate_type INTEGER, tracking_type INTEGER, " +
+                    "base_period_start INTEGER, base_period_end INTEGER, base_pay_day INTEGER);";
+            command = new SQLiteCommand(query, context);
             command.ExecuteNonQuery();
         }
     }

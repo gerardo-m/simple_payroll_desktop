@@ -36,14 +36,14 @@ namespace simple_payroll_desktop.forms
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.paySchedulesGrid = new System.Windows.Forms.DataGridView();
             this.payRateTypesComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.basePeriodEndPicker = new System.Windows.Forms.DateTimePicker();
+            this.basePayDayPicker = new System.Windows.Forms.DateTimePicker();
+            this.basePeriodStartPicker = new System.Windows.Forms.DateTimePicker();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@ namespace simple_payroll_desktop.forms
             this.label10 = new System.Windows.Forms.Label();
             this.trackingTypesComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paySchedulesGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // newPayScheduleButton
@@ -73,6 +73,7 @@ namespace simple_payroll_desktop.forms
             this.savePayScheduleButton.TabIndex = 32;
             this.savePayScheduleButton.Text = "Guardar";
             this.savePayScheduleButton.UseVisualStyleBackColor = true;
+            this.savePayScheduleButton.Click += new System.EventHandler(this.savePayScheduleButton_Click);
             // 
             // deletePayScheduleButton
             // 
@@ -122,13 +123,15 @@ namespace simple_payroll_desktop.forms
             this.label7.TabIndex = 0;
             this.label7.Text = "Inicio:";
             // 
-            // dataGridView1
+            // paySchedulesGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 396);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(836, 150);
-            this.dataGridView1.TabIndex = 29;
+            this.paySchedulesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.paySchedulesGrid.Location = new System.Drawing.Point(12, 396);
+            this.paySchedulesGrid.Name = "paySchedulesGrid";
+            this.paySchedulesGrid.RowTemplate.ReadOnly = true;
+            this.paySchedulesGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.paySchedulesGrid.Size = new System.Drawing.Size(836, 150);
+            this.paySchedulesGrid.TabIndex = 29;
             // 
             // payRateTypesComboBox
             // 
@@ -149,26 +152,26 @@ namespace simple_payroll_desktop.forms
             this.label6.TabIndex = 27;
             this.label6.Text = "Tipo de tarifa";
             // 
-            // dateTimePicker3
+            // basePeriodEndPicker
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(213, 174);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 26;
+            this.basePeriodEndPicker.Location = new System.Drawing.Point(213, 174);
+            this.basePeriodEndPicker.Name = "basePeriodEndPicker";
+            this.basePeriodEndPicker.Size = new System.Drawing.Size(200, 20);
+            this.basePeriodEndPicker.TabIndex = 26;
             // 
-            // dateTimePicker2
+            // basePayDayPicker
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(213, 211);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 25;
+            this.basePayDayPicker.Location = new System.Drawing.Point(213, 211);
+            this.basePayDayPicker.Name = "basePayDayPicker";
+            this.basePayDayPicker.Size = new System.Drawing.Size(200, 20);
+            this.basePayDayPicker.TabIndex = 25;
             // 
-            // dateTimePicker1
+            // basePeriodStartPicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(213, 135);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 24;
+            this.basePeriodStartPicker.Location = new System.Drawing.Point(213, 135);
+            this.basePeriodStartPicker.Name = "basePeriodStartPicker";
+            this.basePeriodStartPicker.Size = new System.Drawing.Size(200, 20);
+            this.basePeriodStartPicker.TabIndex = 24;
             // 
             // typeComboBox
             // 
@@ -180,12 +183,12 @@ namespace simple_payroll_desktop.forms
             this.typeComboBox.TabIndex = 23;
             this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
             // 
-            // textBox1
+            // nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(213, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 22;
+            this.nameTextBox.Location = new System.Drawing.Point(213, 54);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(161, 20);
+            this.nameTextBox.TabIndex = 22;
             // 
             // label5
             // 
@@ -270,14 +273,14 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.savePayScheduleButton);
             this.Controls.Add(this.deletePayScheduleButton);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.paySchedulesGrid);
             this.Controls.Add(this.payRateTypesComboBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.basePeriodEndPicker);
+            this.Controls.Add(this.basePayDayPicker);
+            this.Controls.Add(this.basePeriodStartPicker);
             this.Controls.Add(this.typeComboBox);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -289,7 +292,7 @@ namespace simple_payroll_desktop.forms
             this.Load += new System.EventHandler(this.PaySchedulesForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paySchedulesGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,14 +307,14 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView paySchedulesGrid;
         private System.Windows.Forms.ComboBox payRateTypesComboBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker basePeriodEndPicker;
+        private System.Windows.Forms.DateTimePicker basePayDayPicker;
+        private System.Windows.Forms.DateTimePicker basePeriodStartPicker;
         private System.Windows.Forms.ComboBox typeComboBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
