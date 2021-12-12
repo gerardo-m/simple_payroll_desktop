@@ -19,13 +19,16 @@ namespace simple_payroll_desktop
         private readonly I18nService i18n;
 
         private readonly WorkersForm workersForm;
+        private readonly PaySchedulesForm paySchedulesForm;
         public Form1(ILogger<Form1> logger,
                      I18nService i18n,
-                     WorkersForm workersForm)
+                     WorkersForm workersForm,
+                     PaySchedulesForm paySchedulesForm)
         {
             this.logger = logger;
             this.i18n = i18n;
             this.workersForm = workersForm;
+            this.paySchedulesForm = paySchedulesForm;
             InitializeComponent();
         }
 
@@ -64,9 +67,8 @@ namespace simple_payroll_desktop
         private void managePaySchedulesButton_Click(object sender, EventArgs e)
         {
             logger.LogInformation("[Form1] Manage Pay Schedules clicked");
-            PaySchedulesForm managePaySchedulesForm = new PaySchedulesForm();
             this.Visible = false;
-            managePaySchedulesForm.ShowDialog(this);
+            paySchedulesForm.ShowDialog(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)

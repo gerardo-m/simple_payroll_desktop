@@ -122,9 +122,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="business\DenominationsManager.cs" />
+    <Compile Include="business\PaySchedulesManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
+    <Compile Include="dao\PayScheduleDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="entities\Denomination.cs" />
+    <Compile Include="entities\PaySchedule.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

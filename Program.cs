@@ -47,9 +47,11 @@ namespace simple_payroll_desktop
                     .AddSingleton<I18nService>()
                     //FORMS
                     .AddSingleton<WorkersForm>()
+                    .AddSingleton<PaySchedulesForm>()
                     .AddSingleton<DenominationsForm>()
                     //BUSINESS
                     .AddSingleton<DenominationsManager>()
+                    .AddSingleton<PaySchedulesManager>()
                     //DAO
                     .AddSingleton<DenominationDAO, DenominationDAOLocal>();
         }

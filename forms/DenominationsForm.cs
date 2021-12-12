@@ -17,13 +17,17 @@ namespace simple_payroll_desktop.forms
     {
 
         private readonly ILogger logger;
+        private readonly I18nService i18n;
         private readonly DenominationsManager denominationsManager;
 
 
         private Denomination currentDenomination;
-        public DenominationsForm(ILogger<DenominationsForm> logger, DenominationsManager denominationsManager)
+        public DenominationsForm(ILogger<DenominationsForm> logger, 
+                                 I18nService i18n,
+                                 DenominationsManager denominationsManager)
         {
             this.logger = logger;
+            this.i18n = i18n;
             this.denominationsManager = denominationsManager;
             InitializeComponent();
         }
@@ -34,6 +38,15 @@ namespace simple_payroll_desktop.forms
             logger.LogTrace(ex, ex.Message);
             MessageBox.Show(ex.Message);
             throw ex;
+        }
+
+        private void loadStrings()
+        {
+            nameLabel.Text = i18n.DenominationsForm_Controls(nameLabel.Name);
+            newDenominationButton.Text = i18n.DenominationsForm_Controls(newDenominationButton.Name);
+            saveDenominationButton.Text = i18n.DenominationsForm_Controls(saveDenominationButton.Name, "Save");
+            deleteDenominationButton.Text = i18n.DenominationsForm_Controls(deleteDenominationButton.Name);
+            Text = i18n.DenominationsForm_Controls("title");
         }
 
         private void initializeListBox() 
@@ -77,12 +90,12 @@ namespace simple_payroll_desktop.forms
             if (denominationsListBox.SelectedIndex == -1)
             {
                 deleteDenominationButton.Enabled = false;
-                saveDenominationButton.Text = "Guardar";
+                saveDenominationButton.Text = i18n.DenominationsForm_Controls(saveDenominationButton.Name, "Save"); ;
             }
             else
             {
                 deleteDenominationButton.Enabled = true;
-                saveDenominationButton.Text = "Actualizar";
+                saveDenominationButton.Text = i18n.DenominationsForm_Controls(saveDenominationButton.Name, "Update"); ;
             }
         }
 
@@ -119,7 +132,7 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
-                //denominationsManager = DenominationsManager.getInstance();
+                loadStrings();
                 initializeListBox();
                 switchToUnselectedState();
                 updateControlsStates();

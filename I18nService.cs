@@ -27,6 +27,16 @@ namespace simple_payroll_desktop
             return stringLocalizer.GetString($"Form1_{controlName}");
         }
 
+        public string DenominationsForm_Controls(string controlName)
+        {
+            return stringLocalizer.GetString($"DenominationsForm_{controlName}");
+        }
+
+        public string DenominationsForm_Controls(string controlName, string option)
+        {
+            return stringLocalizer.GetString($"DenominationsForm_{controlName}_{option}");
+        }
+
         public string DenominationManager_Messages(string messageName)
         {
             return stringLocalizer.GetString($"DenominationManager_{messageName}");

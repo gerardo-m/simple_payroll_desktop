@@ -123,6 +123,24 @@
   <data name="DenominationManager_inUse" xml:space="preserve">
     <value>La denominación está en uso, debes eliminar a los trabajadores con la denominación primero</value>
   </data>
+  <data name="DenominationsForm_deleteDenominationButton" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="DenominationsForm_nameLabel" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="DenominationsForm_newDenominationButton" xml:space="preserve">
+    <value>Nueva</value>
+  </data>
+  <data name="DenominationsForm_saveDenominationButton_Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="DenominationsForm_saveDenominationButton_Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="DenominationsForm_title" xml:space="preserve">
+    <value>Gestionar calendarios de pagos</value>
+  </data>
   <data name="Form1_exitButton" xml:space="preserve">
     <value>SALIR</value>
   </data>
