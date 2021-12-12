@@ -60,7 +60,7 @@ namespace simple_payroll_desktop.business
         public bool existWithName(String denominationName)
         {
             //TODO must check the existance of a denomination with this name in the DB
-            return true;
+            return false;
         }
 
         public bool canDelete(Denomination denomination)

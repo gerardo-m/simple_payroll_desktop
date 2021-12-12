@@ -27,6 +27,13 @@ namespace simple_payroll_desktop.local_dao
             executer.executeQuery(query, parameters);
         }
 
+        public Denomination getDenomination(int id)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", id);
+            return executer.selectFromTable<Denomination>("Denominations", "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+        }
+
         public void saveDenomination(Denomination denomination)
         {
             string query = "INSERT INTO Denominations(name) values (@name)";

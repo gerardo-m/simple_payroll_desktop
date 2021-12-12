@@ -123,11 +123,14 @@
   <ItemGroup>
     <Compile Include="business\DenominationsManager.cs" />
     <Compile Include="business\PaySchedulesManager.cs" />
+    <Compile Include="business\WorkersManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
+    <Compile Include="dao\WorkerDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="entities\Denomination.cs" />
     <Compile Include="entities\PaySchedule.cs" />
+    <Compile Include="entities\Worker.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +178,7 @@
     <Compile Include="local_dao\DbExecuter.cs" />
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
+    <Compile Include="local_dao\WorkerDAOLocal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

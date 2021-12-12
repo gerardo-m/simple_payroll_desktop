@@ -17,5 +17,7 @@ namespace simple_payroll_desktop.dao
         void updateDenomination(Denomination denomination);
 
         void deleteDenomination(Denomination denomination);
+
+        Denomination getDenomination(int Id);
     }
 }

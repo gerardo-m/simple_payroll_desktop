@@ -30,7 +30,7 @@ namespace simple_payroll_desktop.local_dao
             List<T> list = new List<T>();
             using (var connection = DbContext.GetInstance())
             {
-                String query = $"SELECT * FROM {tableName}";
+                string query = buildSelectQuery(tableName, null);
                 using (var command = new SQLiteCommand(query, connection))
                 {
                     using (var reader = command.ExecuteReader())
@@ -43,6 +43,40 @@ namespace simple_payroll_desktop.local_dao
                 }
             }
             return list;
+        }
+
+        public IList<T> selectFromTable<T>(string tableName, string where, Dictionary<string, object> whereArgs, Func<SQLiteDataReader, T> mapFunction)
+        {
+            List<T> list = new List<T>();
+            using (var connection = DbContext.GetInstance())
+            {
+                string query = buildSelectQuery(tableName, where);
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    foreach (KeyValuePair<string, object> entry in whereArgs)
+                    {
+                        command.Parameters.AddWithValue(entry.Key, entry.Value);
+                    }
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(mapFunction(reader));
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+
+        private string buildSelectQuery(string tableName, string where)
+        {
+            string query = $"SELECT * FROM {tableName}";
+            if (!string.IsNullOrWhiteSpace(where))
+            {
+                query = $"{query} where {where}";
+            }
+            return query;
         }
     }
 }

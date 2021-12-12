@@ -41,7 +41,7 @@ namespace simple_payroll_desktop.forms
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.workersGrid = new System.Windows.Forms.DataGridView();
             this.deleteWorkerButton = new System.Windows.Forms.Button();
             this.saveWorkerButton = new System.Windows.Forms.Button();
             this.newWorkerButton = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@ namespace simple_payroll_desktop.forms
             this.denominationComboBox = new System.Windows.Forms.ComboBox();
             this.manageDenominationsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.payRateSpinner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workersGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +97,7 @@ namespace simple_payroll_desktop.forms
             // payRateTypeComboBox
             // 
             this.payRateTypeComboBox.FormattingEnabled = true;
-            this.payRateTypeComboBox.Location = new System.Drawing.Point(605, 109);
+            this.payRateTypeComboBox.Location = new System.Drawing.Point(605, 56);
             this.payRateTypeComboBox.Name = "payRateTypeComboBox";
             this.payRateTypeComboBox.Size = new System.Drawing.Size(220, 21);
             this.payRateTypeComboBox.TabIndex = 5;
@@ -139,7 +139,7 @@ namespace simple_payroll_desktop.forms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(467, 112);
+            this.label5.Location = new System.Drawing.Point(467, 56);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 10;
@@ -154,13 +154,15 @@ namespace simple_payroll_desktop.forms
             this.label6.TabIndex = 11;
             this.label6.Text = "Tarifa";
             // 
-            // dataGridView1
+            // workersGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 350);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(809, 210);
-            this.dataGridView1.TabIndex = 12;
+            this.workersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.workersGrid.Location = new System.Drawing.Point(16, 350);
+            this.workersGrid.Name = "workersGrid";
+            this.workersGrid.ReadOnly = true;
+            this.workersGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.workersGrid.Size = new System.Drawing.Size(809, 210);
+            this.workersGrid.TabIndex = 12;
             // 
             // deleteWorkerButton
             // 
@@ -179,6 +181,7 @@ namespace simple_payroll_desktop.forms
             this.saveWorkerButton.TabIndex = 14;
             this.saveWorkerButton.Text = "Guardar";
             this.saveWorkerButton.UseVisualStyleBackColor = true;
+            this.saveWorkerButton.Click += new System.EventHandler(this.saveWorkerButton_Click);
             // 
             // newWorkerButton
             // 
@@ -210,7 +213,7 @@ namespace simple_payroll_desktop.forms
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(470, 58);
+            this.label7.Location = new System.Drawing.Point(467, 112);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 17;
@@ -219,7 +222,7 @@ namespace simple_payroll_desktop.forms
             // payScheduleComboBox
             // 
             this.payScheduleComboBox.FormattingEnabled = true;
-            this.payScheduleComboBox.Location = new System.Drawing.Point(605, 56);
+            this.payScheduleComboBox.Location = new System.Drawing.Point(605, 109);
             this.payScheduleComboBox.Name = "payScheduleComboBox";
             this.payScheduleComboBox.Size = new System.Drawing.Size(220, 21);
             this.payScheduleComboBox.TabIndex = 18;
@@ -251,7 +254,7 @@ namespace simple_payroll_desktop.forms
             this.manageDenominationsButton.UseVisualStyleBackColor = true;
             this.manageDenominationsButton.Click += new System.EventHandler(this.manageDenominationsButton_Click);
             // 
-            // ManageWorkersForm
+            // WorkersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -265,7 +268,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.newWorkerButton);
             this.Controls.Add(this.saveWorkerButton);
             this.Controls.Add(this.deleteWorkerButton);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.workersGrid);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -279,11 +282,12 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.firstNameTextBox);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ManageWorkersForm";
+            this.Name = "WorkersForm";
             this.Text = "Gestionar trabajadores";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManageWorkersForm_FormClosed);
+            this.Load += new System.EventHandler(this.WorkersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.payRateSpinner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workersGrid)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -305,7 +309,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView workersGrid;
         private System.Windows.Forms.Button deleteWorkerButton;
         private System.Windows.Forms.Button saveWorkerButton;
         private System.Windows.Forms.Button newWorkerButton;

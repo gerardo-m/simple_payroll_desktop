@@ -15,5 +15,7 @@ namespace simple_payroll_desktop.dao
         void savePaySchedule(PaySchedule paySchedule);
         void updatePaySchedule(PaySchedule paySchedule);
         void deletePaySchedule(PaySchedule paySchedule);
+
+        PaySchedule getPaySchedule(int Id);
     }
 }

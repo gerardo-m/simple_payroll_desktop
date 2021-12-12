@@ -53,9 +53,11 @@ namespace simple_payroll_desktop
                     //BUSINESS
                     .AddSingleton<DenominationsManager>()
                     .AddSingleton<PaySchedulesManager>()
+                    .AddSingleton<WorkersManager>()
                     //DAO
                     .AddSingleton<DenominationDAO, DenominationDAOLocal>()
-                    .AddSingleton<PayScheduleDAO, PayScheduleDAOLocal>();
+                    .AddSingleton<PayScheduleDAO, PayScheduleDAOLocal>()
+                    .AddSingleton<WorkerDAO, WorkerDAOLocal>();
         }
     }
 }

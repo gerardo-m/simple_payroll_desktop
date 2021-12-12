@@ -23,6 +23,13 @@ namespace simple_payroll_desktop.local_dao
             throw new NotImplementedException();
         }
 
+        public PaySchedule getPaySchedule(int id)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", id);
+            return executer.selectFromTable<PaySchedule>("pay_schedules", "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+        }
+
         public void savePaySchedule(PaySchedule paySchedule)
         {
             string query = "INSERT INTO pay_schedules(name, type, pay_rate_type, tracking_type, base_period_start, base_period_end, base_pay_day)" +
