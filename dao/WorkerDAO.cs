@@ -11,6 +11,8 @@ namespace simple_payroll_desktop.dao
     {
 
         IList<Worker> allWorkers();
+
+        IList<Worker> workersWithPaySchedule(int PayScheduleId);
         void saveWorker(Worker worker);
         void updateWorker(Worker worker);
         void deleteWorker(Worker worker);

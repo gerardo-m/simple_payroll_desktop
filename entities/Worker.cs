@@ -18,5 +18,10 @@ namespace simple_payroll_desktop.entities
         public PaySchedule PaySchedule { get; set; }
         public Denomination Denomination { get; set; }
 
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName1} {LastName2}";
+        }
+
     }
 }

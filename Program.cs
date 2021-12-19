@@ -50,6 +50,7 @@ namespace simple_payroll_desktop
                     .AddSingleton<WorkersForm>()
                     .AddSingleton<PaySchedulesForm>()
                     .AddSingleton<DenominationsForm>()
+                    .AddSingleton<TrackWorkForm>()
                     //BUSINESS
                     .AddSingleton<DenominationsManager>()
                     .AddSingleton<PaySchedulesManager>()

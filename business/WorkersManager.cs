@@ -25,6 +25,11 @@ namespace simple_payroll_desktop.business
             return workerDAO.allWorkers();
         }
 
+        public IList<Worker> workersWithPaySchedule(int payScheduleId)
+        {
+            return workerDAO.workersWithPaySchedule(payScheduleId);
+        }
+
         public void saveWorker(Worker worker)
         {
             if (worker.Id == 0)

@@ -48,6 +48,14 @@ namespace simple_payroll_desktop.local_dao
             throw new NotImplementedException();
         }
 
+        public IList<Worker> workersWithPaySchedule(int payScheduleId)
+        {
+            string where = "pay_schedule_id = @pay_schedule_id";
+            Dictionary<string, object> whereArgs = new Dictionary<string, object>();
+            whereArgs.Add("@pay_schedule_id", payScheduleId);
+            return executer.selectFromTable<Worker>("workers", where, whereArgs, (reader) => mapFromReader(reader));
+        }
+
         private Worker mapFromReader(SQLiteDataReader reader)
         {
             return new Worker
