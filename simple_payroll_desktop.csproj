@@ -151,6 +151,13 @@
     <Compile Include="forms\controls\track_work\DaysDayWeekTrackerControl.Designer.cs">
       <DependentUpon>DaysDayWeekTrackerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\controls\track_work\DefaultTrackerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\controls\track_work\DefaultTrackerControl.Designer.cs">
+      <DependentUpon>DefaultTrackerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\controls\track_work\TrackerControlSelector.cs" />
     <Compile Include="forms\DenominationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\controls\track_work\DaysDayWeekTrackerControl.resx">
       <DependentUpon>DaysDayWeekTrackerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\controls\track_work\DefaultTrackerControl.resx">
+      <DependentUpon>DefaultTrackerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\DenominationsForm.resx">
       <DependentUpon>DenominationsForm.cs</DependentUpon>

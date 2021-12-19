@@ -32,13 +32,13 @@ namespace simple_payroll_desktop.forms
             this.label1 = new System.Windows.Forms.Label();
             this.paySchedulesComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackingBoxPanel = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.button1 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.workersComboBox = new System.Windows.Forms.ComboBox();
-            this.trackingBoxPanel = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,11 +53,13 @@ namespace simple_payroll_desktop.forms
             // 
             // paySchedulesComboBox
             // 
+            this.paySchedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.paySchedulesComboBox.FormattingEnabled = true;
             this.paySchedulesComboBox.Location = new System.Drawing.Point(386, 27);
             this.paySchedulesComboBox.Name = "paySchedulesComboBox";
             this.paySchedulesComboBox.Size = new System.Drawing.Size(409, 21);
             this.paySchedulesComboBox.TabIndex = 1;
+            this.paySchedulesComboBox.SelectedIndexChanged += new System.EventHandler(this.paySchedulesComboBox_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -70,6 +72,17 @@ namespace simple_payroll_desktop.forms
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Introduce los datos";
+            // 
+            // trackingBoxPanel
+            // 
+            this.trackingBoxPanel.AutoSize = true;
+            this.trackingBoxPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.trackingBoxPanel.Location = new System.Drawing.Point(17, 106);
+            this.trackingBoxPanel.Name = "trackingBoxPanel";
+            this.trackingBoxPanel.Size = new System.Drawing.Size(6, 5);
+            this.trackingBoxPanel.TabIndex = 3;
+            this.trackingBoxPanel.TabStop = false;
+            this.trackingBoxPanel.Text = "Trabajador";
             // 
             // comboBox2
             // 
@@ -116,22 +129,12 @@ namespace simple_payroll_desktop.forms
             // 
             // workersComboBox
             // 
+            this.workersComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.workersComboBox.FormattingEnabled = true;
             this.workersComboBox.Location = new System.Drawing.Point(387, 68);
             this.workersComboBox.Name = "workersComboBox";
             this.workersComboBox.Size = new System.Drawing.Size(408, 21);
             this.workersComboBox.TabIndex = 6;
-            // 
-            // trackingBoxPanel
-            // 
-            this.trackingBoxPanel.AutoSize = true;
-            this.trackingBoxPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.trackingBoxPanel.Location = new System.Drawing.Point(17, 106);
-            this.trackingBoxPanel.Name = "trackingBoxPanel";
-            this.trackingBoxPanel.Size = new System.Drawing.Size(6, 19);
-            this.trackingBoxPanel.TabIndex = 3;
-            this.trackingBoxPanel.TabStop = false;
-            this.trackingBoxPanel.Text = "Trabajador";
             // 
             // TrackWorkForm
             // 

@@ -21,7 +21,11 @@ namespace simple_payroll_desktop.forms
         private readonly I18nService i18n;
         private readonly PaySchedulesManager paySchedulesManager;
         private readonly WorkersManager workersManager;
-        private DaysDayWeekTrackerControl trackerControl;
+
+        private PaySchedule selectedPaySchedule;
+        private Worker selectedWorker;
+        private List<TrackingEntry> entries;
+        private BaseTrackerControl trackerControl;
         public TrackWorkForm(ILogger<TrackWorkForm> logger,
                              I18nService i18n,
                              PaySchedulesManager paySchedulesManager,
@@ -31,8 +35,24 @@ namespace simple_payroll_desktop.forms
             this.i18n = i18n;
             this.paySchedulesManager = paySchedulesManager;
             this.workersManager = workersManager;
-            InitializeComponent();
-            trackerControl = new DaysDayWeekTrackerControl();
+            InitializeComponent(); 
+            entries = new List<TrackingEntry>();
+            for (int i = 0; i < 7; i++)
+            {
+                entries.Add(new TrackingEntry
+                {
+                    Date = DateTime.Today,
+                    TrackingValue = 0
+                });
+            }
+        }
+
+        private void changeTrackerControl()
+        {
+            if (trackerControl != null)
+                trackingBoxPanel.Controls.Remove(trackerControl);
+            TrackerControlSelector controlSelector = new TrackerControlSelector();
+            trackerControl =  controlSelector.getTrackerControl(selectedPaySchedule.TrackingType, entries, logger, i18n);
             trackingBoxPanel.Controls.Add(trackerControl);
         }
 
@@ -47,12 +67,18 @@ namespace simple_payroll_desktop.forms
         private void loadPaySchedules()
         {
             paySchedulesComboBox.DataSource = paySchedulesManager.allPaySchedules();
+            selectedPaySchedule = (PaySchedule)paySchedulesComboBox.SelectedItem;
         }
 
         private void loadWorkers()
         {
-            PaySchedule selectedPaySchedule = (PaySchedule)paySchedulesComboBox.SelectedItem;
             workersComboBox.DataSource = workersManager.workersWithPaySchedule(selectedPaySchedule.Id);
+            selectedWorker = (Worker)workersComboBox.SelectedItem;
+        }
+
+        private void selectPaySchedule()
+        {
+            selectedPaySchedule = (PaySchedule)paySchedulesComboBox.SelectedItem;
         }
 
         private void TrackWorkForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -66,12 +92,26 @@ namespace simple_payroll_desktop.forms
             {
                 loadPaySchedules();
                 loadWorkers();
+                changeTrackerControl();
             }
             catch (Exception ex)
             {
                 handleException(ex);
             }
             
+        }
+
+        private void paySchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                selectPaySchedule();
+                changeTrackerControl();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
         }
     }
 }

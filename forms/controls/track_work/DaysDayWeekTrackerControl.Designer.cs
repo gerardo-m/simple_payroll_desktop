@@ -31,34 +31,34 @@ namespace simple_payroll_desktop.forms.controls.track_work
         {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.checkedListBox7 = new System.Windows.Forms.CheckedListBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.day7CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day7Label = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.checkedListBox6 = new System.Windows.Forms.CheckedListBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.checkedListBox5 = new System.Windows.Forms.CheckedListBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.day6CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day6Label = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.checkedListBox4 = new System.Windows.Forms.CheckedListBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.day4CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day4Label = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.checkedListBox3 = new System.Windows.Forms.CheckedListBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.day3CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day3Label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.day2CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day2Label = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.day1CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day1Label = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.day5CheckBox = new System.Windows.Forms.CheckedListBox();
+            this.day5Label = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -77,11 +77,11 @@ namespace simple_payroll_desktop.forms.controls.track_work
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28572F));
             this.tableLayoutPanel2.Controls.Add(this.panel7, 6, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel6, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel5, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel4, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel3, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel5, 4, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -93,218 +93,232 @@ namespace simple_payroll_desktop.forms.controls.track_work
             // 
             this.panel7.AutoSize = true;
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel7.Controls.Add(this.checkedListBox7);
-            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.day7CheckBox);
+            this.panel7.Controls.Add(this.day7Label);
             this.panel7.Location = new System.Drawing.Point(632, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(100, 55);
             this.panel7.TabIndex = 9;
             // 
-            // checkedListBox7
+            // day7CheckBox
             // 
-            this.checkedListBox7.FormattingEnabled = true;
-            this.checkedListBox7.Items.AddRange(new object[] {
+            this.day7CheckBox.CheckOnClick = true;
+            this.day7CheckBox.FormattingEnabled = true;
+            this.day7CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox7.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox7.Name = "checkedListBox7";
-            this.checkedListBox7.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox7.TabIndex = 1;
+            this.day7CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day7CheckBox.Name = "day7CheckBox";
+            this.day7CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day7CheckBox.TabIndex = 1;
+            this.day7CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day7CheckBox_ItemCheck);
             // 
-            // label10
+            // day7Label
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(0, 2);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Dom";
+            this.day7Label.AutoSize = true;
+            this.day7Label.Location = new System.Drawing.Point(0, 2);
+            this.day7Label.Name = "day7Label";
+            this.day7Label.Size = new System.Drawing.Size(29, 13);
+            this.day7Label.TabIndex = 0;
+            this.day7Label.Text = "Dom";
             // 
             // panel6
             // 
             this.panel6.AutoSize = true;
             this.panel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel6.Controls.Add(this.checkedListBox6);
-            this.panel6.Controls.Add(this.label9);
+            this.panel6.Controls.Add(this.day6CheckBox);
+            this.panel6.Controls.Add(this.day6Label);
             this.panel6.Location = new System.Drawing.Point(527, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(99, 55);
             this.panel6.TabIndex = 8;
             // 
-            // checkedListBox6
+            // day6CheckBox
             // 
-            this.checkedListBox6.FormattingEnabled = true;
-            this.checkedListBox6.Items.AddRange(new object[] {
+            this.day6CheckBox.CheckOnClick = true;
+            this.day6CheckBox.FormattingEnabled = true;
+            this.day6CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox6.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox6.Name = "checkedListBox6";
-            this.checkedListBox6.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox6.TabIndex = 1;
+            this.day6CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day6CheckBox.Name = "day6CheckBox";
+            this.day6CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day6CheckBox.TabIndex = 1;
+            this.day6CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day6CheckBox_ItemCheck);
             // 
-            // label9
+            // day6Label
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(0, 2);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Sab";
-            // 
-            // panel5
-            // 
-            this.panel5.AutoSize = true;
-            this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel5.Controls.Add(this.checkedListBox5);
-            this.panel5.Controls.Add(this.label8);
-            this.panel5.Location = new System.Drawing.Point(422, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(99, 55);
-            this.panel5.TabIndex = 7;
-            // 
-            // checkedListBox5
-            // 
-            this.checkedListBox5.FormattingEnabled = true;
-            this.checkedListBox5.Items.AddRange(new object[] {
-            "Medio Día",
-            "Día Completo"});
-            this.checkedListBox5.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox5.Name = "checkedListBox5";
-            this.checkedListBox5.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox5.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(0, 2);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(22, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Vie";
+            this.day6Label.AutoSize = true;
+            this.day6Label.Location = new System.Drawing.Point(0, 2);
+            this.day6Label.Name = "day6Label";
+            this.day6Label.Size = new System.Drawing.Size(26, 13);
+            this.day6Label.TabIndex = 0;
+            this.day6Label.Text = "Sab";
             // 
             // panel4
             // 
             this.panel4.AutoSize = true;
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel4.Controls.Add(this.checkedListBox4);
-            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.day4CheckBox);
+            this.panel4.Controls.Add(this.day4Label);
             this.panel4.Location = new System.Drawing.Point(317, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(99, 55);
             this.panel4.TabIndex = 6;
             // 
-            // checkedListBox4
+            // day4CheckBox
             // 
-            this.checkedListBox4.FormattingEnabled = true;
-            this.checkedListBox4.Items.AddRange(new object[] {
+            this.day4CheckBox.CheckOnClick = true;
+            this.day4CheckBox.FormattingEnabled = true;
+            this.day4CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox4.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox4.Name = "checkedListBox4";
-            this.checkedListBox4.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox4.TabIndex = 1;
+            this.day4CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day4CheckBox.Name = "day4CheckBox";
+            this.day4CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day4CheckBox.TabIndex = 1;
+            this.day4CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day4CheckBox_ItemCheck);
             // 
-            // label7
+            // day4Label
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(0, 2);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(24, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Jue";
+            this.day4Label.AutoSize = true;
+            this.day4Label.Location = new System.Drawing.Point(0, 2);
+            this.day4Label.Name = "day4Label";
+            this.day4Label.Size = new System.Drawing.Size(24, 13);
+            this.day4Label.TabIndex = 0;
+            this.day4Label.Text = "Jue";
             // 
             // panel3
             // 
             this.panel3.AutoSize = true;
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.Controls.Add(this.checkedListBox3);
-            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.day3CheckBox);
+            this.panel3.Controls.Add(this.day3Label);
             this.panel3.Location = new System.Drawing.Point(212, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(99, 55);
             this.panel3.TabIndex = 5;
             // 
-            // checkedListBox3
+            // day3CheckBox
             // 
-            this.checkedListBox3.FormattingEnabled = true;
-            this.checkedListBox3.Items.AddRange(new object[] {
+            this.day3CheckBox.CheckOnClick = true;
+            this.day3CheckBox.FormattingEnabled = true;
+            this.day3CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox3.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox3.Name = "checkedListBox3";
-            this.checkedListBox3.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox3.TabIndex = 1;
+            this.day3CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day3CheckBox.Name = "day3CheckBox";
+            this.day3CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day3CheckBox.TabIndex = 1;
+            this.day3CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day3CheckBox_ItemCheck);
             // 
-            // label6
+            // day3Label
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(0, 2);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Mie";
+            this.day3Label.AutoSize = true;
+            this.day3Label.Location = new System.Drawing.Point(0, 2);
+            this.day3Label.Name = "day3Label";
+            this.day3Label.Size = new System.Drawing.Size(24, 13);
+            this.day3Label.TabIndex = 0;
+            this.day3Label.Text = "Mie";
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.checkedListBox2);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.day2CheckBox);
+            this.panel1.Controls.Add(this.day2Label);
             this.panel1.Location = new System.Drawing.Point(107, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(99, 55);
             this.panel1.TabIndex = 4;
             // 
-            // checkedListBox2
+            // day2CheckBox
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.day2CheckBox.CheckOnClick = true;
+            this.day2CheckBox.FormattingEnabled = true;
+            this.day2CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox2.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox2.TabIndex = 1;
+            this.day2CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day2CheckBox.Name = "day2CheckBox";
+            this.day2CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day2CheckBox.TabIndex = 1;
+            this.day2CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day2CheckBox_ItemCheck);
             // 
-            // label5
+            // day2Label
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(0, 2);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Mar";
+            this.day2Label.AutoSize = true;
+            this.day2Label.Location = new System.Drawing.Point(0, 2);
+            this.day2Label.Name = "day2Label";
+            this.day2Label.Size = new System.Drawing.Size(25, 13);
+            this.day2Label.TabIndex = 0;
+            this.day2Label.Text = "Mar";
             // 
             // panel2
             // 
             this.panel2.AutoSize = true;
             this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel2.Controls.Add(this.checkedListBox1);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.day1CheckBox);
+            this.panel2.Controls.Add(this.day1Label);
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(98, 55);
             this.panel2.TabIndex = 3;
             // 
-            // checkedListBox1
+            // day1CheckBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.day1CheckBox.CheckOnClick = true;
+            this.day1CheckBox.FormattingEnabled = true;
+            this.day1CheckBox.Items.AddRange(new object[] {
             "Medio Día",
             "Día Completo"});
-            this.checkedListBox1.Location = new System.Drawing.Point(3, 18);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(95, 34);
-            this.checkedListBox1.TabIndex = 1;
+            this.day1CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day1CheckBox.Name = "day1CheckBox";
+            this.day1CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day1CheckBox.TabIndex = 1;
+            this.day1CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day1CheckBox_ItemCheck);
             // 
-            // label4
+            // day1Label
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(0, 2);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Lun";
+            this.day1Label.AutoSize = true;
+            this.day1Label.Location = new System.Drawing.Point(0, 2);
+            this.day1Label.Name = "day1Label";
+            this.day1Label.Size = new System.Drawing.Size(25, 13);
+            this.day1Label.TabIndex = 0;
+            this.day1Label.Text = "Lun";
+            // 
+            // panel5
+            // 
+            this.panel5.AutoSize = true;
+            this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel5.Controls.Add(this.day5CheckBox);
+            this.panel5.Controls.Add(this.day5Label);
+            this.panel5.Location = new System.Drawing.Point(422, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(99, 55);
+            this.panel5.TabIndex = 7;
+            // 
+            // day5CheckBox
+            // 
+            this.day5CheckBox.CheckOnClick = true;
+            this.day5CheckBox.FormattingEnabled = true;
+            this.day5CheckBox.Items.AddRange(new object[] {
+            "Medio Día",
+            "Día Completo"});
+            this.day5CheckBox.Location = new System.Drawing.Point(3, 18);
+            this.day5CheckBox.Name = "day5CheckBox";
+            this.day5CheckBox.Size = new System.Drawing.Size(95, 34);
+            this.day5CheckBox.TabIndex = 1;
+            this.day5CheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.day5CheckBox_ItemCheck);
+            // 
+            // day5Label
+            // 
+            this.day5Label.AutoSize = true;
+            this.day5Label.Location = new System.Drawing.Point(0, 2);
+            this.day5Label.Name = "day5Label";
+            this.day5Label.Size = new System.Drawing.Size(22, 13);
+            this.day5Label.TabIndex = 0;
+            this.day5Label.Text = "Vie";
             // 
             // DaysDayWeekTrackerControl
             // 
@@ -319,8 +333,6 @@ namespace simple_payroll_desktop.forms.controls.track_work
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -329,6 +341,8 @@ namespace simple_payroll_desktop.forms.controls.track_work
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,25 +352,25 @@ namespace simple_payroll_desktop.forms.controls.track_work
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.CheckedListBox checkedListBox7;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckedListBox day7CheckBox;
+        private System.Windows.Forms.Label day7Label;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.CheckedListBox checkedListBox6;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckedListBox day6CheckBox;
+        private System.Windows.Forms.Label day6Label;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.CheckedListBox checkedListBox5;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckedListBox day5CheckBox;
+        private System.Windows.Forms.Label day5Label;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.CheckedListBox checkedListBox4;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckedListBox day4CheckBox;
+        private System.Windows.Forms.Label day4Label;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.CheckedListBox checkedListBox3;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckedListBox day3CheckBox;
+        private System.Windows.Forms.Label day3Label;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckedListBox day2CheckBox;
+        private System.Windows.Forms.Label day2Label;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckedListBox day1CheckBox;
+        private System.Windows.Forms.Label day1Label;
     }
 }
