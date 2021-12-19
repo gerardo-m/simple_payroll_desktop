@@ -14,14 +14,17 @@ namespace simple_payroll_desktop.forms.controls.track_work
 {
     public partial class DaysDayWeekTrackerControl : BaseTrackerControl
     {
+
+        private const string dateFormat = "ddd MMMM dd";
         private readonly ILogger logger;
         private readonly I18nService i18n;
         public DaysDayWeekTrackerControl(ILogger logger,
                                          I18nService i18n, 
-                                         List<TrackingEntry> trackingEntries) : base(trackingEntries)
+                                         List<TrackingEntry> trackingEntries)
         {
             this.logger = logger;
             this.i18n = i18n;
+            this.trackingEntries = trackingEntries;
             InitializeComponent();
             if (trackingEntries.Count == 7)
                 loadTrackingEntries();
@@ -32,13 +35,13 @@ namespace simple_payroll_desktop.forms.controls.track_work
         private void loadTrackingEntries()
         {
             trackingEntries.Sort((e1, e2) => e1.Date.CompareTo(e2.Date));
-            day1Label.Text = trackingEntries[0].Date.ToString("dddd MMMM dd");
-            day2Label.Text = trackingEntries[1].Date.ToString("dddd MMMM dd");
-            day3Label.Text = trackingEntries[2].Date.ToString("dddd MMMM dd");
-            day4Label.Text = trackingEntries[3].Date.ToString("dddd MMMM dd");
-            day5Label.Text = trackingEntries[4].Date.ToString("dddd MMMM dd");
-            day6Label.Text = trackingEntries[5].Date.ToString("dddd MMMM dd");
-            day7Label.Text = trackingEntries[6].Date.ToString("dddd MMMM dd");
+            day1Label.Text = trackingEntries[0].Date.ToString(dateFormat);
+            day2Label.Text = trackingEntries[1].Date.ToString(dateFormat);
+            day3Label.Text = trackingEntries[2].Date.ToString(dateFormat);
+            day4Label.Text = trackingEntries[3].Date.ToString(dateFormat);
+            day5Label.Text = trackingEntries[4].Date.ToString(dateFormat);
+            day6Label.Text = trackingEntries[5].Date.ToString(dateFormat);
+            day7Label.Text = trackingEntries[6].Date.ToString(dateFormat);
             applyValue(day1CheckBox, trackingEntries[0].TrackingValue);
             applyValue(day2CheckBox, trackingEntries[1].TrackingValue);
             applyValue(day3CheckBox, trackingEntries[2].TrackingValue);

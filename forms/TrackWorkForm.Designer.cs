@@ -32,14 +32,18 @@ namespace simple_payroll_desktop.forms
             this.label1 = new System.Windows.Forms.Label();
             this.paySchedulesComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.previosPayPeriodButton = new System.Windows.Forms.Button();
+            this.nextPayPeriodButton = new System.Windows.Forms.Button();
+            this.selectedPeriodLabel = new System.Windows.Forms.Label();
             this.trackingBoxPanel = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.button1 = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.workersComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -63,8 +67,8 @@ namespace simple_payroll_desktop.forms
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.trackingBoxPanel);
-            this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(23, 132);
             this.groupBox1.Name = "groupBox1";
@@ -72,6 +76,47 @@ namespace simple_payroll_desktop.forms
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Introduce los datos";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.previosPayPeriodButton);
+            this.panel1.Controls.Add(this.nextPayPeriodButton);
+            this.panel1.Controls.Add(this.selectedPeriodLabel);
+            this.panel1.Location = new System.Drawing.Point(133, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(274, 26);
+            this.panel1.TabIndex = 7;
+            // 
+            // previosPayPeriodButton
+            // 
+            this.previosPayPeriodButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.previosPayPeriodButton.Location = new System.Drawing.Point(0, 0);
+            this.previosPayPeriodButton.Name = "previosPayPeriodButton";
+            this.previosPayPeriodButton.Size = new System.Drawing.Size(43, 26);
+            this.previosPayPeriodButton.TabIndex = 5;
+            this.previosPayPeriodButton.Text = "<<";
+            this.previosPayPeriodButton.UseVisualStyleBackColor = true;
+            this.previosPayPeriodButton.Click += new System.EventHandler(this.previosPayPeriodButton_Click);
+            // 
+            // nextPayPeriodButton
+            // 
+            this.nextPayPeriodButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.nextPayPeriodButton.Location = new System.Drawing.Point(234, 0);
+            this.nextPayPeriodButton.Name = "nextPayPeriodButton";
+            this.nextPayPeriodButton.Size = new System.Drawing.Size(40, 26);
+            this.nextPayPeriodButton.TabIndex = 6;
+            this.nextPayPeriodButton.Text = ">>";
+            this.nextPayPeriodButton.UseVisualStyleBackColor = true;
+            this.nextPayPeriodButton.Click += new System.EventHandler(this.nextPayPeriodButton_Click);
+            // 
+            // selectedPeriodLabel
+            // 
+            this.selectedPeriodLabel.AutoSize = true;
+            this.selectedPeriodLabel.Location = new System.Drawing.Point(49, 11);
+            this.selectedPeriodLabel.Name = "selectedPeriodLabel";
+            this.selectedPeriodLabel.Size = new System.Drawing.Size(35, 13);
+            this.selectedPeriodLabel.TabIndex = 4;
+            this.selectedPeriodLabel.Text = "label2";
             // 
             // trackingBoxPanel
             // 
@@ -83,14 +128,6 @@ namespace simple_payroll_desktop.forms
             this.trackingBoxPanel.TabIndex = 3;
             this.trackingBoxPanel.TabStop = false;
             this.trackingBoxPanel.Text = "Trabajador";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(104, 34);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(513, 21);
-            this.comboBox2.TabIndex = 2;
             // 
             // label3
             // 
@@ -135,6 +172,7 @@ namespace simple_payroll_desktop.forms
             this.workersComboBox.Name = "workersComboBox";
             this.workersComboBox.Size = new System.Drawing.Size(408, 21);
             this.workersComboBox.TabIndex = 6;
+            this.workersComboBox.SelectedIndexChanged += new System.EventHandler(this.workersComboBox_SelectedIndexChanged);
             // 
             // TrackWorkForm
             // 
@@ -154,6 +192,8 @@ namespace simple_payroll_desktop.forms
             this.Load += new System.EventHandler(this.TrackWorkForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,12 +204,15 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox paySchedulesComboBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox workersComboBox;
         private System.Windows.Forms.GroupBox trackingBoxPanel;
+        private System.Windows.Forms.Button nextPayPeriodButton;
+        private System.Windows.Forms.Button previosPayPeriodButton;
+        private System.Windows.Forms.Label selectedPeriodLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -13,7 +13,7 @@ namespace simple_payroll_desktop.forms.controls.track_work
 {
     public partial class DefaultTrackerControl : BaseTrackerControl
     {
-        public DefaultTrackerControl(List<TrackingEntry> entries) : base(entries)
+        public DefaultTrackerControl(List<TrackingEntry> entries)
         {
             InitializeComponent();
         }

@@ -14,9 +14,8 @@ namespace simple_payroll_desktop.forms.controls.track_work
     public partial class BaseTrackerControl : UserControl
     {
         protected List<TrackingEntry> trackingEntries;
-        public BaseTrackerControl(List<TrackingEntry> trackingEntries)
+        public BaseTrackerControl()
         {
-            this.trackingEntries = trackingEntries;
             InitializeComponent();
         }
 

@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="business\DenominationsManager.cs" />
     <Compile Include="business\PaySchedulesManager.cs" />
+    <Compile Include="business\pay_schedules\WeeklyPayScheduleManager.cs" />
     <Compile Include="business\WorkersManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="dao\WorkerDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
     <Compile Include="entities\Denomination.cs" />
+    <Compile Include="entities\PayPeriod.cs" />
     <Compile Include="entities\PaySchedule.cs" />
     <Compile Include="entities\TrackingEntry.cs" />
     <Compile Include="entities\Worker.cs" />

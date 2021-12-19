@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using simple_payroll_desktop.dao;
 using simple_payroll_desktop.entities;
+using simple_payroll_desktop.business.pay_schedules;
 
 namespace simple_payroll_desktop.business
 {
@@ -14,10 +15,13 @@ namespace simple_payroll_desktop.business
         private readonly I18nService i18n;
         private PayScheduleDAO payScheduleDAO;
 
+        private WeeklyPayScheduleManager weeklyManager;
+
         public PaySchedulesManager(I18nService i18n, PayScheduleDAO payScheduleDAO)
         {
             this.i18n = i18n;
             this.payScheduleDAO = payScheduleDAO;
+            weeklyManager = new WeeklyPayScheduleManager();
         }
 
         public IList<PayRateType> payRateTypesForPayScheduleType(PayScheduleType payScheduleType)
@@ -98,5 +102,72 @@ namespace simple_payroll_desktop.business
             // TODO
             return true;
         }
+
+        /**
+         * Get the pay period for the pay schedule that contains the date parameter
+         */
+        public PayPeriod getPayPeriod(PaySchedule paySchedule, DateTime date)
+        {
+            //TODO other pay Schedule Types
+            switch (paySchedule.Type)
+            {
+                case PayScheduleType.Weekly:
+                    return weeklyManager.getPayPeriod(paySchedule, date);
+                case PayScheduleType.Biweekly:
+                    break;
+                case PayScheduleType.Monthly:
+                    break;
+                case PayScheduleType.OneTime:
+                    break;
+                default:
+                    break;
+            }
+            return new PayPeriod
+            {
+                PeriodStart = DateTime.Today.AddDays(-7),
+                PeriodEnd = DateTime.Today,
+                PayDay = DateTime.Today.AddDays(-1)
+            };
+        }
+
+        public PayPeriod previousPayPeriod(PaySchedule paySchedule, PayPeriod period)
+        {
+            //TODO other pay schedule types
+            switch (paySchedule.Type)
+            {
+                case PayScheduleType.Weekly:
+                    return weeklyManager.previousPayPeriod(period);
+                case PayScheduleType.Biweekly:
+                    break;
+                case PayScheduleType.Monthly:
+                    break;
+                case PayScheduleType.OneTime:
+                    break;
+                default:
+                    break;
+            }
+            throw new NotImplementedException();
+        }
+
+        public PayPeriod nextPayPeriod(PaySchedule paySchedule, PayPeriod period)
+        {
+            //TODO other pay schedule types
+            switch (paySchedule.Type)
+            {
+                case PayScheduleType.Weekly:
+                    return weeklyManager.nextPayPeriod(period);
+                case PayScheduleType.Biweekly:
+                    break;
+                case PayScheduleType.Monthly:
+                    break;
+                case PayScheduleType.OneTime:
+                    break;
+                default:
+                    break;
+            }
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
