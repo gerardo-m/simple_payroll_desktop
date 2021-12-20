@@ -12,6 +12,7 @@ namespace simple_payroll_desktop.local_dao
     {
 
         private const string DBName = "database.sqlite";
+        private const string DBStartingFileName = "startDatabase.sql";
         private static bool IsDbRecentlyCreated = false;
 
         public static void up()
@@ -47,15 +48,14 @@ namespace simple_payroll_desktop.local_dao
 
         private static void createTables(SQLiteConnection context)
         {
-            string query = "CREATE TABLE Denominations(id INTEGER PRIMARY KEY, name TEXT);";
+            string query = "";
+            using (var reader = new StreamReader(Path.GetFullPath(DBStartingFileName)))
+            {
+                string line = "";
+                while ((line = reader.ReadLine()) != null)
+                    query += line + "\n";
+            }
             var command = new SQLiteCommand(query, context);
-            command.ExecuteNonQuery();
-            query = "CREATE TABLE pay_schedules(id INTEGER PRIMARY KEY, name TEXT, type INTEGER, pay_rate_type INTEGER, tracking_type INTEGER, " +
-                    "base_period_start INTEGER, base_period_end INTEGER, base_pay_day INTEGER);" +
-                    "CREATE TABLE workers(id INTEGER PRIMARY KEY, first_name TEXT, last_name_1 TEXT, last_name_2 TEXT, ci TEXT, pay_rate REAL, pay_rate_type INTEGER," +
-                    "pay_schedule_id INTEGER, denomination_id INTEGER);";
-
-            command = new SQLiteCommand(query, context);
             command.ExecuteNonQuery();
         }
     }

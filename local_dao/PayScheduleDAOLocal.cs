@@ -40,7 +40,7 @@ namespace simple_payroll_desktop.local_dao
             parameters.Add("@pay_rate_type", paySchedule.PayRateType);
             parameters.Add("@tracking_type", paySchedule.TrackingType);
             parameters.Add("@base_period_start", paySchedule.BasePeriodStart.Ticks);
-            parameters.Add("@base_period_end", paySchedule.BasePeriodStart.Ticks);
+            parameters.Add("@base_period_end", paySchedule.BasePeriodEnd.Ticks);
             parameters.Add("@base_pay_day", paySchedule.BasePayDay.Ticks);
             executer.executeQuery(query, parameters);
         }
