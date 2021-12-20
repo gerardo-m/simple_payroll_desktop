@@ -170,8 +170,10 @@ namespace simple_payroll_desktop.forms
             // 
             this.basePeriodStartPicker.Location = new System.Drawing.Point(213, 135);
             this.basePeriodStartPicker.Name = "basePeriodStartPicker";
+            this.basePeriodStartPicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.basePeriodStartPicker.Size = new System.Drawing.Size(200, 20);
             this.basePeriodStartPicker.TabIndex = 24;
+            this.basePeriodStartPicker.Value = new System.DateTime(2021, 12, 16, 0, 0, 0, 0);
             // 
             // typeComboBox
             // 

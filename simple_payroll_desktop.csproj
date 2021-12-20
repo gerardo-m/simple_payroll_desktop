@@ -124,6 +124,8 @@
     <Compile Include="business\DenominationsManager.cs" />
     <Compile Include="business\PaySchedulesManager.cs" />
     <Compile Include="business\pay_schedules\WeeklyPayScheduleManager.cs" />
+    <Compile Include="business\TrackingEntriesManager.cs" />
+    <Compile Include="business\tracking_entries\TrackingEntryGenerator.cs" />
     <Compile Include="business\WorkersManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="local_dao\DbExecuter.cs" />
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
+    <Compile Include="local_dao\TrackingEntryDAOLocal.cs" />
     <Compile Include="local_dao\WorkerDAOLocal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +275,9 @@
   <ItemGroup>
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="startDatabase.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup />

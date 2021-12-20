@@ -18,37 +18,67 @@ namespace simple_payroll_desktop.forms.controls.track_work
         private const string dateFormat = "ddd MMMM dd";
         private readonly ILogger logger;
         private readonly I18nService i18n;
+
+        private List<Label> labels = new List<Label>();
+        private List<CheckedListBox> checkedListBoxes = new List<CheckedListBox>();
+
         public DaysDayWeekTrackerControl(ILogger logger,
                                          I18nService i18n, 
-                                         List<TrackingEntry> trackingEntries)
+                                         IList<TrackingEntry> trackingEntries)
         {
             this.logger = logger;
             this.i18n = i18n;
             this.trackingEntries = trackingEntries;
             InitializeComponent();
-            if (trackingEntries.Count == 7)
+            initializeControlLists();
+            if (trackingEntries.Count > 0)
                 loadTrackingEntries();
             else
-                throw new ArgumentException("Must send exactly 7 tracking entries");
+                throw new ArgumentException("Must send at least 1 entry");
+        }
+
+        private void initializeControlLists()
+        {
+            labels.Add(day1Label);
+            labels.Add(day2Label);
+            labels.Add(day3Label);
+            labels.Add(day4Label);
+            labels.Add(day5Label);
+            labels.Add(day6Label);
+            labels.Add(day7Label);
+            checkedListBoxes.Add(day1CheckBox);
+            checkedListBoxes.Add(day2CheckBox);
+            checkedListBoxes.Add(day3CheckBox);
+            checkedListBoxes.Add(day4CheckBox);
+            checkedListBoxes.Add(day5CheckBox);
+            checkedListBoxes.Add(day6CheckBox);
+            checkedListBoxes.Add(day7CheckBox);
         }
 
         private void loadTrackingEntries()
         {
-            trackingEntries.Sort((e1, e2) => e1.Date.CompareTo(e2.Date));
-            day1Label.Text = trackingEntries[0].Date.ToString(dateFormat);
-            day2Label.Text = trackingEntries[1].Date.ToString(dateFormat);
-            day3Label.Text = trackingEntries[2].Date.ToString(dateFormat);
-            day4Label.Text = trackingEntries[3].Date.ToString(dateFormat);
-            day5Label.Text = trackingEntries[4].Date.ToString(dateFormat);
-            day6Label.Text = trackingEntries[5].Date.ToString(dateFormat);
-            day7Label.Text = trackingEntries[6].Date.ToString(dateFormat);
-            applyValue(day1CheckBox, trackingEntries[0].TrackingValue);
-            applyValue(day2CheckBox, trackingEntries[1].TrackingValue);
-            applyValue(day3CheckBox, trackingEntries[2].TrackingValue);
-            applyValue(day4CheckBox, trackingEntries[3].TrackingValue);
-            applyValue(day5CheckBox, trackingEntries[4].TrackingValue);
-            applyValue(day6CheckBox, trackingEntries[5].TrackingValue);
-            applyValue(day7CheckBox, trackingEntries[6].TrackingValue);
+            trackingEntries = new List<TrackingEntry>(trackingEntries);
+            ((List<TrackingEntry>)trackingEntries).Sort((e1, e2) => e1.Date.CompareTo(e2.Date));
+            for (int i = 0; i < 7; i++)
+                if (i < trackingEntries.Count)
+                    loadTrackingEntry(i);
+                else
+                    disableTrackingEntryControl(i);
+        }
+
+        private void disableTrackingEntryControl(int index)
+        {
+            labels[index].Text = "";
+            checkedListBoxes[index].SetItemChecked(0, false);
+            checkedListBoxes[index].SetItemChecked(1, false);
+            checkedListBoxes[index].Enabled = false;
+        }
+
+        private void loadTrackingEntry(int index)
+        {
+            labels[index].Text = trackingEntries[index].Date.ToString(dateFormat);
+            checkedListBoxes[index].Enabled = true;
+            applyValue(checkedListBoxes[index], trackingEntries[index].TrackingValue);
         }
 
         private void applyValue(CheckedListBox checkBox, decimal value)
@@ -79,11 +109,11 @@ namespace simple_payroll_desktop.forms.controls.track_work
         {
             if (e.NewValue == CheckState.Checked)
                 if (e.Index == 0)
-                    trackingEntries[0].TrackingValue = 0.5M;
+                    trackingEntries[index].TrackingValue = 0.5M;
                 else
-                    trackingEntries[0].TrackingValue = 1;
+                    trackingEntries[index].TrackingValue = 1;
             else
-                trackingEntries[0].TrackingValue = 0;
+                trackingEntries[index].TrackingValue = 0;
         }
 
         private void day1CheckBox_ItemCheck(object sender, ItemCheckEventArgs e)

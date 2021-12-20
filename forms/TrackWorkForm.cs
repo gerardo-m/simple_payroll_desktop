@@ -21,31 +21,25 @@ namespace simple_payroll_desktop.forms
         private readonly I18nService i18n;
         private readonly PaySchedulesManager paySchedulesManager;
         private readonly WorkersManager workersManager;
+        private readonly TrackingEntriesManager trackingEntriesManager;
 
         private PaySchedule selectedPaySchedule;
         private Worker selectedWorker;
         private PayPeriod selectedPeriod;
-        private List<TrackingEntry> entries;
+        private IList<TrackingEntry> entries;
         private BaseTrackerControl trackerControl;
         public TrackWorkForm(ILogger<TrackWorkForm> logger,
                              I18nService i18n,
                              PaySchedulesManager paySchedulesManager,
-                             WorkersManager workersManager)
+                             WorkersManager workersManager, 
+                             TrackingEntriesManager trackingEntriesManager)
         {
             this.logger = logger;
             this.i18n = i18n;
             this.paySchedulesManager = paySchedulesManager;
             this.workersManager = workersManager;
-            InitializeComponent(); 
-            entries = new List<TrackingEntry>();
-            for (int i = 0; i < 7; i++)
-            {
-                entries.Add(new TrackingEntry
-                {
-                    Date = DateTime.Today,
-                    TrackingValue = 0
-                });
-            }
+            this.trackingEntriesManager = trackingEntriesManager;
+            InitializeComponent();
         }
 
         private void changeTrackerControl()
@@ -75,6 +69,11 @@ namespace simple_payroll_desktop.forms
         {
             workersComboBox.DataSource = workersManager.workersWithPaySchedule(selectedPaySchedule.Id);
             selectWorker();
+        }
+
+        private void loadTrackingEntries()
+        {
+            entries = trackingEntriesManager.getTrackingEntries(selectedPeriod, selectedWorker);
         }
 
         private void selectPaySchedule()
@@ -112,6 +111,12 @@ namespace simple_payroll_desktop.forms
             string periodEnd = selectedPeriod.PeriodEnd.ToString("d");
             string periodString = $"{periodStart} - {periodEnd}";
             selectedPeriodLabel.Text = periodString;
+            loadTrackingEntries();
+        }
+
+        private void saveTrackingEntries()
+        {
+            trackingEntriesManager.saveTrackingEntries(trackerControl.GetTrackingEntries());
         }
 
         private void TrackWorkForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -139,8 +144,8 @@ namespace simple_payroll_desktop.forms
             try
             {
                 selectPaySchedule();
-                setPeriod(DateTime.Today);
-                changeTrackerControl();
+                //setPeriod(DateTime.Today);
+                //changeTrackerControl();
             }
             catch (Exception ex)
             {
@@ -179,6 +184,18 @@ namespace simple_payroll_desktop.forms
             try
             {
                 nextPeriod();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void saveTrackingEntriesButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                saveTrackingEntries();
             }
             catch (Exception ex)
             {

@@ -11,7 +11,7 @@ namespace simple_payroll_desktop.forms.controls.track_work
     public class TrackerControlSelector
     { 
 
-        public BaseTrackerControl getTrackerControl(TrackingType trackingType, List<TrackingEntry> entries, ILogger logger, I18nService i18nService)
+        public BaseTrackerControl getTrackerControl(TrackingType trackingType, IList<TrackingEntry> entries, ILogger logger, I18nService i18nService)
         {
             switch (trackingType)
             {

@@ -73,9 +73,9 @@ namespace simple_payroll_desktop.forms
             currentPaySchedule.Type = (PayScheduleType)typeComboBox.SelectedItem;
             currentPaySchedule.PayRateType = (PayRateType)payRateTypesComboBox.SelectedItem;
             currentPaySchedule.TrackingType = (TrackingType)trackingTypesComboBox.SelectedItem;
-            currentPaySchedule.BasePeriodStart = basePeriodStartPicker.Value;
-            currentPaySchedule.BasePeriodEnd = basePeriodEndPicker.Value;
-            currentPaySchedule.BasePayDay = basePayDayPicker.Value;
+            currentPaySchedule.BasePeriodStart = basePeriodStartPicker.Value.Date;
+            currentPaySchedule.BasePeriodEnd = basePeriodEndPicker.Value.Date;
+            currentPaySchedule.BasePayDay = basePayDayPicker.Value.Date;
         }
 
         private void saveCurrentPaySchedule()

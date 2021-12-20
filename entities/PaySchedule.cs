@@ -35,7 +35,8 @@ namespace simple_payroll_desktop.entities
         DaysPerWeekIn4Weeks,
         DaysPerMonthInAMonth,
         WeekPerWeekInAMonth,
-        WeeksPerMonthInAMonth
+        WeeksPerMonthInAMonth,
+        MonthsPerMonthInAMonth
     }
 
     public class PaySchedule

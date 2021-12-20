@@ -13,13 +13,13 @@ namespace simple_payroll_desktop.forms.controls.track_work
 {
     public partial class BaseTrackerControl : UserControl
     {
-        protected List<TrackingEntry> trackingEntries;
+        protected IList<TrackingEntry> trackingEntries;
         public BaseTrackerControl()
         {
             InitializeComponent();
         }
 
-        public List<TrackingEntry> GetTrackingEntries()
+        public IList<TrackingEntry> GetTrackingEntries()
         {
             return trackingEntries;
         }
