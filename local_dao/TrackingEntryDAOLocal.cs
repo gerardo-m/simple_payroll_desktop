@@ -37,7 +37,16 @@ namespace simple_payroll_desktop.local_dao
 
         public void updateTrackingEntry(TrackingEntry trackingEntry)
         {
-            throw new NotImplementedException();
+            string query = "UPDATE tracking_entries set period = @period, tracking_unit = @tracking_unit, tracking_value = @tracking_value," +
+                " date = @date, worker_id = @worker_id where id = @id";
+            Dictionary<string, Object> parameters = new Dictionary<string, object>();
+            parameters.Add("@period", trackingEntry.Period);
+            parameters.Add("@tracking_unit", trackingEntry.TrackingUnit);
+            parameters.Add("@tracking_value", trackingEntry.TrackingValue);
+            parameters.Add("@date", trackingEntry.Date.Ticks);
+            parameters.Add("@worker_id", trackingEntry.Worker.Id);
+            parameters.Add("@id", trackingEntry.Id);
+            executer.executeQuery(query, parameters);
         }
 
         private TrackingEntry mapFromReader(SQLiteDataReader reader)

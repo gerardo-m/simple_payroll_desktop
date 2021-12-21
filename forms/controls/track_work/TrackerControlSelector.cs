@@ -11,8 +11,9 @@ namespace simple_payroll_desktop.forms.controls.track_work
     public class TrackerControlSelector
     { 
 
-        public BaseTrackerControl getTrackerControl(TrackingType trackingType, IList<TrackingEntry> entries, ILogger logger, I18nService i18nService)
+        public BaseTrackerControl getTrackerControl(TrackingType trackingType, ILogger logger, I18nService i18nService)
         {
+            // TODO to extend the functionality
             switch (trackingType)
             {
                 /*case TrackingType.HoursPerDayInAWeek:
@@ -22,7 +23,7 @@ namespace simple_payroll_desktop.forms.controls.track_work
                 case TrackingType.HoursPerWeekInAMonth:
                     break;*/
                 case TrackingType.DayPerDayInAWeek:
-                    return new DaysDayWeekTrackerControl(logger, i18nService, entries);
+                    return new DaysDayWeekTrackerControl(logger, i18nService);
                 /*case TrackingType.DayPerDayInAMonth:
                     break;
                 case TrackingType.DaysPerWeekInAWeek:
@@ -36,7 +37,7 @@ namespace simple_payroll_desktop.forms.controls.track_work
                 case TrackingType.WeeksPerMonthInAMonth:
                     break;*/
                 default:
-                    return new DefaultTrackerControl(entries);
+                    return new DefaultTrackerControl();
             }
         }
     }

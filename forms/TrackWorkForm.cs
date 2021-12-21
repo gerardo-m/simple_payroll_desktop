@@ -47,7 +47,7 @@ namespace simple_payroll_desktop.forms
             if (trackerControl != null)
                 trackingBoxPanel.Controls.Remove(trackerControl);
             TrackerControlSelector controlSelector = new TrackerControlSelector();
-            trackerControl =  controlSelector.getTrackerControl(selectedPaySchedule.TrackingType, entries, logger, i18n);
+            trackerControl =  controlSelector.getTrackerControl(selectedPaySchedule.TrackingType, logger, i18n);
             trackingBoxPanel.Controls.Add(trackerControl);
         }
 
@@ -74,6 +74,7 @@ namespace simple_payroll_desktop.forms
         private void loadTrackingEntries()
         {
             entries = trackingEntriesManager.getTrackingEntries(selectedPeriod, selectedWorker);
+            trackerControl.setTrackingEntries(entries);
         }
 
         private void selectPaySchedule()
@@ -129,8 +130,8 @@ namespace simple_payroll_desktop.forms
             try
             {
                 loadPaySchedules();
-                setPeriod(DateTime.Today);
                 changeTrackerControl();
+                setPeriod(DateTime.Today);
             }
             catch (Exception ex)
             {
@@ -157,9 +158,9 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
+                changeTrackerControl();
                 selectWorker();
                 setPeriod(DateTime.Today);
-                changeTrackerControl();
             }
             catch (Exception ex)
             {
@@ -196,6 +197,7 @@ namespace simple_payroll_desktop.forms
             try
             {
                 saveTrackingEntries();
+                showSelectedPeriod();
             }
             catch (Exception ex)
             {

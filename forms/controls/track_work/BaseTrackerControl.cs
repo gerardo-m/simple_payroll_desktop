@@ -23,5 +23,16 @@ namespace simple_payroll_desktop.forms.controls.track_work
         {
             return trackingEntries;
         }
+
+        public virtual void setTrackingEntries(IList<TrackingEntry> trackingEntries)
+        {
+            this.trackingEntries = trackingEntries;
+            loadTrackingEntries();
+        }
+
+        public virtual void loadTrackingEntries()
+        {
+            throw new NotImplementedException("Must implement this method loadTrackingEntries");
+        }
     }
 }

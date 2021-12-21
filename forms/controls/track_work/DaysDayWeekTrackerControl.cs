@@ -23,18 +23,12 @@ namespace simple_payroll_desktop.forms.controls.track_work
         private List<CheckedListBox> checkedListBoxes = new List<CheckedListBox>();
 
         public DaysDayWeekTrackerControl(ILogger logger,
-                                         I18nService i18n, 
-                                         IList<TrackingEntry> trackingEntries)
+                                         I18nService i18n)
         {
             this.logger = logger;
             this.i18n = i18n;
-            this.trackingEntries = trackingEntries;
             InitializeComponent();
             initializeControlLists();
-            if (trackingEntries.Count > 0)
-                loadTrackingEntries();
-            else
-                throw new ArgumentException("Must send at least 1 entry");
         }
 
         private void initializeControlLists()
@@ -55,7 +49,14 @@ namespace simple_payroll_desktop.forms.controls.track_work
             checkedListBoxes.Add(day7CheckBox);
         }
 
-        private void loadTrackingEntries()
+        public override void setTrackingEntries(IList<TrackingEntry> trackingEntries)
+        {
+            if (trackingEntries.Count == 0)
+                throw new ArgumentException("Must send at least 1 entry");
+            base.setTrackingEntries(trackingEntries);
+        }
+
+        public override void loadTrackingEntries()
         {
             trackingEntries = new List<TrackingEntry>(trackingEntries);
             ((List<TrackingEntry>)trackingEntries).Sort((e1, e2) => e1.Date.CompareTo(e2.Date));

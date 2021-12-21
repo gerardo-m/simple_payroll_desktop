@@ -13,9 +13,14 @@ namespace simple_payroll_desktop.forms.controls.track_work
 {
     public partial class DefaultTrackerControl : BaseTrackerControl
     {
-        public DefaultTrackerControl(IList<TrackingEntry> entries)
+        public DefaultTrackerControl()
         {
             InitializeComponent();
+        }
+
+        public override void loadTrackingEntries()
+        {
+            // Just Stop the exception
         }
     }
 }
