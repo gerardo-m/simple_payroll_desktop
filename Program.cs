@@ -51,11 +51,13 @@ namespace simple_payroll_desktop
                     .AddSingleton<PaySchedulesForm>()
                     .AddSingleton<DenominationsForm>()
                     .AddSingleton<TrackWorkForm>()
+                    .AddSingleton<GeneratePayrollForm>()
                     //BUSINESS
                     .AddSingleton<DenominationsManager>()
                     .AddSingleton<PaySchedulesManager>()
                     .AddSingleton<WorkersManager>()
                     .AddSingleton<TrackingEntriesManager>()
+                    .AddSingleton<PayrollManager>()
                     //DAO
                     .AddSingleton<DenominationDAO, DenominationDAOLocal>()
                     .AddSingleton<PayScheduleDAO, PayScheduleDAOLocal>()

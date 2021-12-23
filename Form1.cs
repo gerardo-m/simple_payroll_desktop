@@ -21,17 +21,20 @@ namespace simple_payroll_desktop
         private readonly WorkersForm workersForm;
         private readonly PaySchedulesForm paySchedulesForm;
         private readonly TrackWorkForm trackWorkForm;
+        private readonly GeneratePayrollForm generatePayrollForm;
         public Form1(ILogger<Form1> logger,
                      I18nService i18n,
                      WorkersForm workersForm,
                      PaySchedulesForm paySchedulesForm,
-                     TrackWorkForm trackWorkForm)
+                     TrackWorkForm trackWorkForm,
+                     GeneratePayrollForm generatePayrollForm)
         {
             this.logger = logger;
             this.i18n = i18n;
             this.workersForm = workersForm;
             this.paySchedulesForm = paySchedulesForm;
             this.trackWorkForm = trackWorkForm;
+            this.generatePayrollForm = generatePayrollForm;
             InitializeComponent();
         }
 
@@ -61,7 +64,6 @@ namespace simple_payroll_desktop
         private void generatePayrollButton_Click(object sender, EventArgs e)
         {
             logger.LogInformation("[Form1] Generate Payroll clicked");
-            GeneratePayrollForm generatePayrollForm = new GeneratePayrollForm();
             this.Visible = false;
             generatePayrollForm.ShowDialog(this);
         }
