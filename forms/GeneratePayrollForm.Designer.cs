@@ -35,6 +35,12 @@ namespace simple_payroll_desktop.forms
             this.payScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.additionalTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.additionalAmountSpinner = new System.Windows.Forms.NumericUpDown();
+            this.additionalsGridView = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -45,37 +51,31 @@ namespace simple_payroll_desktop.forms
             this.previosPayPeriodButton = new System.Windows.Forms.Button();
             this.nextPayPeriodButton = new System.Windows.Forms.Button();
             this.selectedPeriodLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.statusDataLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.trackedAmountDataLabel = new System.Windows.Forms.Label();
+            this.payRateDataLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.trackedDetailsDataLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.additionalAmountSpinner = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.balanceDueTextBox = new System.Windows.Forms.TextBox();
+            this.totalAmountTextBox = new System.Windows.Forms.TextBox();
+            this.additionalsAmountTextBox = new System.Windows.Forms.TextBox();
+            this.trackedAmountTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.additionalAmountSpinner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.additionalsGridView)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,12 +128,12 @@ namespace simple_payroll_desktop.forms
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.additionalTypeComboBox);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.additionalAmountSpinner);
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.additionalsGridView);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.textBox5);
@@ -144,6 +144,67 @@ namespace simple_payroll_desktop.forms
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adicionales";
+            // 
+            // additionalTypeComboBox
+            // 
+            this.additionalTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.additionalTypeComboBox.FormattingEnabled = true;
+            this.additionalTypeComboBox.Location = new System.Drawing.Point(289, 36);
+            this.additionalTypeComboBox.Name = "additionalTypeComboBox";
+            this.additionalTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.additionalTypeComboBox.TabIndex = 17;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(286, 20);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(28, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Tipo";
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.Location = new System.Drawing.Point(416, 74);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(64, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Guardar";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(486, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(64, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Borrar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // additionalAmountSpinner
+            // 
+            this.additionalAmountSpinner.DecimalPlaces = 2;
+            this.additionalAmountSpinner.Location = new System.Drawing.Point(433, 36);
+            this.additionalAmountSpinner.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.additionalAmountSpinner.Name = "additionalAmountSpinner";
+            this.additionalAmountSpinner.Size = new System.Drawing.Size(120, 20);
+            this.additionalAmountSpinner.TabIndex = 5;
+            // 
+            // additionalsGridView
+            // 
+            this.additionalsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.additionalsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.additionalsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.additionalsGridView.Location = new System.Drawing.Point(10, 116);
+            this.additionalsGridView.Name = "additionalsGridView";
+            this.additionalsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.additionalsGridView.Size = new System.Drawing.Size(540, 138);
+            this.additionalsGridView.TabIndex = 15;
             // 
             // button2
             // 
@@ -239,14 +300,6 @@ namespace simple_payroll_desktop.forms
             this.selectedPeriodLabel.TabIndex = 4;
             this.selectedPeriodLabel.Text = "label2";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 116);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(540, 138);
-            this.dataGridView1.TabIndex = 15;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -267,10 +320,10 @@ namespace simple_payroll_desktop.forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.trackedAmountDataLabel);
+            this.groupBox1.Controls.Add(this.payRateDataLabel);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.trackedDetailsDataLabel);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(42, 207);
@@ -280,14 +333,41 @@ namespace simple_payroll_desktop.forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Trabajo Registrado";
             // 
-            // label6
+            // trackedAmountDataLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "5 días trabajados";
+            this.trackedAmountDataLabel.AutoSize = true;
+            this.trackedAmountDataLabel.Location = new System.Drawing.Point(513, 51);
+            this.trackedAmountDataLabel.Name = "trackedAmountDataLabel";
+            this.trackedAmountDataLabel.Size = new System.Drawing.Size(40, 13);
+            this.trackedAmountDataLabel.TabIndex = 16;
+            this.trackedAmountDataLabel.Text = "500.00";
+            // 
+            // payRateDataLabel
+            // 
+            this.payRateDataLabel.AutoSize = true;
+            this.payRateDataLabel.Location = new System.Drawing.Point(352, 51);
+            this.payRateDataLabel.Name = "payRateDataLabel";
+            this.payRateDataLabel.Size = new System.Drawing.Size(40, 13);
+            this.payRateDataLabel.TabIndex = 15;
+            this.payRateDataLabel.Text = "100.00";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(350, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Tarifa";
+            // 
+            // trackedDetailsDataLabel
+            // 
+            this.trackedDetailsDataLabel.AutoSize = true;
+            this.trackedDetailsDataLabel.Location = new System.Drawing.Point(12, 51);
+            this.trackedDetailsDataLabel.Name = "trackedDetailsDataLabel";
+            this.trackedDetailsDataLabel.Size = new System.Drawing.Size(89, 13);
+            this.trackedDetailsDataLabel.TabIndex = 12;
+            this.trackedDetailsDataLabel.Text = "5 días trabajados";
             // 
             // label5
             // 
@@ -307,71 +387,12 @@ namespace simple_payroll_desktop.forms
             this.label4.TabIndex = 10;
             this.label4.Text = "Tiempo trabajado:";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(350, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Tarifa";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(352, 51);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "100.00";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(513, 51);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 13);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "500.00";
-            // 
-            // additionalAmountSpinner
-            // 
-            this.additionalAmountSpinner.DecimalPlaces = 2;
-            this.additionalAmountSpinner.Location = new System.Drawing.Point(433, 36);
-            this.additionalAmountSpinner.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.additionalAmountSpinner.Name = "additionalAmountSpinner";
-            this.additionalAmountSpinner.Size = new System.Drawing.Size(120, 20);
-            this.additionalAmountSpinner.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(486, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Borrar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(416, 74);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Guardar";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.balanceDueTextBox);
+            this.groupBox3.Controls.Add(this.totalAmountTextBox);
+            this.groupBox3.Controls.Add(this.additionalsAmountTextBox);
+            this.groupBox3.Controls.Add(this.trackedAmountTextBox);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label14);
@@ -383,32 +404,41 @@ namespace simple_payroll_desktop.forms
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Totales";
             // 
-            // label13
+            // balanceDueTextBox
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 20);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(136, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Total por trabajo registrado:";
+            this.balanceDueTextBox.Location = new System.Drawing.Point(447, 88);
+            this.balanceDueTextBox.Name = "balanceDueTextBox";
+            this.balanceDueTextBox.ReadOnly = true;
+            this.balanceDueTextBox.Size = new System.Drawing.Size(100, 20);
+            this.balanceDueTextBox.TabIndex = 7;
+            this.balanceDueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label14
+            // totalAmountTextBox
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(12, 45);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 13);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Total Adicionales:";
+            this.totalAmountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalAmountTextBox.Location = new System.Drawing.Point(447, 65);
+            this.totalAmountTextBox.Name = "totalAmountTextBox";
+            this.totalAmountTextBox.ReadOnly = true;
+            this.totalAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.totalAmountTextBox.TabIndex = 6;
+            this.totalAmountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label15
+            // additionalsAmountTextBox
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 68);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 13);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Total a pagar:";
+            this.additionalsAmountTextBox.Location = new System.Drawing.Point(447, 42);
+            this.additionalsAmountTextBox.Name = "additionalsAmountTextBox";
+            this.additionalsAmountTextBox.ReadOnly = true;
+            this.additionalsAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.additionalsAmountTextBox.TabIndex = 5;
+            this.additionalsAmountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // trackedAmountTextBox
+            // 
+            this.trackedAmountTextBox.Location = new System.Drawing.Point(447, 17);
+            this.trackedAmountTextBox.Name = "trackedAmountTextBox";
+            this.trackedAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.trackedAmountTextBox.TabIndex = 4;
+            this.trackedAmountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
@@ -419,55 +449,32 @@ namespace simple_payroll_desktop.forms
             this.label16.TabIndex = 3;
             this.label16.Text = "Total adeudado:";
             // 
-            // label17
+            // label15
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(286, 20);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(28, 13);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "Tipo";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 68);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Total a pagar:";
             // 
-            // comboBox1
+            // label14
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(289, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 17;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(12, 45);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(91, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Total Adicionales:";
             // 
-            // textBox1
+            // label13
             // 
-            this.textBox1.Location = new System.Drawing.Point(447, 17);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(447, 42);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(447, 65);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 6;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(447, 88);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 7;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(12, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(136, 13);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Total por trabajo registrado:";
             // 
             // button5
             // 
@@ -513,12 +520,12 @@ namespace simple_payroll_desktop.forms
             this.Load += new System.EventHandler(this.GeneratePayrollForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.additionalAmountSpinner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.additionalsGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.additionalAmountSpinner)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -544,26 +551,26 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button previosPayPeriodButton;
         private System.Windows.Forms.Button nextPayPeriodButton;
         private System.Windows.Forms.Label selectedPeriodLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView additionalsGridView;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label statusDataLabel;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label trackedAmountDataLabel;
+        private System.Windows.Forms.Label payRateDataLabel;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label trackedDetailsDataLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown additionalAmountSpinner;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox additionalTypeComboBox;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox balanceDueTextBox;
+        private System.Windows.Forms.TextBox totalAmountTextBox;
+        private System.Windows.Forms.TextBox additionalsAmountTextBox;
+        private System.Windows.Forms.TextBox trackedAmountTextBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;

@@ -21,7 +21,9 @@ namespace simple_payroll_desktop.entities
         public DateTime PeriodStart { get; set; }
         public DateTime PeriodEnd { get; set; }
         public DateTime Date { get; set; }
-
+        public decimal PayRate { get; set; }
+        public PayRateType PayRateType { get; set; }
+        public decimal TrackedTime { get; set; }
         public decimal TrackedAmount { get; set; }
         public decimal AdditionalsAmount { get; set; }
         public decimal TotalAmount { 
@@ -30,6 +32,7 @@ namespace simple_payroll_desktop.entities
                 return TrackedAmount + AdditionalsAmount;
             }
         }
+        public decimal BalanceDue { get; set; }
         public PaySchedule PaySchedule { get; set; }
         public Worker Worker { get; set; }
         public PayScheduleType PayScheduleType { get; set; }

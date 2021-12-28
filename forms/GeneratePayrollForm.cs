@@ -25,6 +25,7 @@ namespace simple_payroll_desktop.forms
         private PaySchedule selectedPaySchedule;
         private Worker selectedWorker;
         private PayPeriod selectedPeriod;
+        private Payroll currentPayroll;
         public GeneratePayrollForm(ILogger<GeneratePayrollForm> logger,
                                    I18nService i18n,
                                    PayrollManager payrollManager,
@@ -97,9 +98,39 @@ namespace simple_payroll_desktop.forms
             loadPayroll();
         }
 
+        private void loadAdditionalTypes()
+        {
+            additionalTypeComboBox.DataSource = Enum.GetValues(typeof(AdditionalType));
+        }
+
         private void loadPayroll()
         {
-            //TODO
+            currentPayroll = payrollManager.getPayroll(selectedWorker, selectedPeriod);
+            showTrackedWork();
+            showAdditionals();
+            showTotals();
+        }
+
+        private void showTrackedWork()
+        {
+            // TODO Complete with tracked time
+            payRateDataLabel.Text = currentPayroll.PayRate.ToString("#0.00");
+            trackedAmountDataLabel.Text = currentPayroll.TrackedAmount.ToString("#0.00");
+            trackedDetailsDataLabel.Text = payrollManager.getTrackedTimeLocalizedDetails(currentPayroll);
+        }
+
+        private void showAdditionals()
+        {
+            additionalsGridView.DataSource = currentPayroll.Additionals;
+            additionalsGridView.Columns["Payroll"].Visible = false;
+        }
+
+        private void showTotals()
+        {
+            trackedAmountTextBox.Text = currentPayroll.TrackedAmount.ToString("#0.00");
+            additionalsAmountTextBox.Text = currentPayroll.AdditionalsAmount.ToString("#0.00");
+            totalAmountTextBox.Text = currentPayroll.TotalAmount.ToString("#0.00");
+            balanceDueTextBox.Text = currentPayroll.BalanceDue.ToString("#0.00");
         }
 
         private void GeneratePayrollForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -120,6 +151,7 @@ namespace simple_payroll_desktop.forms
             {
                 loadPaySchedules();
                 setPeriod(DateTime.Today);
+                loadAdditionalTypes();
             }
             catch (Exception ex)
             {

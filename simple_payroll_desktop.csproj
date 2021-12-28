@@ -123,16 +123,19 @@
   <ItemGroup>
     <Compile Include="business\DenominationsManager.cs" />
     <Compile Include="business\PayrollManager.cs" />
+    <Compile Include="business\payrolls\PayrollCalculator.cs" />
     <Compile Include="business\PaySchedulesManager.cs" />
     <Compile Include="business\pay_schedules\WeeklyPayScheduleManager.cs" />
     <Compile Include="business\TrackingEntriesManager.cs" />
     <Compile Include="business\tracking_entries\TrackingEntryGenerator.cs" />
     <Compile Include="business\WorkersManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
+    <Compile Include="dao\PayrollDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
     <Compile Include="dao\TrackingEntryDAO.cs" />
     <Compile Include="dao\WorkerDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
+    <Compile Include="entities\Additional.cs" />
     <Compile Include="entities\Denomination.cs" />
     <Compile Include="entities\PayPeriod.cs" />
     <Compile Include="entities\Payroll.cs" />
@@ -204,6 +207,7 @@
     <Compile Include="local_dao\DbContext.cs" />
     <Compile Include="local_dao\DbExecuter.cs" />
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
+    <Compile Include="local_dao\PayrollDAOLocal.cs" />
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
     <Compile Include="local_dao\TrackingEntryDAOLocal.cs" />
     <Compile Include="local_dao\WorkerDAOLocal.cs" />
