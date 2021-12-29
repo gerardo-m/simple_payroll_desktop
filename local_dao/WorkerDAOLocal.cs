@@ -25,6 +25,13 @@ namespace simple_payroll_desktop.local_dao
             throw new NotImplementedException();
         }
 
+        public Worker getWorker(int id)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", id);
+            return executer.selectFromTable<Worker>("workers", "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+        }
+
         public void saveWorker(Worker worker)
         {
             string query = "INSERT INTO workers(first_name, last_name_1, last_name_2, ci, pay_rate," +

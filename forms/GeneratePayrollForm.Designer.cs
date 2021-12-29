@@ -46,7 +46,7 @@ namespace simple_payroll_desktop.forms
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.generatePaySlipButton = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.previosPayPeriodButton = new System.Windows.Forms.Button();
             this.nextPayPeriodButton = new System.Windows.Forms.Button();
@@ -250,14 +250,15 @@ namespace simple_payroll_desktop.forms
             this.generatePaySlipButton.UseVisualStyleBackColor = true;
             this.generatePaySlipButton.Click += new System.EventHandler(this.generatePaySlipButton_Click);
             // 
-            // button4
+            // saveButton
             // 
-            this.button4.Location = new System.Drawing.Point(290, 732);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(66, 23);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "Guardar";
-            this.button4.UseVisualStyleBackColor = true;
+            this.saveButton.Location = new System.Drawing.Point(290, 732);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(66, 23);
+            this.saveButton.TabIndex = 13;
+            this.saveButton.Text = "Guardar";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // panel1
             // 
@@ -506,7 +507,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.statusDataLabel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.generatePaySlipButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label3);
@@ -546,7 +547,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button generatePaySlipButton;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button previosPayPeriodButton;
         private System.Windows.Forms.Button nextPayPeriodButton;

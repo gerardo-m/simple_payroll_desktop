@@ -18,5 +18,9 @@ namespace simple_payroll_desktop.dao
         /// <param name="period"></param>
         /// <returns></returns>
         Payroll getPayroll(int workerId, PayPeriod period);
+
+        void savePayroll(Payroll payroll);
+        void updatePayroll(Payroll payroll);
+
     }
 }

@@ -113,7 +113,6 @@ namespace simple_payroll_desktop.forms
 
         private void showTrackedWork()
         {
-            // TODO Complete with tracked time
             payRateDataLabel.Text = currentPayroll.PayRate.ToString("#0.00");
             trackedAmountDataLabel.Text = currentPayroll.TrackedAmount.ToString("#0.00");
             trackedDetailsDataLabel.Text = payrollManager.getTrackedTimeLocalizedDetails(currentPayroll);
@@ -131,6 +130,11 @@ namespace simple_payroll_desktop.forms
             additionalsAmountTextBox.Text = currentPayroll.AdditionalsAmount.ToString("#0.00");
             totalAmountTextBox.Text = currentPayroll.TotalAmount.ToString("#0.00");
             balanceDueTextBox.Text = currentPayroll.BalanceDue.ToString("#0.00");
+        }
+
+        private void savePayroll()
+        {
+            payrollManager.savePayroll(currentPayroll);
         }
 
         private void GeneratePayrollForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -201,6 +205,19 @@ namespace simple_payroll_desktop.forms
             try
             {
                 previousPeriod();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                savePayroll();
+                loadPayroll();
             }
             catch (Exception ex)
             {

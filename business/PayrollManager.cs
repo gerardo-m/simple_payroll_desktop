@@ -55,8 +55,10 @@ namespace simple_payroll_desktop.business
 
         public void savePayroll(Payroll payroll)
         {
-            // TODO
-            throw new NotImplementedException();
+            if (payroll.Id == 0)
+                payrollDAO.savePayroll(payroll);
+            else
+                payrollDAO.updatePayroll(payroll);
         }
 
         public string getTrackedTimeLocalizedDetails(Payroll payroll)
