@@ -125,6 +125,7 @@
     <Compile Include="business\PayrollManager.cs" />
     <Compile Include="business\payrolls\PayrollCalculator.cs" />
     <Compile Include="business\PaySchedulesManager.cs" />
+    <Compile Include="business\PaySlipManager.cs" />
     <Compile Include="business\pay_schedules\WeeklyPayScheduleManager.cs" />
     <Compile Include="business\TrackingEntriesManager.cs" />
     <Compile Include="business\tracking_entries\TrackingEntryGenerator.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="entities\PayPeriod.cs" />
     <Compile Include="entities\Payroll.cs" />
     <Compile Include="entities\PaySchedule.cs" />
+    <Compile Include="entities\PaySlip.cs" />
     <Compile Include="entities\TrackingEntry.cs" />
     <Compile Include="entities\Worker.cs" />
     <Compile Include="Form1.cs">
@@ -147,6 +149,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="forms\controls\AdditionalRowForPaySlip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\controls\AdditionalRowForPaySlip.Designer.cs">
+      <DependentUpon>AdditionalRowForPaySlip.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\controls\track_work\BaseTrackerControl.cs">
       <SubType>UserControl</SubType>
@@ -215,6 +223,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\controls\AdditionalRowForPaySlip.resx">
+      <DependentUpon>AdditionalRowForPaySlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\controls\track_work\DaysDayWeekTrackerControl.resx">
       <DependentUpon>DaysDayWeekTrackerControl.cs</DependentUpon>

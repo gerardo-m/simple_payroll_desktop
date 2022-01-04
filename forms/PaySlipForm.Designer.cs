@@ -29,75 +29,66 @@ namespace simple_payroll_desktop.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.additionalsTableContainer = new System.Windows.Forms.TableLayoutPanel();
+            this.trackedWorkAmountTextBox = new System.Windows.Forms.TextBox();
+            this.trackedWorkConceptDataLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.payrollTotalTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.previouslyPaidTextBox = new System.Windows.Forms.TextBox();
+            this.amountTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.toBePaidTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveAndPrintButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.groupBox2.SuspendLayout();
+            this.workerTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Location = new System.Drawing.Point(32, 280);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(540, 60);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Descuentos";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(415, 19);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 3;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.additionalsTableContainer);
             this.groupBox1.Location = new System.Drawing.Point(29, 197);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(543, 62);
+            this.groupBox1.Size = new System.Drawing.Size(543, 150);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Extras";
+            this.groupBox1.Text = "Adicionales";
             // 
-            // textBox1
+            // additionalsTableContainer
             // 
-            this.textBox1.Location = new System.Drawing.Point(447, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 15;
+            this.additionalsTableContainer.AutoSize = true;
+            this.additionalsTableContainer.ColumnCount = 1;
+            this.additionalsTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.additionalsTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.additionalsTableContainer.Location = new System.Drawing.Point(6, 30);
+            this.additionalsTableContainer.Name = "additionalsTableContainer";
+            this.additionalsTableContainer.RowCount = 2;
+            this.additionalsTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.additionalsTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.additionalsTableContainer.Size = new System.Drawing.Size(531, 40);
+            this.additionalsTableContainer.TabIndex = 0;
             // 
-            // label6
+            // trackedWorkAmountTextBox
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 148);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "5 días trabajados";
+            this.trackedWorkAmountTextBox.Location = new System.Drawing.Point(447, 145);
+            this.trackedWorkAmountTextBox.Name = "trackedWorkAmountTextBox";
+            this.trackedWorkAmountTextBox.ReadOnly = true;
+            this.trackedWorkAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.trackedWorkAmountTextBox.TabIndex = 15;
+            // 
+            // trackedWorkConceptDataLabel
+            // 
+            this.trackedWorkConceptDataLabel.AutoSize = true;
+            this.trackedWorkConceptDataLabel.Location = new System.Drawing.Point(29, 148);
+            this.trackedWorkConceptDataLabel.Name = "trackedWorkConceptDataLabel";
+            this.trackedWorkConceptDataLabel.Size = new System.Drawing.Size(89, 13);
+            this.trackedWorkConceptDataLabel.TabIndex = 14;
+            this.trackedWorkConceptDataLabel.Text = "5 días trabajados";
             // 
             // label5
             // 
@@ -117,31 +108,6 @@ namespace simple_payroll_desktop.forms
             this.label4.TabIndex = 12;
             this.label4.Text = "Detalle";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(418, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Horas extras";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Anticipos";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -151,12 +117,13 @@ namespace simple_payroll_desktop.forms
             this.label3.TabIndex = 18;
             this.label3.Text = "Total de planilla";
             // 
-            // textBox3
+            // payrollTotalTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(447, 369);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 19;
+            this.payrollTotalTextBox.Location = new System.Drawing.Point(447, 369);
+            this.payrollTotalTextBox.Name = "payrollTotalTextBox";
+            this.payrollTotalTextBox.ReadOnly = true;
+            this.payrollTotalTextBox.Size = new System.Drawing.Size(100, 20);
+            this.payrollTotalTextBox.TabIndex = 19;
             // 
             // label7
             // 
@@ -167,19 +134,20 @@ namespace simple_payroll_desktop.forms
             this.label7.TabIndex = 20;
             this.label7.Text = "Pagado anteriormente";
             // 
-            // textBox5
+            // previouslyPaidTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(447, 398);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 21;
+            this.previouslyPaidTextBox.Location = new System.Drawing.Point(447, 398);
+            this.previouslyPaidTextBox.Name = "previouslyPaidTextBox";
+            this.previouslyPaidTextBox.ReadOnly = true;
+            this.previouslyPaidTextBox.Size = new System.Drawing.Size(100, 20);
+            this.previouslyPaidTextBox.TabIndex = 21;
             // 
-            // textBox6
+            // amountTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(447, 429);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 23;
+            this.amountTextBox.Location = new System.Drawing.Point(447, 429);
+            this.amountTextBox.Name = "amountTextBox";
+            this.amountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.amountTextBox.TabIndex = 23;
             // 
             // label8
             // 
@@ -190,12 +158,13 @@ namespace simple_payroll_desktop.forms
             this.label8.TabIndex = 22;
             this.label8.Text = "A pagar con esta boleta";
             // 
-            // textBox7
+            // toBePaidTextBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(447, 461);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 25;
+            this.toBePaidTextBox.Location = new System.Drawing.Point(447, 461);
+            this.toBePaidTextBox.Name = "toBePaidTextBox";
+            this.toBePaidTextBox.ReadOnly = true;
+            this.toBePaidTextBox.Size = new System.Drawing.Size(100, 20);
+            this.toBePaidTextBox.TabIndex = 25;
             // 
             // label9
             // 
@@ -206,14 +175,15 @@ namespace simple_payroll_desktop.forms
             this.label9.TabIndex = 24;
             this.label9.Text = "Saldo pendiente";
             // 
-            // button1
+            // saveAndPrintButton
             // 
-            this.button1.Location = new System.Drawing.Point(440, 506);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 23);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "Guardar E Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveAndPrintButton.Location = new System.Drawing.Point(440, 506);
+            this.saveAndPrintButton.Name = "saveAndPrintButton";
+            this.saveAndPrintButton.Size = new System.Drawing.Size(109, 23);
+            this.saveAndPrintButton.TabIndex = 26;
+            this.saveAndPrintButton.Text = "Guardar E Imprimir";
+            this.saveAndPrintButton.UseVisualStyleBackColor = true;
+            this.saveAndPrintButton.Click += new System.EventHandler(this.saveAndPrintButton_Click);
             // 
             // label10
             // 
@@ -224,40 +194,39 @@ namespace simple_payroll_desktop.forms
             this.label10.TabIndex = 27;
             this.label10.Text = "Trabajador";
             // 
-            // textBox8
+            // workerTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(136, 32);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(411, 20);
-            this.textBox8.TabIndex = 28;
+            this.workerTextBox.Location = new System.Drawing.Point(136, 32);
+            this.workerTextBox.Name = "workerTextBox";
+            this.workerTextBox.ReadOnly = true;
+            this.workerTextBox.Size = new System.Drawing.Size(411, 20);
+            this.workerTextBox.TabIndex = 28;
             // 
             // PaySlipForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(583, 565);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.workerTextBox);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.saveAndPrintButton);
+            this.Controls.Add(this.toBePaidTextBox);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.amountTextBox);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.previouslyPaidTextBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.payrollTotalTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.trackedWorkAmountTextBox);
+            this.Controls.Add(this.trackedWorkConceptDataLabel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Name = "PaySlipForm";
             this.Text = "PaySlipForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaySlipForm_FormClosed);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Load += new System.EventHandler(this.PaySlipForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -266,27 +235,22 @@ namespace simple_payroll_desktop.forms
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox trackedWorkAmountTextBox;
+        private System.Windows.Forms.Label trackedWorkConceptDataLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox payrollTotalTextBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox previouslyPaidTextBox;
+        private System.Windows.Forms.TextBox amountTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox toBePaidTextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveAndPrintButton;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox workerTextBox;
+        private System.Windows.Forms.TableLayoutPanel additionalsTableContainer;
     }
 }

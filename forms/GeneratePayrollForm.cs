@@ -18,6 +18,9 @@ namespace simple_payroll_desktop.forms
 
         private readonly ILogger logger;
         private readonly I18nService i18n;
+
+        private readonly PaySlipForm paySlipForm;
+
         private readonly PayrollManager payrollManager;
         private readonly PaySchedulesManager paySchedulesManager;
         private readonly WorkersManager workersManager;
@@ -28,12 +31,14 @@ namespace simple_payroll_desktop.forms
         private Payroll currentPayroll;
         public GeneratePayrollForm(ILogger<GeneratePayrollForm> logger,
                                    I18nService i18n,
+                                   PaySlipForm paySlipForm,
                                    PayrollManager payrollManager,
                                    PaySchedulesManager paySchedulesManager,
                                    WorkersManager workersManager)
         {
             this.logger = logger;
             this.i18n = i18n;
+            this.paySlipForm = paySlipForm;
             this.payrollManager = payrollManager;
             this.paySchedulesManager = paySchedulesManager;
             this.workersManager = workersManager;
@@ -144,8 +149,8 @@ namespace simple_payroll_desktop.forms
 
         private void generatePaySlipButton_Click(object sender, EventArgs e)
         {
-            PaySlipForm paySlipForm = new PaySlipForm();
             this.Visible = false;
+            paySlipForm.setPayroll(currentPayroll);
             paySlipForm.ShowDialog(this);
         }
 

@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using simple_payroll_desktop.entities;
+using simple_payroll_desktop.dao;
+
+namespace simple_payroll_desktop.business
+{
+    public class PaySlipManager
+    {
+
+        private readonly I18nService i18n;
+        private readonly PayrollManager payrollManager;
+
+        public PaySlipManager(I18nService i18n, PayrollManager payrollManager)
+        {
+            this.i18n = i18n;
+            this.payrollManager = payrollManager;
+        }
+
+        public IList<PaySlip> getPaysSlips(int payrollId)
+        {
+            // TODO 
+            throw new NotImplementedException();
+        }
+
+        public PaySlip createNewPaySlip(Payroll payroll)
+        {
+            PaySlip paySlip = new PaySlip();
+            paySlip.Additionals = payroll.Additionals.ToList<Additional>();
+            paySlip.Amount = 0;
+            paySlip.WorkerCI = payroll.Worker.CI;
+            paySlip.WorkerFullName = payroll.Worker.ToString();
+            paySlip.PayrollTotal = payroll.TotalAmount;
+            paySlip.PreviouslyPaid = calculatePreviouslyPaidForPayroll(payroll);
+            paySlip.TrackedWorkAmount = payroll.TrackedAmount;
+            paySlip.TrackedWorkConcept = payrollManager.getTrackedTimeLocalizedDetails(payroll);
+            paySlip.Payroll = payroll;
+            return paySlip;
+        }
+
+        private decimal calculatePreviouslyPaidForPayroll(Payroll payroll)
+        {
+            // TODO
+            return 0;
+        }
+
+        public void savePaySlip(PaySlip paySlip)
+        {
+            // TODO
+            throw new NotImplementedException();
+        }
+    }
+}
