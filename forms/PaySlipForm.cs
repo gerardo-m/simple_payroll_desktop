@@ -11,6 +11,7 @@ using System.Drawing.Printing;
 using Microsoft.Extensions.Logging;
 using simple_payroll_desktop.entities;
 using simple_payroll_desktop.business;
+using simple_payroll_desktop.printing;
 
 namespace simple_payroll_desktop.forms
 {
@@ -64,9 +65,8 @@ namespace simple_payroll_desktop.forms
 
         private void print()
         {
-            
-            PrintDocument document = new PrintDocument();
-            document.PrintPage += new PrintPageEventHandler(printEventHandler);
+            PaySlipPrinter printer = new PaySlipPrinter(currentPaySlip);
+            PrintDocument document = printer.buildDocument();
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = document;
             if (printDialog.ShowDialog() == DialogResult.OK)
@@ -75,13 +75,6 @@ namespace simple_payroll_desktop.forms
                 MessageBox.Show("Print canceled");
         }
 
-        private void printEventHandler(object sender, PrintPageEventArgs args)
-        {
-            Font printFont = new Font("Arial", 10);
-            float leftMargin = args.MarginBounds.Left;
-            float topMargin = args.MarginBounds.Top;
-            args.Graphics.DrawString(currentPaySlip.WorkerFullName, printFont, Brushes.Black, leftMargin, topMargin, new StringFormat());
-        }
         private void PaySlipForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Owner.Visible = true;

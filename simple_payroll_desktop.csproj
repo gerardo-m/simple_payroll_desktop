@@ -219,6 +219,7 @@
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
     <Compile Include="local_dao\TrackingEntryDAOLocal.cs" />
     <Compile Include="local_dao\WorkerDAOLocal.cs" />
+    <Compile Include="printing\PaySlipPrinter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
