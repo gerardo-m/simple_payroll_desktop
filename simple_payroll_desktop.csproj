@@ -133,6 +133,7 @@
     <Compile Include="dao\DenominationDAO.cs" />
     <Compile Include="dao\PayrollDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
+    <Compile Include="dao\PaySlipDAO.cs" />
     <Compile Include="dao\TrackingEntryDAO.cs" />
     <Compile Include="dao\WorkerDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
     <Compile Include="local_dao\PayrollDAOLocal.cs" />
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
+    <Compile Include="local_dao\PaySlipDAOLocal.cs" />
     <Compile Include="local_dao\TrackingEntryDAOLocal.cs" />
     <Compile Include="local_dao\WorkerDAOLocal.cs" />
     <Compile Include="printing\PaySlipPrinter.cs" />

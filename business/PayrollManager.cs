@@ -28,7 +28,7 @@ namespace simple_payroll_desktop.business
 
         public Payroll getPayroll(Worker worker, PayPeriod period)
         {
-            Payroll payroll = payrollDAO.getPayroll(worker.Id, period);
+            Payroll payroll = payrollDAO.getPayrollByPeriod(worker.Id, period);
             if (payroll == null)
                 payroll = buildPayroll(worker, period);
             if (payroll.Status == PayrollStatus.Open)

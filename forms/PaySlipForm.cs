@@ -63,6 +63,11 @@ namespace simple_payroll_desktop.forms
             workerTextBox.Text = currentPaySlip.WorkerFullName + currentPaySlip.WorkerCI;
         }
 
+        private void savePaySlip()
+        {
+            paySlipManager.savePaySlip(currentPaySlip);
+        }
+
         private void print()
         {
             PaySlipPrinter printer = new PaySlipPrinter(currentPaySlip);
@@ -97,7 +102,7 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
-                // TODO SAVE
+                savePaySlip();
                 print();
             }
             catch (Exception ex)

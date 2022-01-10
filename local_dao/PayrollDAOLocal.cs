@@ -16,7 +16,18 @@ namespace simple_payroll_desktop.local_dao
         private PayScheduleDAOLocal payScheduleDAO = new PayScheduleDAOLocal();
         private WorkerDAOLocal workerDAOLocal = new WorkerDAOLocal();
 
-        public Payroll getPayroll(int workerId, PayPeriod period)
+        public Payroll getPayroll(int payrollId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@id", payrollId);
+            IList<Payroll> list = executer.selectFromTable("payrolls", "id = @id", parameters, (reader) => mapFromReader(reader));
+            if (list.Count == 0)
+                return null;
+            else
+                return list.First();
+        }
+
+        public Payroll getPayrollByPeriod(int workerId, PayPeriod period)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@period_start", period.PeriodStart.Ticks);

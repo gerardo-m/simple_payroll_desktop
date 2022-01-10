@@ -11,13 +11,13 @@ namespace simple_payroll_desktop.entities
 
         public Denomination() {}
 
-        public Denomination(int id, String name)
+        public Denomination(int id, string name)
         {
             Id = id;
             Name = name;
         }
 
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }
