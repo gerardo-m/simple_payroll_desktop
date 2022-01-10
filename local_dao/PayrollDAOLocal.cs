@@ -12,15 +12,27 @@ namespace simple_payroll_desktop.local_dao
     public class PayrollDAOLocal : PayrollDAO
     {
 
-        private DbExecuter executer = new DbExecuter();
         private PayScheduleDAOLocal payScheduleDAO = new PayScheduleDAOLocal();
         private WorkerDAOLocal workerDAOLocal = new WorkerDAOLocal();
 
+        private DbExecuter executer;
+        private DbCrudHelper crudHelper;
+
+        private readonly string tableName = "payrolls";
+
+        public PayrollDAOLocal()
+        {
+            executer = new DbExecuter();
+            crudHelper = new DbCrudHelper(executer);
+        }
+
         public Payroll getPayroll(int payrollId)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", payrollId);
-            IList<Payroll> list = executer.selectFromTable("payrolls", "id = @id", parameters, (reader) => mapFromReader(reader));
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@id", payrollId }
+            };
+            IList<Payroll> list = executer.selectFromTable(tableName, "id = @id", parameters, (reader) => mapFromReader(reader));
             if (list.Count == 0)
                 return null;
             else
@@ -29,11 +41,13 @@ namespace simple_payroll_desktop.local_dao
 
         public Payroll getPayrollByPeriod(int workerId, PayPeriod period)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@period_start", period.PeriodStart.Ticks);
-            parameters.Add("@period_end", period.PeriodEnd.Ticks);
-            parameters.Add("@worker_id", workerId);
-            IList<Payroll> list = executer.selectFromTable<Payroll>("payrolls", "period_start = @period_start and period_end = @period_end and worker_id = @worker_id", parameters, (reader) => mapFromReader(reader));
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@period_start", period.PeriodStart.Ticks },
+                { "@period_end", period.PeriodEnd.Ticks },
+                { "@worker_id", workerId }
+            };
+            IList<Payroll> list = executer.selectFromTable(tableName, "period_start = @period_start and period_end = @period_end and worker_id = @worker_id", parameters, (reader) => mapFromReader(reader));
             if (list.Count == 0)
                 return null;
             else
@@ -42,51 +56,44 @@ namespace simple_payroll_desktop.local_dao
 
         public void savePayroll(Payroll payroll)
         {
-            string query = "INSERT INTO payrolls(period_start, period_end, date, pay_rate, pay_rate_type," +
-                " tracked_time, tracked_amount, additionals_amount, balance_due, pay_schedule_id, worker_id, " +
-                " pay_schedule_type, status) values (@period_start, @period_end, @date, @pay_rate, @pay_rate_type," +
-                " @tracked_time, @tracked_amount, @additionals_amount, @balance_due, @pay_schedule_id, @worker_id, " +
-                " @pay_schedule_type, @status)";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@period_start", payroll.PeriodStart.Ticks);
-            parameters.Add("@period_end", payroll.PeriodEnd.Ticks);
-            parameters.Add("@date", payroll.Date.Ticks);
-            parameters.Add("@pay_rate", payroll.PayRate);
-            parameters.Add("@pay_rate_type", payroll.PayRateType);
-            parameters.Add("@tracked_time", payroll.TrackedTime);
-            parameters.Add("@tracked_amount", payroll.TrackedAmount);
-            parameters.Add("@additionals_amount", payroll.AdditionalsAmount);
-            parameters.Add("@balance_due", payroll.BalanceDue);
-            parameters.Add("@pay_schedule_id", payroll.PaySchedule.Id);
-            parameters.Add("@worker_id", payroll.Worker.Id);
-            parameters.Add("@pay_schedule_type", payroll.PayScheduleType);
-            parameters.Add("@status", payroll.Status);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "period_start", payroll.PeriodStart.Ticks },
+                { "period_end", payroll.PeriodEnd.Ticks },
+                { "date", payroll.Date.Ticks },
+                { "pay_rate", payroll.PayRate },
+                { "pay_rate_type", payroll.PayRateType },
+                { "tracked_time", payroll.TrackedTime },
+                { "tracked_amount", payroll.TrackedAmount },
+                { "additionals_amount", payroll.AdditionalsAmount },
+                { "balance_due", payroll.BalanceDue },
+                { "pay_schedule_id", payroll.PaySchedule.Id },
+                { "worker_id", payroll.Worker.Id },
+                { "pay_schedule_type", payroll.PayScheduleType },
+                { "status", payroll.Status }
+            };
+            crudHelper.create(tableName, parameters);
         }
 
         public void updatePayroll(Payroll payroll)
         {
-            string query = "UPDATE payrolls set period_start = @period_start, period_end = @period_end, date = @date," +
-                " pay_rate = @pay_rate, pay_rate_type = @pay_rate_type, tracked_time = @tracked_time, tracked_amount = @tracked_amount," +
-                " additionals_amount = @additionals_amount, balance_due = @balance_due, pay_schedule_id = @pay_schedule_id," +
-                " worker_id = @worker_id, pay_schedule_type = @pay_schedule_type, status = @status where id = @id" +
-                "";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", payroll.Id);
-            parameters.Add("@period_start", payroll.PeriodStart.Ticks);
-            parameters.Add("@period_end", payroll.PeriodEnd.Ticks);
-            parameters.Add("@date", payroll.Date.Ticks);
-            parameters.Add("@pay_rate", payroll.PayRate);
-            parameters.Add("@pay_rate_type", payroll.PayRateType);
-            parameters.Add("@tracked_time", payroll.TrackedTime);
-            parameters.Add("@tracked_amount", payroll.TrackedAmount);
-            parameters.Add("@additionals_amount", payroll.AdditionalsAmount);
-            parameters.Add("@balance_due", payroll.BalanceDue);
-            parameters.Add("@pay_schedule_id", payroll.PaySchedule.Id);
-            parameters.Add("@worker_id", payroll.Worker.Id);
-            parameters.Add("@pay_schedule_type", payroll.PayScheduleType);
-            parameters.Add("@status", payroll.Status);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "period_start", payroll.PeriodStart.Ticks },
+                { "period_end", payroll.PeriodEnd.Ticks },
+                { "date", payroll.Date.Ticks },
+                { "pay_rate", payroll.PayRate },
+                { "pay_rate_type", payroll.PayRateType },
+                { "tracked_time", payroll.TrackedTime },
+                { "tracked_amount", payroll.TrackedAmount },
+                { "additionals_amount", payroll.AdditionalsAmount },
+                { "balance_due", payroll.BalanceDue },
+                { "pay_schedule_id", payroll.PaySchedule.Id },
+                { "worker_id", payroll.Worker.Id },
+                { "pay_schedule_type", payroll.PayScheduleType },
+                { "status", payroll.Status }
+            };
+            crudHelper.update(tableName, parameters, payroll.Id);
         }
 
         private Payroll mapFromReader(SQLiteDataReader reader)

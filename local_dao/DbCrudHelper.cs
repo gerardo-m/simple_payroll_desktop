@@ -69,8 +69,10 @@ namespace simple_payroll_desktop.local_dao
         public void delete(string table, int id)
         {
             string query = $"DELETE FROM {table} where id = @id";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", id);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "@id", id }
+            };
             executer.executeQuery(query, parameters);
         }
 

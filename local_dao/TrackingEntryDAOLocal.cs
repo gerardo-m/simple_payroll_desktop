@@ -12,41 +12,51 @@ namespace simple_payroll_desktop.local_dao
     public class TrackingEntryDAOLocal : TrackingEntryDAO
     {
 
-        private DbExecuter executer = new DbExecuter();
+        private DbExecuter executer;
+        private DbCrudHelper crudHelper;
+
+        private readonly string tableName = "tracking_entries";
+
+        public TrackingEntryDAOLocal()
+        {
+            executer = new DbExecuter();
+            crudHelper = new DbCrudHelper(executer);
+        }
         public IList<TrackingEntry> getTrackingEntries(int workerId, DateTime from, DateTime to)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@from", from.Ticks);
-            parameters.Add("@to", to.Ticks);
-            parameters.Add("@workerId", workerId);
-            return  executer.selectFromTable<TrackingEntry>("tracking_entries", "date >= @from and date <= @to and worker_id = @workerId", parameters, (reader) => mapFromReader(reader));
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@from", from.Ticks },
+                { "@to", to.Ticks },
+                { "@workerId", workerId }
+            };
+            return  executer.selectFromTable<TrackingEntry>(tableName, "date >= @from and date <= @to and worker_id = @workerId", parameters, (reader) => mapFromReader(reader));
         }
 
         public void saveTrackingEntry(TrackingEntry trackingEntry)
         {
-            string query = "INSERT INTO tracking_entries(period, tracking_unit, tracking_value, date, worker_id)" +
-                " values (@period, @tracking_unit, @tracking_value, @date, @worker_id)";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@period", trackingEntry.Period);
-            parameters.Add("@tracking_unit", trackingEntry.TrackingUnit);
-            parameters.Add("@tracking_value", trackingEntry.TrackingValue);
-            parameters.Add("@date", trackingEntry.Date.Ticks);
-            parameters.Add("@worker_id", trackingEntry.Worker.Id);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "period", trackingEntry.Period },
+                { "tracking_unit", trackingEntry.TrackingUnit },
+                { "tracking_value", trackingEntry.TrackingValue },
+                { "date", trackingEntry.Date.Ticks },
+                { "worker_id", trackingEntry.Worker.Id }
+            };
+            crudHelper.create(tableName, parameters);
         }
 
         public void updateTrackingEntry(TrackingEntry trackingEntry)
         {
-            string query = "UPDATE tracking_entries set period = @period, tracking_unit = @tracking_unit, tracking_value = @tracking_value," +
-                " date = @date, worker_id = @worker_id where id = @id";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@period", trackingEntry.Period);
-            parameters.Add("@tracking_unit", trackingEntry.TrackingUnit);
-            parameters.Add("@tracking_value", trackingEntry.TrackingValue);
-            parameters.Add("@date", trackingEntry.Date.Ticks);
-            parameters.Add("@worker_id", trackingEntry.Worker.Id);
-            parameters.Add("@id", trackingEntry.Id);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "period", trackingEntry.Period },
+                { "tracking_unit", trackingEntry.TrackingUnit },
+                { "tracking_value", trackingEntry.TrackingValue },
+                { "date", trackingEntry.Date.Ticks },
+                { "worker_id", trackingEntry.Worker.Id }
+            };
+            crudHelper.update(tableName, parameters, trackingEntry.Id);
         }
 
         private TrackingEntry mapFromReader(SQLiteDataReader reader)

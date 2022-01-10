@@ -35,22 +35,28 @@ namespace simple_payroll_desktop.local_dao
 
         public Denomination getDenomination(int id)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", id);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@id", id }
+            };
             return executer.selectFromTable<Denomination>(tableName, "id = @id", parameters, (reader) => mapFromReader(reader)).First();
         }
 
         public void saveDenomination(Denomination denomination)
         {
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("name", denomination.Name);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "name", denomination.Name }
+            };
             crudHelper.create(tableName, parameters);
         }
 
         public void updateDenomination(Denomination denomination)
         {
-            Dictionary<string, object> setValues = new Dictionary<string, object>();
-            setValues.Add("name", denomination.Name);
+            Dictionary<string, object> setValues = new Dictionary<string, object>
+            {
+                { "name", denomination.Name }
+            };
             crudHelper.update(tableName, setValues, denomination.Id);
         }
 

@@ -12,34 +12,44 @@ namespace simple_payroll_desktop.local_dao
     public class PaySlipDAOLocal : PaySlipDAO
     {
 
-        private DbExecuter executer = new DbExecuter();
         private PayrollDAOLocal payrollDAOLocal = new PayrollDAOLocal();
 
+        private DbExecuter executer;
+        private DbCrudHelper crudHelper;
+
+        private readonly string tableName = "pay_slips";
+
+        public PaySlipDAOLocal()
+        {
+            executer = new DbExecuter();
+            crudHelper = new DbCrudHelper(executer);
+        }
 
         public IList<PaySlip> getPaySlips(int payrollId)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@payrollId", payrollId);
-            IList<PaySlip> paySlips = executer.selectFromTable("pay_slips", mapFromReader);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@payrollId", payrollId }
+            };
+            IList<PaySlip> paySlips = executer.selectFromTable(tableName, mapFromReader);
             return paySlips;
         }
 
         public void savePaySlip(PaySlip paySlip)
         {
-            string query = "INSERT INTO pay_slips(worker_ci, worker_full_name, tracked_work_concept, tracked_work_amount, " +
-                           "payroll_total, previously_paid, amount, is_valid, payroll_id) VALUES(@worker_ci, @worker_full_name, @tracked_work_concept, " +
-                           "@tracked_work_amount, @payroll_total, @previously_paid, @amount, @is_valid, @payroll_id)";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@worker_ci", paySlip.WorkerCI);
-            parameters.Add("@worker_full_name", paySlip.WorkerFullName);
-            parameters.Add("@tracked_work_concept", paySlip.TrackedWorkConcept);
-            parameters.Add("@tracked_work_amount", paySlip.TrackedWorkAmount);
-            parameters.Add("@payroll_total", paySlip.PayrollTotal);
-            parameters.Add("@previously_paid", paySlip.PreviouslyPaid);
-            parameters.Add("@amount", paySlip.Amount);
-            parameters.Add("@is_valid", paySlip.IsValid ? 1:0);
-            parameters.Add("@payroll_id", paySlip.Payroll.Id);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@worker_ci", paySlip.WorkerCI },
+                { "@worker_full_name", paySlip.WorkerFullName },
+                { "@tracked_work_concept", paySlip.TrackedWorkConcept },
+                { "@tracked_work_amount", paySlip.TrackedWorkAmount },
+                { "@payroll_total", paySlip.PayrollTotal },
+                { "@previously_paid", paySlip.PreviouslyPaid },
+                { "@amount", paySlip.Amount },
+                { "@is_valid", paySlip.IsValid ? 1 : 0 },
+                { "@payroll_id", paySlip.Payroll.Id }
+            };
+            crudHelper.create(tableName, parameters);
         }
 
         public PaySlip mapFromReader(SQLiteDataReader reader)
