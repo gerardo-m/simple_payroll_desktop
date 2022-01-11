@@ -69,9 +69,31 @@ namespace simple_payroll_desktop.local_dao
             return list;
         }
 
-        private string buildSelectQuery(string tableName, string where)
+        public int selectCount(string tableName, string where, Dictionary<string, object> whereArgs)
         {
-            string query = $"SELECT * FROM {tableName}";
+            int count;
+            using (var connection = DbContext.GetInstance())
+            {
+                string query = buildSelectQuery(tableName, where, "COUNT(*)");
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    foreach (KeyValuePair<string, object> entry in whereArgs)
+                    {
+                        command.Parameters.AddWithValue(entry.Key, entry.Value);
+                    }
+                    using (var reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        count = reader.GetInt32(0);
+                    }
+                }
+            }
+            return count;
+        }
+
+        private string buildSelectQuery(string tableName, string where, string columns = "*")
+        {
+            string query = $"SELECT {columns} FROM {tableName}";
             if (!string.IsNullOrWhiteSpace(where))
             {
                 query = $"{query} where {where}";

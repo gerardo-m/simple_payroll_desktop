@@ -39,7 +39,20 @@ namespace simple_payroll_desktop.local_dao
             {
                 { "@id", id }
             };
-            return executer.selectFromTable<Denomination>(tableName, "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+            return executer.selectFromTable(tableName, "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+        }
+
+        public Denomination getDenominationByName(string name)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@name", name }
+            };
+            IList<Denomination> list = executer.selectFromTable(tableName, "name = @name", parameters, (reader) => mapFromReader(reader));
+            if (list.Count == 0)
+                return null;
+            else
+                return list.First();
         }
 
         public void saveDenomination(Denomination denomination)

@@ -14,10 +14,12 @@ namespace simple_payroll_desktop.business
 
         private readonly I18nService i18n;
         private DenominationDAO denominationDAO;
+        private WorkerDAO workerDAO;
 
-        public DenominationsManager(I18nService i18n, DenominationDAO denominationDAO) {
+        public DenominationsManager(I18nService i18n, DenominationDAO denominationDAO, WorkerDAO workerDAO) {
             this.i18n = i18n;
             this.denominationDAO = denominationDAO;
+            this.workerDAO = workerDAO;
         }
 
         public IList<Denomination> allDenominations()
@@ -57,16 +59,16 @@ namespace simple_payroll_desktop.business
             }
         }
 
-        public bool existWithName(String denominationName)
+        public bool existWithName(string denominationName)
         {
-            //TODO must check the existance of a denomination with this name in the DB
-            return false;
+            Denomination existingDenomination = denominationDAO.getDenominationByName(denominationName);
+            return existingDenomination != null;
         }
 
         public bool canDelete(Denomination denomination)
         {
-            //TODO must check in the DB if the denomination is not in use
-            return true;
+            int workersWithTheDenomination = workerDAO.workersWithDenominationCount(denomination.Id);
+            return workersWithTheDenomination == 0;
         }
     }
 }

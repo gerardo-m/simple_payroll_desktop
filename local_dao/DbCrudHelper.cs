@@ -24,6 +24,19 @@ namespace simple_payroll_desktop.local_dao
             executer.executeQuery(query, parameters);
         }
 
+        public int readCount(string tableName)
+        {
+            return executer.selectCount(tableName, "", null);
+        }
+
+        public int readCount(string tableName, Dictionary<string, object> whereValues)
+        {
+            string[] whereValuesString = getColumnEqualValueArray(whereValues.Keys);
+            string where = String.Join(" AND ", whereValuesString);
+
+            return executer.selectCount(tableName, where, whereValues);
+        }
+
         /// <summary>
         /// Updates the columns in the table provided in the setValues dictionary using the 
         /// whereValues in the where statements join by an AND operator.

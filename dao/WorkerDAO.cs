@@ -12,7 +12,9 @@ namespace simple_payroll_desktop.dao
 
         IList<Worker> allWorkers();
 
-        IList<Worker> workersWithPaySchedule(int PayScheduleId);
+        IList<Worker> workersWithPaySchedule(int payScheduleId);
+        //IList<Worker> workersWithDenomination(int denominationId);
+        int workersWithDenominationCount(int denominationId);
         Worker getWorker(int id);
         void saveWorker(Worker worker);
         void updateWorker(Worker worker);
