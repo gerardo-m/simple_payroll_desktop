@@ -121,6 +121,7 @@ namespace simple_payroll_desktop.forms
             try
             {
                 switchToUnselectedState();
+                updateControlsStates();
             }
             catch (Exception ex)
             {

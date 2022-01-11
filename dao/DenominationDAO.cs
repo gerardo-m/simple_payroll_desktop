@@ -19,5 +19,14 @@ namespace simple_payroll_desktop.dao
         void deleteDenomination(Denomination denomination);
 
         Denomination getDenomination(int Id);
+
+        /// <summary>
+        /// Must return a Denomination object if there is an existing denomination with the provided name 
+        /// in the database.
+        /// Must return null otherwise.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Denomination getDenominationByName(string name);
     }
 }

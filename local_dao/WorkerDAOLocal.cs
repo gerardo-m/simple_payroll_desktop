@@ -27,7 +27,16 @@ namespace simple_payroll_desktop.local_dao
 
         public IList<Worker> allWorkers()
         {
-            return executer.selectFromTable<Worker>(tableName, (reader) => mapFromReader(reader));
+            return executer.selectFromTable(tableName, (reader) => mapFromReader(reader));
+        }
+
+        public int workersWithDenominationCount(int denominationId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "denomination_id", denominationId }
+            };
+            return crudHelper.readCount(tableName, parameters);
         }
 
         public void deleteWorker(Worker worker)
@@ -101,5 +110,6 @@ namespace simple_payroll_desktop.local_dao
                 Denomination = denominationDAO.getDenomination(Convert.ToInt32(reader["denomination_id"].ToString()))
             };
         }
+
     }
 }
