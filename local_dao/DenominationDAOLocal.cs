@@ -12,43 +12,52 @@ namespace simple_payroll_desktop.local_dao
     class DenominationDAOLocal : DenominationDAO
     {
 
-        private DbExecuter executer = new DbExecuter();
+        private DbExecuter executer;
+        private DbCrudHelper crudHelper;
+
+        private readonly string tableName = "denominations";
+
+        public DenominationDAOLocal()
+        {
+            executer = new DbExecuter();
+            crudHelper = new DbCrudHelper(executer);
+        }
 
         public IList<Denomination> allDenominations()
         {
-            return executer.selectFromTable<Denomination>("Denominations", (reader) => mapFromReader(reader));
+            return executer.selectFromTable<Denomination>(tableName, (reader) => mapFromReader(reader));
         }
 
         public void deleteDenomination(Denomination denomination)
         {
-            string query = "DELETE FROM Denominations where id = @id";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", denomination.Id);
-            executer.executeQuery(query, parameters);
+            crudHelper.delete(tableName, denomination.Id);
         }
 
         public Denomination getDenomination(int id)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", id);
-            return executer.selectFromTable<Denomination>("Denominations", "id = @id", parameters, (reader) => mapFromReader(reader)).First();
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@id", id }
+            };
+            return executer.selectFromTable<Denomination>(tableName, "id = @id", parameters, (reader) => mapFromReader(reader)).First();
         }
 
         public void saveDenomination(Denomination denomination)
         {
-            string query = "INSERT INTO Denominations(name) values (@name)";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@name", denomination.Name);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "name", denomination.Name }
+            };
+            crudHelper.create(tableName, parameters);
         }
 
         public void updateDenomination(Denomination denomination)
         {
-            string query = "UPDATE Denominations set name = @name where id = @id";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@name", denomination.Name);
-            parameters.Add("@id", denomination.Id);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, object> setValues = new Dictionary<string, object>
+            {
+                { "name", denomination.Name }
+            };
+            crudHelper.update(tableName, setValues, denomination.Id);
         }
 
         private Denomination mapFromReader(SQLiteDataReader reader)

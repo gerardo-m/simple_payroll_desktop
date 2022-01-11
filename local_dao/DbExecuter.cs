@@ -7,7 +7,7 @@ using System.Data.SQLite;
 
 namespace simple_payroll_desktop.local_dao
 {
-    class DbExecuter
+    public class DbExecuter
     {
 
         public void executeQuery(string query, Dictionary<string, Object> parameters)

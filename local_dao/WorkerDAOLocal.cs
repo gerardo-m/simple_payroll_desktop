@@ -14,52 +14,75 @@ namespace simple_payroll_desktop.local_dao
 
         private PayScheduleDAOLocal payScheduleDAO = new PayScheduleDAOLocal();
         private DenominationDAOLocal denominationDAO = new DenominationDAOLocal();
-        private DbExecuter executer = new DbExecuter();
+        private DbExecuter executer;
+        private DbCrudHelper crudHelper;
+
+        private readonly string tableName = "workers";
+
+        public WorkerDAOLocal()
+        {
+            executer = new DbExecuter();
+            crudHelper = new DbCrudHelper(executer);
+        }
+
         public IList<Worker> allWorkers()
         {
-            return executer.selectFromTable<Worker>("workers", (reader) => mapFromReader(reader));
+            return executer.selectFromTable<Worker>(tableName, (reader) => mapFromReader(reader));
         }
 
         public void deleteWorker(Worker worker)
         {
-            throw new NotImplementedException();
+            crudHelper.delete(tableName, worker.Id);
         }
 
         public Worker getWorker(int id)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@id", id);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@id", id }
+            };
             return executer.selectFromTable<Worker>("workers", "id = @id", parameters, (reader) => mapFromReader(reader)).First();
         }
 
         public void saveWorker(Worker worker)
         {
-            string query = "INSERT INTO workers(first_name, last_name_1, last_name_2, ci, pay_rate," +
-                                       "pay_rate_type, pay_schedule_id, denomination_id) values (" +
-                                       "@first_name, @last_name_1, @last_name_2, @ci, @pay_rate," +
-                                       "@pay_rate_type, @pay_schedule_id, @denomination_id)";
-            Dictionary<string, Object> parameters = new Dictionary<string, object>();
-            parameters.Add("@first_name", worker.FirstName);
-            parameters.Add("@last_name_1", worker.LastName1);
-            parameters.Add("@last_name_2", worker.LastName2);
-            parameters.Add("@ci", worker.CI);
-            parameters.Add("@pay_rate", worker.PayRate);
-            parameters.Add("@pay_rate_type", worker.PayRateType);
-            parameters.Add("@pay_schedule_id", worker.PaySchedule.Id);
-            parameters.Add("@denomination_id", worker.Denomination.Id);
-            executer.executeQuery(query, parameters);
+            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            {
+                { "first_name", worker.FirstName },
+                { "last_name_1", worker.LastName1 },
+                { "last_name_2", worker.LastName2 },
+                { "ci", worker.CI },
+                { "pay_rate", worker.PayRate },
+                { "pay_rate_type", worker.PayRateType },
+                { "pay_schedule_id", worker.PaySchedule.Id },
+                { "denomination_id", worker.Denomination.Id }
+            };
+            crudHelper.create(tableName, parameters);
         }
 
         public void updateWorker(Worker worker)
         {
-            throw new NotImplementedException();
+            Dictionary<string, Object> valuesToUpdate = new Dictionary<string, object>
+            {
+                { "first_name", worker.FirstName },
+                { "last_name_1", worker.LastName1 },
+                { "last_name_2", worker.LastName2 },
+                { "ci", worker.CI },
+                { "pay_rate", worker.PayRate },
+                { "pay_rate_type", worker.PayRateType },
+                { "pay_schedule_id", worker.PaySchedule.Id },
+                { "denomination_id", worker.Denomination.Id }
+            };
+            crudHelper.update(tableName, valuesToUpdate, worker.Id);
         }
 
         public IList<Worker> workersWithPaySchedule(int payScheduleId)
         {
             string where = "pay_schedule_id = @pay_schedule_id";
-            Dictionary<string, object> whereArgs = new Dictionary<string, object>();
-            whereArgs.Add("@pay_schedule_id", payScheduleId);
+            Dictionary<string, object> whereArgs = new Dictionary<string, object>
+            {
+                { "@pay_schedule_id", payScheduleId }
+            };
             return executer.selectFromTable<Worker>("workers", where, whereArgs, (reader) => mapFromReader(reader));
         }
 

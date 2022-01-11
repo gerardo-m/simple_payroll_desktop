@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="I18nService.cs" />
     <Compile Include="local_dao\DbContext.cs" />
+    <Compile Include="local_dao\DbCrudHelper.cs" />
     <Compile Include="local_dao\DbExecuter.cs" />
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
     <Compile Include="local_dao\PayrollDAOLocal.cs" />
