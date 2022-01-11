@@ -14,13 +14,15 @@ namespace simple_payroll_desktop.business
 
         private readonly I18nService i18n;
         private PayScheduleDAO payScheduleDAO;
+        private WorkerDAO workerDAO;
 
         private WeeklyPayScheduleManager weeklyManager;
 
-        public PaySchedulesManager(I18nService i18n, PayScheduleDAO payScheduleDAO)
+        public PaySchedulesManager(I18nService i18n, PayScheduleDAO payScheduleDAO, WorkerDAO workerDAO)
         {
             this.i18n = i18n;
             this.payScheduleDAO = payScheduleDAO;
+            this.workerDAO = workerDAO;
             weeklyManager = new WeeklyPayScheduleManager();
         }
 
@@ -99,8 +101,8 @@ namespace simple_payroll_desktop.business
 
         private bool canDelete(PaySchedule paySchedule)
         {
-            // TODO
-            return true;
+            int workersWithPaySchedule = workerDAO.workersWithDenominationCount(paySchedule.Id);
+            return workersWithPaySchedule == 0;
         }
 
         /**

@@ -38,6 +38,14 @@ namespace simple_payroll_desktop.local_dao
             };
             return crudHelper.readCount(tableName, parameters);
         }
+        public int workersWithPayScheduleCount(int payScheduleId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "pay_schedule_id", payScheduleId }
+            };
+            return crudHelper.readCount(tableName, parameters);
+        }
 
         public void deleteWorker(Worker worker)
         {
