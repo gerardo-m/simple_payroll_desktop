@@ -29,6 +29,24 @@ namespace simple_payroll_desktop.forms
             this.i18n = i18n;
             this.paySchedulesManager = paySchedulesManager;
             InitializeComponent();
+            loadStrings();
+        }
+
+        private void loadStrings()
+        {
+            // TODO
+        }
+
+        private void handleException(Exception ex)
+        {
+            logger.LogError(ex.Message);
+            logger.LogTrace(ex, ex.Message);
+            MessageBox.Show(ex.Message);
+        }
+
+        private void showStatus(string status)
+        {
+            statusLabel.Text = status;
         }
 
         private void loadPaySchedulesTypes()
@@ -38,8 +56,15 @@ namespace simple_payroll_desktop.forms
 
         private void loadPayRateTypes()
         {
-            //TODO keep selected value when possible
+            object selectedItem = payRateTypesComboBox.SelectedItem;
             payRateTypesComboBox.DataSource = paySchedulesManager.payRateTypesForPayScheduleType((PayScheduleType)typeComboBox.SelectedItem);
+            if (selectedItem != null)
+            {
+                if (payRateTypesComboBox.Items.Contains(selectedItem))
+                {
+                    payRateTypesComboBox.SelectedItem = selectedItem;
+                }
+            }
         }
 
         private void loadTrackingTypes()
@@ -50,21 +75,28 @@ namespace simple_payroll_desktop.forms
 
         private void updateControlsStates()
         {
-            /*if (denominationsListBox.SelectedIndex == -1)
+            if (paySchedulesGrid.SelectedRows.Count == 0)
             {
-                deleteDenominationButton.Enabled = false;
-                saveDenominationButton.Text = i18n.DenominationsForm_Controls(saveDenominationButton.Name, "Save"); ;
+                deletePayScheduleButton.Enabled = false;
+                savePayScheduleButton.Text = i18n.GeneralFormControls("Save"); 
             }
             else
             {
-                deleteDenominationButton.Enabled = true;
-                saveDenominationButton.Text = i18n.DenominationsForm_Controls(saveDenominationButton.Name, "Update"); ;
-            }*/
+                deletePayScheduleButton.Enabled = true;
+                savePayScheduleButton.Text = i18n.GeneralFormControls("Update");
+            }
         }
 
         private void updatePayScheduleList()
         {
+            paySchedulesGrid.SelectionChanged -= paySchedulesGrid_SelectionChanged;
             paySchedulesGrid.DataSource = paySchedulesManager.allPaySchedules();
+            paySchedulesGrid.SelectionChanged += paySchedulesGrid_SelectionChanged;
+        }
+
+        private void showCurrentPaySchedule()
+        {
+            // TODO
         }
 
         private void captureCurrentPaySchedule()
@@ -90,7 +122,29 @@ namespace simple_payroll_desktop.forms
         private void switchToUnselectedState()
         {
             currentPaySchedule = new PaySchedule();
-            //TODO complete
+            paySchedulesGrid.ClearSelection();
+            nameTextBox.Text = "";
+            typeComboBox.SelectedIndex = 0;
+            basePeriodStartPicker.Value = DateTime.Today;
+            basePeriodEndPicker.Value = DateTime.Today;
+            basePayDayPicker.Value = DateTime.Today;
+            payRateTypesComboBox.SelectedIndex = 0;
+            trackingTypesComboBox.SelectedIndex = 0;
+        }
+
+        private void switchToSelectedState(PaySchedule selectedPaySchedule)
+        {
+            currentPaySchedule = selectedPaySchedule;
+            if (currentPaySchedule != null)
+            {
+                nameTextBox.Text = currentPaySchedule.Name;
+                typeComboBox.SelectedItem = currentPaySchedule.Type;
+                basePeriodStartPicker.Value = currentPaySchedule.BasePeriodStart;
+                basePeriodEndPicker.Value = currentPaySchedule.BasePeriodEnd;
+                basePayDayPicker.Value = currentPaySchedule.BasePayDay;
+                payRateTypesComboBox.SelectedItem = currentPaySchedule.PayRateType;
+                trackingTypesComboBox.SelectedItem = currentPaySchedule.TrackingType;
+            }
         }
 
         private void ManagePaySchedulesForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -101,26 +155,92 @@ namespace simple_payroll_desktop.forms
         private void PaySchedulesForm_Load(object sender, EventArgs e)
         {
             loadPaySchedulesTypes();
-            loadPayRateTypes();
-            loadTrackingTypes();
             updatePayScheduleList();
             switchToUnselectedState();
+            updateControlsStates();
         }
 
         private void typeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadPayRateTypes();
+            try
+            {
+                logger.LogInformation("[PaySchedulesForm] typeComboBox_SelectedIndexChanged");
+                loadPayRateTypes();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
         }
 
         private void payRateTypesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadTrackingTypes();
+            try
+            {
+                logger.LogInformation("[PaySchedulesForm] payRateTypesComboBox_SelectedIndexChanged");
+                loadTrackingTypes();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
         }
 
         private void savePayScheduleButton_Click(object sender, EventArgs e)
         {
-            captureCurrentPaySchedule();
-            saveCurrentPaySchedule();
+            try
+            {
+                logger.LogInformation("[PaySchedulesForm] savePayScheduleButton_Click");
+                captureCurrentPaySchedule();
+                saveCurrentPaySchedule();
+                switchToUnselectedState();
+                updateControlsStates();
+                showStatus(i18n.Placeholder("Calendario guardado"));
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void newPayScheduleButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                logger.LogInformation("[PaySchedulesForm] newPayScheduleButton_Click");
+                switchToUnselectedState();
+                updateControlsStates();
+                showStatus(i18n.Placeholder("Nuevo calendario de pagos"));
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void paySchedulesGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (paySchedulesGrid.Focused)
+                {
+                    logger.LogInformation("[PaySchedulesForm] paySchedulesGrid_SelectionChanged");
+                    if (paySchedulesGrid.SelectedRows.Count > 0)
+                    {
+                        switchToSelectedState((PaySchedule)paySchedulesGrid.SelectedRows[0].DataBoundItem);
+                        updateControlsStates();
+                        showStatus(i18n.Placeholder("Calendario seleccionado"));
+                    }
+                }
+                else
+                {
+                    paySchedulesGrid.ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
         }
     }
 }

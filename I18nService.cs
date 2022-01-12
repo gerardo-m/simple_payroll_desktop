@@ -22,6 +22,11 @@ namespace simple_payroll_desktop
             return $"P {message}";
         }
 
+        public string GeneralFormControls(string option)
+        {
+            return stringLocalizer.GetString($"GeneralFormControls_{option}");
+        }
+
         public string Form1_Controls(string controlName)
         {
             return stringLocalizer.GetString($"Form1_{controlName}");
