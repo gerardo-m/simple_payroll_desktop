@@ -96,7 +96,21 @@ namespace simple_payroll_desktop.forms
 
         private void showCurrentPaySchedule()
         {
-            // TODO
+            nameTextBox.Text = currentPaySchedule.Name;
+            typeComboBox.SelectedItem = currentPaySchedule.Type;
+            basePeriodStartPicker.Value = currentPaySchedule.BasePeriodStart;
+            basePeriodEndPicker.Value = currentPaySchedule.BasePeriodEnd;
+            basePayDayPicker.Value = currentPaySchedule.BasePayDay;
+            payRateTypesComboBox.SelectedItem = currentPaySchedule.PayRateType;
+            trackingTypesComboBox.SelectedItem = currentPaySchedule.TrackingType;
+        }
+
+        private void showCurrentPayPeriod()
+        {
+            PayPeriod period = paySchedulesManager.getPayPeriod(currentPaySchedule, DateTime.Today);
+            currentPeriodStartDataLabel.Text = period.PeriodStart.ToString("d");
+            currentPeriodEndDataLabel.Text = period.PeriodEnd.ToString("d");
+            currentPayDayDataLabel.Text = period.PayDay.ToString("d");
         }
 
         private void captureCurrentPaySchedule()
@@ -130,6 +144,9 @@ namespace simple_payroll_desktop.forms
             basePayDayPicker.Value = DateTime.Today;
             payRateTypesComboBox.SelectedIndex = 0;
             trackingTypesComboBox.SelectedIndex = 0;
+            currentPeriodStartDataLabel.Text = "";
+            currentPeriodEndDataLabel.Text = "";
+            currentPayDayDataLabel.Text = "";
         }
 
         private void switchToSelectedState(PaySchedule selectedPaySchedule)
@@ -137,14 +154,14 @@ namespace simple_payroll_desktop.forms
             currentPaySchedule = selectedPaySchedule;
             if (currentPaySchedule != null)
             {
-                nameTextBox.Text = currentPaySchedule.Name;
-                typeComboBox.SelectedItem = currentPaySchedule.Type;
-                basePeriodStartPicker.Value = currentPaySchedule.BasePeriodStart;
-                basePeriodEndPicker.Value = currentPaySchedule.BasePeriodEnd;
-                basePayDayPicker.Value = currentPaySchedule.BasePayDay;
-                payRateTypesComboBox.SelectedItem = currentPaySchedule.PayRateType;
-                trackingTypesComboBox.SelectedItem = currentPaySchedule.TrackingType;
+                showCurrentPaySchedule();
+                showCurrentPayPeriod();
             }
+        }
+
+        private void deleteCurrentPaySchedule()
+        {
+            paySchedulesManager.deletePaySchedule(currentPaySchedule);
         }
 
         private void ManagePaySchedulesForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -236,6 +253,23 @@ namespace simple_payroll_desktop.forms
                 {
                     paySchedulesGrid.ClearSelection();
                 }
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void deletePayScheduleButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                logger.LogInformation("[PaySchedulesForm] deletePayScheduleButton_Click");
+                deleteCurrentPaySchedule();
+                updatePayScheduleList();
+                switchToUnselectedState();
+                updateControlsStates();
+                showStatus(i18n.Placeholder("Calendario eliminado"));
             }
             catch (Exception ex)
             {
