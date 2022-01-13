@@ -33,9 +33,9 @@ namespace simple_payroll_desktop.forms
             this.savePayScheduleButton = new System.Windows.Forms.Button();
             this.deletePayScheduleButton = new System.Windows.Forms.Button();
             this.currentPayPeriodGroupBox = new System.Windows.Forms.GroupBox();
-            this.currentPayPeriodPayDayLabel = new System.Windows.Forms.Label();
-            this.currentPayPeriodEndLabel = new System.Windows.Forms.Label();
-            this.currentPayPeriodStartLabel = new System.Windows.Forms.Label();
+            this.currentPayDayLabel = new System.Windows.Forms.Label();
+            this.currentPeriodEndLabel = new System.Windows.Forms.Label();
+            this.currentPeriodStartLabel = new System.Windows.Forms.Label();
             this.paySchedulesGrid = new System.Windows.Forms.DataGridView();
             this.payRateTypesComboBox = new System.Windows.Forms.ComboBox();
             this.payRateTypeLabel = new System.Windows.Forms.Label();
@@ -50,9 +50,12 @@ namespace simple_payroll_desktop.forms
             this.nameLabel = new System.Windows.Forms.Label();
             this.typeLabel = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.trackingTypeLabel = new System.Windows.Forms.Label();
             this.trackingTypesComboBox = new System.Windows.Forms.ComboBox();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.currentPeriodStartDataLabel = new System.Windows.Forms.Label();
+            this.currentPeriodEndDataLabel = new System.Windows.Forms.Label();
+            this.currentPayDayDataLabel = new System.Windows.Forms.Label();
             this.currentPayPeriodGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paySchedulesGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -86,12 +89,16 @@ namespace simple_payroll_desktop.forms
             this.deletePayScheduleButton.TabIndex = 31;
             this.deletePayScheduleButton.Text = "Eliminar";
             this.deletePayScheduleButton.UseVisualStyleBackColor = true;
+            this.deletePayScheduleButton.Click += new System.EventHandler(this.deletePayScheduleButton_Click);
             // 
             // currentPayPeriodGroupBox
             // 
-            this.currentPayPeriodGroupBox.Controls.Add(this.currentPayPeriodPayDayLabel);
-            this.currentPayPeriodGroupBox.Controls.Add(this.currentPayPeriodEndLabel);
-            this.currentPayPeriodGroupBox.Controls.Add(this.currentPayPeriodStartLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPayDayDataLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPeriodEndDataLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPeriodStartDataLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPayDayLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPeriodEndLabel);
+            this.currentPayPeriodGroupBox.Controls.Add(this.currentPeriodStartLabel);
             this.currentPayPeriodGroupBox.Location = new System.Drawing.Point(495, 54);
             this.currentPayPeriodGroupBox.Name = "currentPayPeriodGroupBox";
             this.currentPayPeriodGroupBox.Size = new System.Drawing.Size(353, 140);
@@ -99,32 +106,32 @@ namespace simple_payroll_desktop.forms
             this.currentPayPeriodGroupBox.TabStop = false;
             this.currentPayPeriodGroupBox.Text = "Período de pago actual";
             // 
-            // currentPayPeriodPayDayLabel
+            // currentPayDayLabel
             // 
-            this.currentPayPeriodPayDayLabel.AutoSize = true;
-            this.currentPayPeriodPayDayLabel.Location = new System.Drawing.Point(7, 102);
-            this.currentPayPeriodPayDayLabel.Name = "currentPayPeriodPayDayLabel";
-            this.currentPayPeriodPayDayLabel.Size = new System.Drawing.Size(82, 13);
-            this.currentPayPeriodPayDayLabel.TabIndex = 2;
-            this.currentPayPeriodPayDayLabel.Text = "Fecha de pago:";
+            this.currentPayDayLabel.AutoSize = true;
+            this.currentPayDayLabel.Location = new System.Drawing.Point(7, 102);
+            this.currentPayDayLabel.Name = "currentPayDayLabel";
+            this.currentPayDayLabel.Size = new System.Drawing.Size(82, 13);
+            this.currentPayDayLabel.TabIndex = 2;
+            this.currentPayDayLabel.Text = "Fecha de pago:";
             // 
-            // currentPayPeriodEndLabel
+            // currentPeriodEndLabel
             // 
-            this.currentPayPeriodEndLabel.AutoSize = true;
-            this.currentPayPeriodEndLabel.Location = new System.Drawing.Point(7, 69);
-            this.currentPayPeriodEndLabel.Name = "currentPayPeriodEndLabel";
-            this.currentPayPeriodEndLabel.Size = new System.Drawing.Size(32, 13);
-            this.currentPayPeriodEndLabel.TabIndex = 1;
-            this.currentPayPeriodEndLabel.Text = "Final:";
+            this.currentPeriodEndLabel.AutoSize = true;
+            this.currentPeriodEndLabel.Location = new System.Drawing.Point(7, 69);
+            this.currentPeriodEndLabel.Name = "currentPeriodEndLabel";
+            this.currentPeriodEndLabel.Size = new System.Drawing.Size(32, 13);
+            this.currentPeriodEndLabel.TabIndex = 1;
+            this.currentPeriodEndLabel.Text = "Final:";
             // 
-            // currentPayPeriodStartLabel
+            // currentPeriodStartLabel
             // 
-            this.currentPayPeriodStartLabel.AutoSize = true;
-            this.currentPayPeriodStartLabel.Location = new System.Drawing.Point(7, 40);
-            this.currentPayPeriodStartLabel.Name = "currentPayPeriodStartLabel";
-            this.currentPayPeriodStartLabel.Size = new System.Drawing.Size(35, 13);
-            this.currentPayPeriodStartLabel.TabIndex = 0;
-            this.currentPayPeriodStartLabel.Text = "Inicio:";
+            this.currentPeriodStartLabel.AutoSize = true;
+            this.currentPeriodStartLabel.Location = new System.Drawing.Point(7, 40);
+            this.currentPeriodStartLabel.Name = "currentPeriodStartLabel";
+            this.currentPeriodStartLabel.Size = new System.Drawing.Size(35, 13);
+            this.currentPeriodStartLabel.TabIndex = 0;
+            this.currentPeriodStartLabel.Text = "Inicio:";
             // 
             // paySchedulesGrid
             // 
@@ -253,6 +260,11 @@ namespace simple_payroll_desktop.forms
             this.statusStrip1.TabIndex = 34;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // trackingTypeLabel
             // 
             this.trackingTypeLabel.AutoSize = true;
@@ -271,10 +283,29 @@ namespace simple_payroll_desktop.forms
             this.trackingTypesComboBox.Size = new System.Drawing.Size(200, 21);
             this.trackingTypesComboBox.TabIndex = 36;
             // 
-            // statusLabel
+            // currentPeriodStartDataLabel
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            this.currentPeriodStartDataLabel.AutoSize = true;
+            this.currentPeriodStartDataLabel.Location = new System.Drawing.Point(155, 41);
+            this.currentPeriodStartDataLabel.Name = "currentPeriodStartDataLabel";
+            this.currentPeriodStartDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPeriodStartDataLabel.TabIndex = 3;
+            // 
+            // currentPeriodEndDataLabel
+            // 
+            this.currentPeriodEndDataLabel.AutoSize = true;
+            this.currentPeriodEndDataLabel.Location = new System.Drawing.Point(155, 69);
+            this.currentPeriodEndDataLabel.Name = "currentPeriodEndDataLabel";
+            this.currentPeriodEndDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPeriodEndDataLabel.TabIndex = 4;
+            // 
+            // currentPayDayDataLabel
+            // 
+            this.currentPayDayDataLabel.AutoSize = true;
+            this.currentPayDayDataLabel.Location = new System.Drawing.Point(155, 102);
+            this.currentPayDayDataLabel.Name = "currentPayDayDataLabel";
+            this.currentPayDayDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPayDayDataLabel.TabIndex = 5;
             // 
             // PaySchedulesForm
             // 
@@ -321,9 +352,9 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button savePayScheduleButton;
         private System.Windows.Forms.Button deletePayScheduleButton;
         private System.Windows.Forms.GroupBox currentPayPeriodGroupBox;
-        private System.Windows.Forms.Label currentPayPeriodPayDayLabel;
-        private System.Windows.Forms.Label currentPayPeriodEndLabel;
-        private System.Windows.Forms.Label currentPayPeriodStartLabel;
+        private System.Windows.Forms.Label currentPayDayLabel;
+        private System.Windows.Forms.Label currentPeriodEndLabel;
+        private System.Windows.Forms.Label currentPeriodStartLabel;
         private System.Windows.Forms.DataGridView paySchedulesGrid;
         private System.Windows.Forms.ComboBox payRateTypesComboBox;
         private System.Windows.Forms.Label payRateTypeLabel;
@@ -341,5 +372,8 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label trackingTypeLabel;
         private System.Windows.Forms.ComboBox trackingTypesComboBox;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.Label currentPayDayDataLabel;
+        private System.Windows.Forms.Label currentPeriodEndDataLabel;
+        private System.Windows.Forms.Label currentPeriodStartDataLabel;
     }
 }
