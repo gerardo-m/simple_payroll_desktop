@@ -11,7 +11,10 @@ namespace simple_payroll_desktop.dao
     {
 
         IList<TrackingEntry> getTrackingEntries(int workerId, DateTime from, DateTime to);
+        IList<TrackingEntry> getTrackingEntries(int workerId);
         void saveTrackingEntry(TrackingEntry trackingEntry);
         void updateTrackingEntry(TrackingEntry trackingEntry);
+
+        void deleteTrackingEntry(TrackingEntry trackingEntry);
     }
 }

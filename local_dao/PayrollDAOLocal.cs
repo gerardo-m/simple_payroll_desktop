@@ -119,5 +119,46 @@ namespace simple_payroll_desktop.local_dao
                 TrackingEntries = new List<TrackingEntry>()
             };
         }
+
+        public int getPayrollCount(int workerId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "worker_id", workerId }
+            };
+            return crudHelper.readCount(tableName, parameters);
+        }
+
+        public int getClosedPayrollCount(int workerId)
+        {
+            int count = 0;
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "worker_id", workerId },
+                { "status", PayrollStatus.Closed }
+            };
+            count = crudHelper.readCount(tableName, parameters);
+            parameters = new Dictionary<string, object>
+            {
+                { "worker_id", workerId },
+                { "status", PayrollStatus.ClosedAndPaid }
+            };
+            count += crudHelper.readCount(tableName, parameters);
+            return count;
+        }
+
+        public IList<Payroll> getPayrollsByWorker(int workerId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@worker_id", workerId }
+            };
+            return executer.selectFromTable(tableName, "worker_id = @worker_id", parameters, (reader) => mapFromReader(reader));
+        }
+
+        public void deletePayroll(Payroll payroll)
+        {
+            crudHelper.delete(tableName, payroll.Id);
+        }
     }
 }
