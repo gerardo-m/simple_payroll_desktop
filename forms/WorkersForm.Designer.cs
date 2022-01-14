@@ -46,7 +46,7 @@ namespace simple_payroll_desktop.forms
             this.saveWorkerButton = new System.Windows.Forms.Button();
             this.newWorkerButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.payScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -96,6 +96,7 @@ namespace simple_payroll_desktop.forms
             // 
             // payRateTypeComboBox
             // 
+            this.payRateTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.payRateTypeComboBox.FormattingEnabled = true;
             this.payRateTypeComboBox.Location = new System.Drawing.Point(605, 56);
             this.payRateTypeComboBox.Name = "payRateTypeComboBox";
@@ -105,6 +106,11 @@ namespace simple_payroll_desktop.forms
             // payRateSpinner
             // 
             this.payRateSpinner.Location = new System.Drawing.Point(605, 166);
+            this.payRateSpinner.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.payRateSpinner.Name = "payRateSpinner";
             this.payRateSpinner.Size = new System.Drawing.Size(220, 20);
             this.payRateSpinner.TabIndex = 6;
@@ -141,9 +147,9 @@ namespace simple_payroll_desktop.forms
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(467, 56);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Tipo de tarija";
+            this.label5.Text = "Tipo de tarifa";
             // 
             // label6
             // 
@@ -156,13 +162,16 @@ namespace simple_payroll_desktop.forms
             // 
             // workersGrid
             // 
+            this.workersGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.workersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.workersGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.workersGrid.Location = new System.Drawing.Point(16, 350);
             this.workersGrid.Name = "workersGrid";
             this.workersGrid.ReadOnly = true;
             this.workersGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.workersGrid.Size = new System.Drawing.Size(809, 210);
             this.workersGrid.TabIndex = 12;
+            this.workersGrid.SelectionChanged += new System.EventHandler(this.workersGrid_SelectionChanged);
             // 
             // deleteWorkerButton
             // 
@@ -172,6 +181,7 @@ namespace simple_payroll_desktop.forms
             this.deleteWorkerButton.TabIndex = 13;
             this.deleteWorkerButton.Text = "Eliminar";
             this.deleteWorkerButton.UseVisualStyleBackColor = true;
+            this.deleteWorkerButton.Click += new System.EventHandler(this.deleteWorkerButton_Click);
             // 
             // saveWorkerButton
             // 
@@ -196,7 +206,7 @@ namespace simple_payroll_desktop.forms
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.statusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 572);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(853, 22);
@@ -204,11 +214,11 @@ namespace simple_payroll_desktop.forms
             this.statusStrip1.TabIndex = 16;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // statusLabel
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(88, 17);
-            this.toolStripStatusLabel1.Text = "Status Message";
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(88, 17);
+            this.statusLabel.Text = "Status Message";
             // 
             // label7
             // 
@@ -221,6 +231,7 @@ namespace simple_payroll_desktop.forms
             // 
             // payScheduleComboBox
             // 
+            this.payScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.payScheduleComboBox.FormattingEnabled = true;
             this.payScheduleComboBox.Location = new System.Drawing.Point(605, 109);
             this.payScheduleComboBox.Name = "payScheduleComboBox";
@@ -238,6 +249,7 @@ namespace simple_payroll_desktop.forms
             // 
             // denominationComboBox
             // 
+            this.denominationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.denominationComboBox.FormattingEnabled = true;
             this.denominationComboBox.Location = new System.Drawing.Point(118, 268);
             this.denominationComboBox.Name = "denominationComboBox";
@@ -314,7 +326,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button saveWorkerButton;
         private System.Windows.Forms.Button newWorkerButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox payScheduleComboBox;
         private System.Windows.Forms.Label label8;
