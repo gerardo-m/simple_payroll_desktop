@@ -30,7 +30,7 @@ namespace simple_payroll_desktop.local_dao
                 { "@to", to.Ticks },
                 { "@workerId", workerId }
             };
-            return  executer.selectFromTable<TrackingEntry>(tableName, "date >= @from and date <= @to and worker_id = @workerId", parameters, (reader) => mapFromReader(reader));
+            return  executer.selectFromTable(tableName, "date >= @from and date <= @to and worker_id = @workerId", parameters, (reader) => mapFromReader(reader));
         }
 
         public void saveTrackingEntry(TrackingEntry trackingEntry)
@@ -69,6 +69,20 @@ namespace simple_payroll_desktop.local_dao
                 TrackingValue = Convert.ToDecimal(reader["tracking_value"].ToString()),
                 Date = new DateTime(Convert.ToInt64(reader["date"]))
             };
+        }
+
+        public IList<TrackingEntry> getTrackingEntries(int workerId)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@workerId", workerId }
+            };
+            return executer.selectFromTable(tableName, "worker_id = @workerId", parameters, (reader) => mapFromReader(reader));
+        }
+
+        public void deleteTrackingEntry(TrackingEntry trackingEntry)
+        {
+            crudHelper.delete(tableName, trackingEntry.Id);
         }
     }
 }

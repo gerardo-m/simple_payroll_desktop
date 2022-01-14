@@ -19,9 +19,20 @@ namespace simple_payroll_desktop.dao
         /// <returns></returns>
         Payroll getPayrollByPeriod(int workerId, PayPeriod period);
         Payroll getPayroll(int payrollId);
+        IList<Payroll> getPayrollsByWorker(int workerId);
+
+        int getPayrollCount(int workerId);
+        /// <summary>
+        /// Must return the count of payrolls for a worker with status
+        /// [PayrollStatus.Closed] or [PayrollStatus.ClosedAndPaid]
+        /// </summary>
+        /// <param name="workerId"></param>
+        /// <returns></returns>
+        int getClosedPayrollCount(int workerId);
 
         void savePayroll(Payroll payroll);
         void updatePayroll(Payroll payroll);
+        void deletePayroll(Payroll payroll);
 
     }
 }

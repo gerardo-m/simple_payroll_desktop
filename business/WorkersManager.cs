@@ -12,12 +12,18 @@ namespace simple_payroll_desktop.business
     {
         private readonly I18nService i18n;
         private readonly WorkerDAO workerDAO;
+        private readonly PayrollDAO payrollDAO;
+        private readonly TrackingEntryDAO trackingEntryDAO;
 
         public WorkersManager(I18nService i18n,
-                              WorkerDAO workerDAO)
+                              WorkerDAO workerDAO,
+                              PayrollDAO payrollDAO,
+                              TrackingEntryDAO trackingEntryDAO)
         {
             this.i18n = i18n;
             this.workerDAO = workerDAO;
+            this.payrollDAO = payrollDAO;
+            this.trackingEntryDAO = trackingEntryDAO;
         }
 
         public IList<Worker> allWorkers()
@@ -46,18 +52,28 @@ namespace simple_payroll_desktop.business
         {
             if (canDelete(worker))
             {
+                deleteRelatedData(worker);
                 workerDAO.deleteWorker(worker);
             }
             else
             {
-                throw new InvalidOperationException(i18n.Placeholder("The employee can't be deleted"));
+                throw new InvalidOperationException(i18n.Placeholder("The employee can't be deleted, because it has already closed payrolls"));
             }
         }
 
         public bool canDelete(Worker worker)
         {
-            //TODO
-            return true;
+            return payrollDAO.getClosedPayrollCount(worker.Id) == 0;
+        }
+
+        private void deleteRelatedData(Worker worker)
+        {
+            IList<TrackingEntry> trackingEntries = trackingEntryDAO.getTrackingEntries(worker.Id);
+            foreach (TrackingEntry trackingEntry in trackingEntries)
+                trackingEntryDAO.deleteTrackingEntry(trackingEntry);
+            IList<Payroll> payrolls = payrollDAO.getPayrollsByWorker(worker.Id);
+            foreach (Payroll payroll in payrolls)
+                payrollDAO.deletePayroll(payroll);
         }
     }
 }
