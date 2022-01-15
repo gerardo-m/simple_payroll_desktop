@@ -27,6 +27,11 @@ namespace simple_payroll_desktop.forms
         private Worker selectedWorker;
         private PayPeriod selectedPeriod;
         private IList<TrackingEntry> entries;
+        private bool unsavedChanges;
+        private int previouslySelectedPayScheduleIndex;
+        private int previouslySelectedWorkerIndex;
+        private bool revertingSelection;
+
         private BaseTrackerControl trackerControl;
         public TrackWorkForm(ILogger<TrackWorkForm> logger,
                              I18nService i18n,
@@ -39,6 +44,10 @@ namespace simple_payroll_desktop.forms
             this.paySchedulesManager = paySchedulesManager;
             this.workersManager = workersManager;
             this.trackingEntriesManager = trackingEntriesManager;
+            unsavedChanges = false;
+            revertingSelection = false;
+            previouslySelectedPayScheduleIndex = 0;
+            previouslySelectedWorkerIndex = 0;
             InitializeComponent();
         }
 
@@ -48,6 +57,7 @@ namespace simple_payroll_desktop.forms
                 trackingBoxPanel.Controls.Remove(trackerControl);
             TrackerControlSelector controlSelector = new TrackerControlSelector();
             trackerControl =  controlSelector.getTrackerControl(selectedPaySchedule.TrackingType, logger, i18n);
+            trackerControl.TrackingValuesChanged += trackingChanged;
             trackingBoxPanel.Controls.Add(trackerControl);
         }
 
@@ -59,10 +69,14 @@ namespace simple_payroll_desktop.forms
             throw ex;
         }
 
+        private void showStatus(string status)
+        {
+            statusLabel.Text = status;
+        }
+
         private void loadPaySchedules()
         {
             paySchedulesComboBox.DataSource = paySchedulesManager.allPaySchedules();
-            selectPaySchedule();
         }
 
         private void loadWorkers()
@@ -75,6 +89,7 @@ namespace simple_payroll_desktop.forms
         {
             entries = trackingEntriesManager.getTrackingEntries(selectedPeriod, selectedWorker);
             trackerControl.setTrackingEntries(entries);
+            unsavedChanges = false;
         }
 
         private void selectPaySchedule()
@@ -118,11 +133,29 @@ namespace simple_payroll_desktop.forms
         private void saveTrackingEntries()
         {
             trackingEntriesManager.saveTrackingEntries(trackerControl.GetTrackingEntries());
+            unsavedChanges = false;
+        }
+
+        private bool confirmIfUnsavedChanges()
+        {
+            if (unsavedChanges)
+            {
+                DialogResult result = MessageBox.Show(i18n.Placeholder("?"), i18n.Placeholder("?"), MessageBoxButtons.YesNo);
+                return result == DialogResult.Yes;
+            }
+            return true;
+        }
+
+        private void revertComboBoxSelection(ComboBox comboToRevert, int previousIndex)
+        {
+            revertingSelection = true;
+            comboToRevert.SelectedIndex = previousIndex;
+            revertingSelection = false;
         }
 
         private void TrackWorkForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Owner.Visible = true;
+            Owner.Visible = true;
         }
 
         private void TrackWorkForm_Load(object sender, EventArgs e)
@@ -132,6 +165,7 @@ namespace simple_payroll_desktop.forms
                 loadPaySchedules();
                 changeTrackerControl();
                 setPeriod(DateTime.Today);
+                showStatus(i18n.Placeholder("Inicio"));
             }
             catch (Exception ex)
             {
@@ -144,9 +178,15 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
+                if (revertingSelection)
+                    return;
+                if (!confirmIfUnsavedChanges())
+                {
+                    revertComboBoxSelection(paySchedulesComboBox, previouslySelectedPayScheduleIndex);
+                    return;
+                }
+                previouslySelectedPayScheduleIndex = paySchedulesComboBox.SelectedIndex;
                 selectPaySchedule();
-                //setPeriod(DateTime.Today);
-                //changeTrackerControl();
             }
             catch (Exception ex)
             {
@@ -158,6 +198,13 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
+                if (revertingSelection)
+                    return;
+                if (!confirmIfUnsavedChanges())
+                {
+                    revertComboBoxSelection(workersComboBox, previouslySelectedWorkerIndex);
+                    return;
+                }
                 changeTrackerControl();
                 selectWorker();
                 setPeriod(DateTime.Today);
@@ -172,6 +219,8 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
+                if (!confirmIfUnsavedChanges())
+                    return;
                 previousPeriod();
             }
             catch (Exception ex)
@@ -184,6 +233,8 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
+                if (!confirmIfUnsavedChanges())
+                    return;
                 nextPeriod();
             }
             catch (Exception ex)
@@ -198,11 +249,33 @@ namespace simple_payroll_desktop.forms
             {
                 saveTrackingEntries();
                 showSelectedPeriod();
+                showStatus(i18n.Placeholder("Seguimiento guardado"));
             }
             catch (Exception ex)
             {
                 handleException(ex);
             }
+        }
+
+        private void trackingChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                unsavedChanges = true;
+                showStatus(i18n.Placeholder("Cambios sin guardar"));
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void TrackWorkForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            showStatus(i18n.Placeholder("Saliendo"));
+            e.Cancel = !confirmIfUnsavedChanges();
+            if (e.Cancel)
+                showStatus(i18n.Placeholder("Cancelado"));
         }
     }
 }

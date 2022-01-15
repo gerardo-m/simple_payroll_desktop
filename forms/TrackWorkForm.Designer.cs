@@ -39,11 +39,13 @@ namespace simple_payroll_desktop.forms
             this.trackingBoxPanel = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveTrackingEntriesButton = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.workersComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -140,11 +142,19 @@ namespace simple_payroll_desktop.forms
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 442);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(807, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel.Text = "toolStripStatusLabel1";
             // 
             // saveTrackingEntriesButton
             // 
@@ -189,12 +199,15 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.label1);
             this.Name = "TrackWorkForm";
             this.Text = "TrackWorkForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TrackWorkForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TrackWorkForm_FormClosed);
             this.Load += new System.EventHandler(this.TrackWorkForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +228,6 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button previosPayPeriodButton;
         private System.Windows.Forms.Label selectedPeriodLabel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }

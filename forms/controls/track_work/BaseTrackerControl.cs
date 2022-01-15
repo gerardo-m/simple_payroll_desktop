@@ -19,6 +19,8 @@ namespace simple_payroll_desktop.forms.controls.track_work
             InitializeComponent();
         }
 
+        public event EventHandler TrackingValuesChanged;
+
         public IList<TrackingEntry> GetTrackingEntries()
         {
             return trackingEntries;
@@ -33,6 +35,18 @@ namespace simple_payroll_desktop.forms.controls.track_work
         public virtual void loadTrackingEntries()
         {
             throw new NotImplementedException("Must implement this method loadTrackingEntries");
+        }
+
+        protected void HandleTrackingValuesChanged(object sender, EventArgs e)
+        {
+            OnTrackingValuesChanged(EventArgs.Empty);
+        }
+
+        protected virtual void OnTrackingValuesChanged(EventArgs e)
+        {
+            EventHandler handler = TrackingValuesChanged;
+            if (handler != null)
+                handler(this, e);
         }
     }
 }
