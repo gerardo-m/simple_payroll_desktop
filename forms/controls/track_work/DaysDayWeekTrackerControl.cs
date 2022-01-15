@@ -29,6 +29,7 @@ namespace simple_payroll_desktop.forms.controls.track_work
             this.i18n = i18n;
             InitializeComponent();
             initializeControlLists();
+            subscribeToTrackingValuesChanged();
         }
 
         private void initializeControlLists()
@@ -47,6 +48,14 @@ namespace simple_payroll_desktop.forms.controls.track_work
             checkedListBoxes.Add(day5CheckBox);
             checkedListBoxes.Add(day6CheckBox);
             checkedListBoxes.Add(day7CheckBox);
+        }
+
+        private void subscribeToTrackingValuesChanged()
+        {
+            foreach (CheckedListBox checkedListBox in checkedListBoxes)
+            {
+                checkedListBox.ItemCheck += HandleTrackingValuesChanged;
+            }
         }
 
         public override void setTrackingEntries(IList<TrackingEntry> trackingEntries)
