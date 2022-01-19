@@ -14,6 +14,7 @@ namespace simple_payroll_desktop.local_dao
 
         private PayScheduleDAOLocal payScheduleDAO = new PayScheduleDAOLocal();
         private WorkerDAOLocal workerDAOLocal = new WorkerDAOLocal();
+        private ExtraDAOLocal extraDAOLocal = new ExtraDAOLocal();
 
         private DbExecuter executer;
         private DbCrudHelper crudHelper;
@@ -65,7 +66,7 @@ namespace simple_payroll_desktop.local_dao
                 { "pay_rate_type", payroll.PayRateType },
                 { "tracked_time", payroll.TrackedTime },
                 { "tracked_amount", payroll.TrackedAmount },
-                { "additionals_amount", payroll.AdditionalsAmount },
+                { "additionals_amount", payroll.ExtrasAmount },
                 { "balance_due", payroll.BalanceDue },
                 { "pay_schedule_id", payroll.PaySchedule.Id },
                 { "worker_id", payroll.Worker.Id },
@@ -73,6 +74,7 @@ namespace simple_payroll_desktop.local_dao
                 { "status", payroll.Status }
             };
             crudHelper.create(tableName, parameters);
+            payroll.Id = executer.getLastId();
         }
 
         public void updatePayroll(Payroll payroll)
@@ -86,7 +88,7 @@ namespace simple_payroll_desktop.local_dao
                 { "pay_rate_type", payroll.PayRateType },
                 { "tracked_time", payroll.TrackedTime },
                 { "tracked_amount", payroll.TrackedAmount },
-                { "additionals_amount", payroll.AdditionalsAmount },
+                { "additionals_amount", payroll.ExtrasAmount },
                 { "balance_due", payroll.BalanceDue },
                 { "pay_schedule_id", payroll.PaySchedule.Id },
                 { "worker_id", payroll.Worker.Id },
@@ -108,14 +110,14 @@ namespace simple_payroll_desktop.local_dao
                 PayRateType = (PayRateType)Convert.ToInt32(reader["pay_rate_type"].ToString()),
                 TrackedTime = Convert.ToDecimal(reader["tracked_time"].ToString()),
                 TrackedAmount = Convert.ToDecimal(reader["tracked_amount"].ToString()),
-                AdditionalsAmount = Convert.ToDecimal(reader["additionals_amount"].ToString()),
+                ExtrasAmount = Convert.ToDecimal(reader["additionals_amount"].ToString()),
                 BalanceDue = Convert.ToDecimal(reader["balance_due"].ToString()),
                 PaySchedule = payScheduleDAO.getPaySchedule(Convert.ToInt32(reader["pay_schedule_id"].ToString())),
                 Worker = workerDAOLocal.getWorker(Convert.ToInt32(reader["worker_id"].ToString())),
                 PayScheduleType = (PayScheduleType)Convert.ToInt32(reader["pay_schedule_type"].ToString()),
                 Status = (PayrollStatus)Convert.ToInt32(reader["status"].ToString()),
                 // TODO load these
-                Additionals = new List<Additional>(),
+                Extras = new List<Extra>(),
                 TrackingEntries = new List<TrackingEntry>()
             };
         }

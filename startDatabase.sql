@@ -11,6 +11,7 @@ CREATE TABLE payrolls(id INTEGER PRIMARY KEY, period_start INTEGER, period_end I
                       balance_due REAL, pay_schedule_id INTEGER, worker_id INTEGER, pay_schedule_type INTEGER, status INTEGER);
 CREATE TABLE pay_slips(id INTEGER, worker_ci TEXT, worker_full_name TEXT, tracked_work_concept TEXT, tracket_work_amount REAL,
                        payroll_total REAL, previously_paid REAL, amount REAL, is_valid INTEGER, payroll_id INTEGER);
+CREATE TABLE extras(id INTEGER, type INTEGER, concept TEXT, amount REAL, payroll_id INTEGER);
 
 INSERT INTO denominations(name) values("Trabajador");
 INSERT INTO denominations(name) values("Contratista");

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace simple_payroll_desktop.entities
 {
 
-    public enum AdditionalType{
-        ExtraPay,
+    public enum ExtraType{
+        AdditionalPay,
         Discount
     }
-    public class Additional
+    public class Extra
     {
 
         public int Id { get; set; }
-        public AdditionalType Type { get; set; }
+        public ExtraType Type { get; set; }
         public string Concept { get; set; }
         public decimal Amount { get; set; }
         public Payroll Payroll { get; set; }

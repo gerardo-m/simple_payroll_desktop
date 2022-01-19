@@ -31,7 +31,7 @@ namespace simple_payroll_desktop.business
         public PaySlip createNewPaySlip(Payroll payroll)
         {
             PaySlip paySlip = new PaySlip();
-            paySlip.Additionals = payroll.Additionals.ToList();
+            paySlip.Extras = payroll.Extras.ToList();
             paySlip.Amount = 0;
             paySlip.WorkerCI = payroll.Worker.CI;
             paySlip.WorkerFullName = payroll.Worker.ToString();

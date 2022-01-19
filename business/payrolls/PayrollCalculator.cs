@@ -17,7 +17,7 @@ namespace simple_payroll_desktop.business.payrolls
         /// properties populated</returns>
         public Payroll calculate(Payroll payroll)
         {
-            payroll.AdditionalsAmount = calculateAdditionalsAmount(payroll.Additionals);
+            payroll.ExtrasAmount = calculateAdditionalsAmount(payroll.Extras);
             payroll.TrackedTime = calculateTrackedTime(payroll.TrackingEntries);
             payroll.TrackedAmount = payroll.TrackedTime * payroll.PayRate;
             payroll.BalanceDue = calculateBalanceDue(payroll);
@@ -34,11 +34,11 @@ namespace simple_payroll_desktop.business.payrolls
             return trackedTime;
         }
 
-        public decimal calculateAdditionalsAmount(IList<Additional> additionals)
+        public decimal calculateAdditionalsAmount(IList<Extra> additionals)
         {
             decimal additionalsTotal = 0;
-            foreach (Additional additional in additionals)
-                if (additional.Type == AdditionalType.ExtraPay)
+            foreach (Extra additional in additionals)
+                if (additional.Type == ExtraType.AdditionalPay)
                     additionalsTotal += additional.Amount;
                 else
                     additionalsTotal -= additional.Amount;

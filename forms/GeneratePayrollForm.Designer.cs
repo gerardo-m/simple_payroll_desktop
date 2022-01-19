@@ -35,15 +35,15 @@ namespace simple_payroll_desktop.forms
             this.payScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.additionalTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.extraTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.additionalAmountSpinner = new System.Windows.Forms.NumericUpDown();
-            this.additionalsGridView = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveExtraButton = new System.Windows.Forms.Button();
+            this.deleteExtraButton = new System.Windows.Forms.Button();
+            this.extraAmountSpinner = new System.Windows.Forms.NumericUpDown();
+            this.extrasGridView = new System.Windows.Forms.DataGridView();
+            this.newExtraButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.extraConceptTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.generatePaySlipButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -71,12 +71,15 @@ namespace simple_payroll_desktop.forms
             this.label13 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.additionalAmountSpinner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.additionalsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.extraAmountSpinner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.extrasGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -128,15 +131,15 @@ namespace simple_payroll_desktop.forms
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.additionalTypeComboBox);
+            this.groupBox2.Controls.Add(this.extraTypeComboBox);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.additionalAmountSpinner);
-            this.groupBox2.Controls.Add(this.additionalsGridView);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.saveExtraButton);
+            this.groupBox2.Controls.Add(this.deleteExtraButton);
+            this.groupBox2.Controls.Add(this.extraAmountSpinner);
+            this.groupBox2.Controls.Add(this.extrasGridView);
+            this.groupBox2.Controls.Add(this.newExtraButton);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.extraConceptTextBox);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(42, 299);
             this.groupBox2.Name = "groupBox2";
@@ -145,14 +148,14 @@ namespace simple_payroll_desktop.forms
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adicionales";
             // 
-            // additionalTypeComboBox
+            // extraTypeComboBox
             // 
-            this.additionalTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.additionalTypeComboBox.FormattingEnabled = true;
-            this.additionalTypeComboBox.Location = new System.Drawing.Point(289, 36);
-            this.additionalTypeComboBox.Name = "additionalTypeComboBox";
-            this.additionalTypeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.additionalTypeComboBox.TabIndex = 17;
+            this.extraTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.extraTypeComboBox.FormattingEnabled = true;
+            this.extraTypeComboBox.Location = new System.Drawing.Point(289, 36);
+            this.extraTypeComboBox.Name = "extraTypeComboBox";
+            this.extraTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.extraTypeComboBox.TabIndex = 17;
             // 
             // label17
             // 
@@ -163,57 +166,60 @@ namespace simple_payroll_desktop.forms
             this.label17.TabIndex = 16;
             this.label17.Text = "Tipo";
             // 
-            // button3
+            // saveExtraButton
             // 
-            this.button3.AutoSize = true;
-            this.button3.Location = new System.Drawing.Point(416, 74);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Guardar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.saveExtraButton.AutoSize = true;
+            this.saveExtraButton.Location = new System.Drawing.Point(416, 74);
+            this.saveExtraButton.Name = "saveExtraButton";
+            this.saveExtraButton.Size = new System.Drawing.Size(64, 23);
+            this.saveExtraButton.TabIndex = 7;
+            this.saveExtraButton.Text = "Guardar";
+            this.saveExtraButton.UseVisualStyleBackColor = true;
+            this.saveExtraButton.Click += new System.EventHandler(this.saveExtraButton_Click);
             // 
-            // button1
+            // deleteExtraButton
             // 
-            this.button1.Location = new System.Drawing.Point(486, 74);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Borrar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deleteExtraButton.Location = new System.Drawing.Point(486, 74);
+            this.deleteExtraButton.Name = "deleteExtraButton";
+            this.deleteExtraButton.Size = new System.Drawing.Size(64, 23);
+            this.deleteExtraButton.TabIndex = 6;
+            this.deleteExtraButton.Text = "Borrar";
+            this.deleteExtraButton.UseVisualStyleBackColor = true;
+            this.deleteExtraButton.Click += new System.EventHandler(this.deleteExtraButton_Click);
             // 
-            // additionalAmountSpinner
+            // extraAmountSpinner
             // 
-            this.additionalAmountSpinner.DecimalPlaces = 2;
-            this.additionalAmountSpinner.Location = new System.Drawing.Point(433, 36);
-            this.additionalAmountSpinner.Maximum = new decimal(new int[] {
+            this.extraAmountSpinner.DecimalPlaces = 2;
+            this.extraAmountSpinner.Location = new System.Drawing.Point(433, 36);
+            this.extraAmountSpinner.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.additionalAmountSpinner.Name = "additionalAmountSpinner";
-            this.additionalAmountSpinner.Size = new System.Drawing.Size(120, 20);
-            this.additionalAmountSpinner.TabIndex = 5;
+            this.extraAmountSpinner.Name = "extraAmountSpinner";
+            this.extraAmountSpinner.Size = new System.Drawing.Size(120, 20);
+            this.extraAmountSpinner.TabIndex = 5;
             // 
-            // additionalsGridView
+            // extrasGridView
             // 
-            this.additionalsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.additionalsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.additionalsGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.additionalsGridView.Location = new System.Drawing.Point(10, 116);
-            this.additionalsGridView.Name = "additionalsGridView";
-            this.additionalsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.additionalsGridView.Size = new System.Drawing.Size(540, 138);
-            this.additionalsGridView.TabIndex = 15;
+            this.extrasGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.extrasGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.extrasGridView.Location = new System.Drawing.Point(10, 116);
+            this.extrasGridView.Name = "extrasGridView";
+            this.extrasGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.extrasGridView.Size = new System.Drawing.Size(540, 138);
+            this.extrasGridView.TabIndex = 15;
+            this.extrasGridView.SelectionChanged += new System.EventHandler(this.extrasGridView_SelectionChanged);
             // 
-            // button2
+            // newExtraButton
             // 
-            this.button2.Location = new System.Drawing.Point(346, 74);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Nuevo";
-            this.button2.UseVisualStyleBackColor = true;
+            this.newExtraButton.Location = new System.Drawing.Point(346, 74);
+            this.newExtraButton.Name = "newExtraButton";
+            this.newExtraButton.Size = new System.Drawing.Size(64, 23);
+            this.newExtraButton.TabIndex = 4;
+            this.newExtraButton.Text = "Nuevo";
+            this.newExtraButton.UseVisualStyleBackColor = true;
+            this.newExtraButton.Click += new System.EventHandler(this.newExtraButton_Click);
             // 
             // label9
             // 
@@ -224,12 +230,12 @@ namespace simple_payroll_desktop.forms
             this.label9.TabIndex = 2;
             this.label9.Text = "Monto";
             // 
-            // textBox5
+            // extraConceptTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(10, 36);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(259, 20);
-            this.textBox5.TabIndex = 1;
+            this.extraConceptTextBox.Location = new System.Drawing.Point(10, 36);
+            this.extraConceptTextBox.Name = "extraConceptTextBox";
+            this.extraConceptTextBox.Size = new System.Drawing.Size(259, 20);
+            this.extraConceptTextBox.TabIndex = 1;
             // 
             // label10
             // 
@@ -495,11 +501,28 @@ namespace simple_payroll_desktop.forms
             this.button6.Text = "Anular";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 767);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(633, 22);
+            this.statusStrip1.TabIndex = 22;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(118, 17);
+            this.statusLabel.Text = "toolStripStatusLabel1";
+            // 
             // GeneratePayrollForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 777);
+            this.ClientSize = new System.Drawing.Size(633, 789);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox3);
@@ -521,14 +544,16 @@ namespace simple_payroll_desktop.forms
             this.Load += new System.EventHandler(this.GeneratePayrollForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.additionalAmountSpinner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.additionalsGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.extraAmountSpinner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.extrasGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,9 +567,9 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.ComboBox payScheduleComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button newExtraButton;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox extraConceptTextBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button generatePaySlipButton;
         private System.Windows.Forms.Button saveButton;
@@ -552,7 +577,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button previosPayPeriodButton;
         private System.Windows.Forms.Button nextPayPeriodButton;
         private System.Windows.Forms.Label selectedPeriodLabel;
-        private System.Windows.Forms.DataGridView additionalsGridView;
+        private System.Windows.Forms.DataGridView extrasGridView;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label statusDataLabel;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -562,10 +587,10 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label trackedDetailsDataLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown additionalAmountSpinner;
-        private System.Windows.Forms.ComboBox additionalTypeComboBox;
+        private System.Windows.Forms.Button saveExtraButton;
+        private System.Windows.Forms.Button deleteExtraButton;
+        private System.Windows.Forms.NumericUpDown extraAmountSpinner;
+        private System.Windows.Forms.ComboBox extraTypeComboBox;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox balanceDueTextBox;
@@ -578,5 +603,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }

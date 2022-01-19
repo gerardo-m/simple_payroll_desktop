@@ -131,13 +131,14 @@
     <Compile Include="business\tracking_entries\TrackingEntryGenerator.cs" />
     <Compile Include="business\WorkersManager.cs" />
     <Compile Include="dao\DenominationDAO.cs" />
+    <Compile Include="dao\ExtraDAO.cs" />
     <Compile Include="dao\PayrollDAO.cs" />
     <Compile Include="dao\PayScheduleDAO.cs" />
     <Compile Include="dao\PaySlipDAO.cs" />
     <Compile Include="dao\TrackingEntryDAO.cs" />
     <Compile Include="dao\WorkerDAO.cs" />
     <Compile Include="DependencyInjection.cs" />
-    <Compile Include="entities\Additional.cs" />
+    <Compile Include="entities\Extra.cs" />
     <Compile Include="entities\Denomination.cs" />
     <Compile Include="entities\PayPeriod.cs" />
     <Compile Include="entities\Payroll.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="local_dao\DbCrudHelper.cs" />
     <Compile Include="local_dao\DbExecuter.cs" />
     <Compile Include="local_dao\DenominationDAOLocal.cs" />
+    <Compile Include="local_dao\ExtraDAOLocal.cs" />
     <Compile Include="local_dao\PayrollDAOLocal.cs" />
     <Compile Include="local_dao\PayScheduleDAOLocal.cs" />
     <Compile Include="local_dao\PaySlipDAOLocal.cs" />

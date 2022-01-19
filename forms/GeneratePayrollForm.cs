@@ -29,6 +29,7 @@ namespace simple_payroll_desktop.forms
         private Worker selectedWorker;
         private PayPeriod selectedPeriod;
         private Payroll currentPayroll;
+        private Extra selectedExtra;
         public GeneratePayrollForm(ILogger<GeneratePayrollForm> logger,
                                    I18nService i18n,
                                    PaySlipForm paySlipForm,
@@ -51,6 +52,25 @@ namespace simple_payroll_desktop.forms
             logger.LogTrace(ex, ex.Message);
             MessageBox.Show(ex.Message);
             throw ex;
+        }
+
+        private void showStatus(string status)
+        {
+            statusLabel.Text = status;
+        }
+
+        private void updateControlsStates()
+        {
+            if (extrasGridView.SelectedRows.Count == 0)
+            {
+                deleteExtraButton.Enabled = false;
+                saveExtraButton.Text = i18n.GeneralFormControls("Save");
+            }
+            else
+            {
+                deleteExtraButton.Enabled = true;
+                saveExtraButton.Text = i18n.GeneralFormControls("Update");
+            }
         }
 
         private void loadPaySchedules()
@@ -103,16 +123,16 @@ namespace simple_payroll_desktop.forms
             loadPayroll();
         }
 
-        private void loadAdditionalTypes()
+        private void loadExtrasTypes()
         {
-            additionalTypeComboBox.DataSource = Enum.GetValues(typeof(AdditionalType));
+            extraTypeComboBox.DataSource = Enum.GetValues(typeof(ExtraType));
         }
 
         private void loadPayroll()
         {
             currentPayroll = payrollManager.getPayroll(selectedWorker, selectedPeriod);
             showTrackedWork();
-            showAdditionals();
+            showExtras();
             showTotals();
         }
 
@@ -123,16 +143,10 @@ namespace simple_payroll_desktop.forms
             trackedDetailsDataLabel.Text = payrollManager.getTrackedTimeLocalizedDetails(currentPayroll);
         }
 
-        private void showAdditionals()
-        {
-            additionalsGridView.DataSource = currentPayroll.Additionals;
-            additionalsGridView.Columns["Payroll"].Visible = false;
-        }
-
         private void showTotals()
         {
             trackedAmountTextBox.Text = currentPayroll.TrackedAmount.ToString("#0.00");
-            additionalsAmountTextBox.Text = currentPayroll.AdditionalsAmount.ToString("#0.00");
+            additionalsAmountTextBox.Text = currentPayroll.ExtrasAmount.ToString("#0.00");
             totalAmountTextBox.Text = currentPayroll.TotalAmount.ToString("#0.00");
             balanceDueTextBox.Text = currentPayroll.BalanceDue.ToString("#0.00");
         }
@@ -140,6 +154,38 @@ namespace simple_payroll_desktop.forms
         private void savePayroll()
         {
             payrollManager.savePayroll(currentPayroll);
+        }
+
+        private void newExtra()
+        {
+            selectedExtra = new Extra();
+            extrasGridView.ClearSelection();
+            extraConceptTextBox.Text = "";
+            extraTypeComboBox.SelectedIndex = 0;
+            extraAmountSpinner.Value = 0;
+        }
+
+        private void saveSelectedExtra()
+        {
+            
+            selectedExtra.Concept = extraConceptTextBox.Text;
+            selectedExtra.Type = (ExtraType)extraTypeComboBox.SelectedItem;
+            selectedExtra.Amount = extraAmountSpinner.Value;
+            selectedExtra.Payroll = currentPayroll;
+            if (!currentPayroll.Extras.Contains(selectedExtra))
+                currentPayroll.Extras.Add(selectedExtra);
+        }
+
+        private void deleteSelectedExtra()
+        {
+            currentPayroll.Extras.Remove(selectedExtra);
+        }
+
+        private void showExtras()
+        {
+            extrasGridView.DataSource = currentPayroll.Extras.ToList();
+            extrasGridView.Columns["Id"].Visible = false;
+            extrasGridView.Columns["Payroll"].Visible = false;
         }
 
         private void GeneratePayrollForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -160,7 +206,8 @@ namespace simple_payroll_desktop.forms
             {
                 loadPaySchedules();
                 setPeriod(DateTime.Today);
-                loadAdditionalTypes();
+                loadExtrasTypes();
+                selectedExtra = new Extra();
             }
             catch (Exception ex)
             {
@@ -223,6 +270,73 @@ namespace simple_payroll_desktop.forms
             {
                 savePayroll();
                 loadPayroll();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void newExtraButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                newExtra();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void saveExtraButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                saveSelectedExtra();
+                newExtra();
+                showExtras();
+                updateControlsStates();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void deleteExtraButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                deleteSelectedExtra();
+                newExtra();
+                showExtras();
+                updateControlsStates();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void extrasGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (extrasGridView.Focused)
+                {
+                    logger.LogInformation("[GeneratePayrollForm] extrasGridView_SelectionChanged");
+                    if (extrasGridView.SelectedRows.Count > 0)
+                    {
+                        selectedExtra = (Extra)extrasGridView.SelectedRows[0].DataBoundItem;
+                        updateControlsStates();
+                        showStatus(i18n.Placeholder("Calendario seleccionado"));
+                    }
+                }
+                else
+                {
+                    extrasGridView.ClearSelection();
+                }
             }
             catch (Exception ex)
             {

@@ -66,7 +66,8 @@ namespace simple_payroll_desktop
                     .AddSingleton<WorkerDAO, WorkerDAOLocal>()
                     .AddSingleton<TrackingEntryDAO, TrackingEntryDAOLocal>()
                     .AddSingleton<PayrollDAO, PayrollDAOLocal>()
-                    .AddSingleton<PaySlipDAO, PaySlipDAOLocal>();
+                    .AddSingleton<PaySlipDAO, PaySlipDAOLocal>()
+                    .AddSingleton<ExtraDAO, ExtraDAOLocal>();
         }
     }
 }
