@@ -26,7 +26,7 @@ namespace simple_payroll_desktop.entities
             }
         }
 
-        public IList<Additional> Additionals { get; set; }
+        public IList<Extra> Extras { get; set; }
         public Payroll Payroll { get; set; }
     }
 }

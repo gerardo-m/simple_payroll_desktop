@@ -10,17 +10,30 @@ namespace simple_payroll_desktop.local_dao
     public class DbExecuter
     {
 
-        public void executeQuery(string query, Dictionary<string, Object> parameters)
+        public void executeQuery(string query, Dictionary<string, object> parameters)
         {
             using (var connection = DbContext.GetInstance())
             {
                 using (var command = new SQLiteCommand(query, connection))
                 {
-                    foreach (KeyValuePair<string, Object> entry in parameters)
+                    foreach (KeyValuePair<string, object> entry in parameters)
                     {
                         command.Parameters.AddWithValue(entry.Key, entry.Value);
                     }
                     command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int getLastId()
+        {
+            string query = "select last_insert_rowid()";
+            using (var connection = DbContext.GetInstance())
+            {
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    Int64 result = (Int64)command.ExecuteScalar();
+                    return (int)result;
                 }
             }
         }

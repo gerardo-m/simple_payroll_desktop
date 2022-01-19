@@ -25,11 +25,11 @@ namespace simple_payroll_desktop.entities
         public PayRateType PayRateType { get; set; }
         public decimal TrackedTime { get; set; }
         public decimal TrackedAmount { get; set; }
-        public decimal AdditionalsAmount { get; set; }
+        public decimal ExtrasAmount { get; set; }
         public decimal TotalAmount { 
             get
             {
-                return TrackedAmount + AdditionalsAmount;
+                return TrackedAmount + ExtrasAmount;
             }
         }
         public decimal BalanceDue { get; set; }
@@ -37,7 +37,7 @@ namespace simple_payroll_desktop.entities
         public Worker Worker { get; set; }
         public PayScheduleType PayScheduleType { get; set; }
         public IList<TrackingEntry> TrackingEntries { get; set; }
-        public IList<Additional> Additionals { get; set; }
+        public IList<Extra> Extras { get; set; }
         public PayrollStatus Status { get; set; }
     }
 }

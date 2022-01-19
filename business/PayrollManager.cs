@@ -15,14 +15,16 @@ namespace simple_payroll_desktop.business
         private readonly I18nService i18n;
         private PayrollDAO payrollDAO;
         private TrackingEntryDAO trackingEntryDAO;
+        private ExtraDAO extraDAO;
 
         private PayrollCalculator payrollCalculator;
 
-        public PayrollManager(I18nService i18n, PayrollDAO payrollDAO, TrackingEntryDAO trackingEntryDAO)
+        public PayrollManager(I18nService i18n, PayrollDAO payrollDAO, TrackingEntryDAO trackingEntryDAO, ExtraDAO extraDAO)
         {
             this.i18n = i18n;
             this.payrollDAO = payrollDAO;
             this.trackingEntryDAO = trackingEntryDAO;
+            this.extraDAO = extraDAO;
             this.payrollCalculator = new PayrollCalculator();
         }
 
@@ -33,13 +35,16 @@ namespace simple_payroll_desktop.business
                 payroll = buildPayroll(worker, period);
             if (payroll.Status == PayrollStatus.Open)
                 payroll = payrollCalculator.calculate(payroll);
+            IList<Extra> extras = extraDAO.getExtras(payroll.Id);
+            payroll.Extras = extras;
             return payroll;
         }
 
         private Payroll buildPayroll(Worker worker, PayPeriod period)
         {
             Payroll payroll = new Payroll();
-            payroll.Additionals = new List<Additional>();
+            payroll.Id = 0;
+            payroll.Extras = new List<Extra>();
             payroll.Date = DateTime.Today.Date;
             payroll.PayRate = worker.PayRate;
             payroll.PayRateType = worker.PayRateType;
@@ -59,6 +64,7 @@ namespace simple_payroll_desktop.business
                 payrollDAO.savePayroll(payroll);
             else
                 payrollDAO.updatePayroll(payroll);
+            saveExtras(payroll);
         }
 
         public string getTrackedTimeLocalizedDetails(Payroll payroll)
@@ -67,6 +73,15 @@ namespace simple_payroll_desktop.business
             decimal time = payroll.TrackedTime;
             string payRateType = payRateTypeString(payroll.PayRateType);
             return  $"{time} {payRateType}";
+        }
+
+        private void saveExtras(Payroll payroll)
+        {
+            foreach (Extra extra in payroll.Extras)
+                if (extra.Id == 0)
+                    extraDAO.saveExtra(extra);
+                else
+                    extraDAO.updateExtra(extra);
         }
 
         private string payRateTypeString(PayRateType payRateType)
