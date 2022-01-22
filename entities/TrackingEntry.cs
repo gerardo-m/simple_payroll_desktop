@@ -15,5 +15,6 @@ namespace simple_payroll_desktop.entities
         public decimal TrackingValue { get; set; }
         public DateTime Date { get; set; }
         public Worker Worker { get; set; }
+        public Payroll Payroll { get; set; }
     }
 }

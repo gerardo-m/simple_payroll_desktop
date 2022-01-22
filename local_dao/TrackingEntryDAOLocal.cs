@@ -35,7 +35,7 @@ namespace simple_payroll_desktop.local_dao
 
         public void saveTrackingEntry(TrackingEntry trackingEntry)
         {
-            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "period", trackingEntry.Period },
                 { "tracking_unit", trackingEntry.TrackingUnit },
@@ -48,13 +48,14 @@ namespace simple_payroll_desktop.local_dao
 
         public void updateTrackingEntry(TrackingEntry trackingEntry)
         {
-            Dictionary<string, Object> parameters = new Dictionary<string, object>
+            Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "period", trackingEntry.Period },
                 { "tracking_unit", trackingEntry.TrackingUnit },
                 { "tracking_value", trackingEntry.TrackingValue },
                 { "date", trackingEntry.Date.Ticks },
-                { "worker_id", trackingEntry.Worker.Id }
+                { "worker_id", trackingEntry.Worker.Id },
+                { "payroll_id", trackingEntry.Payroll == null ? null : (object)trackingEntry.Payroll.Id }
             };
             crudHelper.update(tableName, parameters, trackingEntry.Id);
         }

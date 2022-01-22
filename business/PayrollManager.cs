@@ -33,10 +33,9 @@ namespace simple_payroll_desktop.business
             Payroll payroll = payrollDAO.getPayrollByPeriod(worker.Id, period);
             if (payroll == null)
                 payroll = buildPayroll(worker, period);
+            getTrackingEntriesAndExtras(payroll);
             if (payroll.Status == PayrollStatus.Open)
                 payroll = payrollCalculator.calculate(payroll);
-            IList<Extra> extras = extraDAO.getExtras(payroll.Id);
-            payroll.Extras = extras;
             return payroll;
         }
 
@@ -54,7 +53,6 @@ namespace simple_payroll_desktop.business
             payroll.PeriodEnd = period.PeriodEnd;
             payroll.Status = PayrollStatus.Open;
             payroll.Worker = worker;
-            payroll.TrackingEntries = trackingEntryDAO.getTrackingEntries(worker.Id, period.PeriodStart, period.PeriodEnd);
             return payroll;
         }
 
@@ -65,6 +63,7 @@ namespace simple_payroll_desktop.business
             else
                 payrollDAO.updatePayroll(payroll);
             saveExtras(payroll);
+            updateTrackingEntries(payroll);
         }
 
         public string getTrackedTimeLocalizedDetails(Payroll payroll)
@@ -78,10 +77,37 @@ namespace simple_payroll_desktop.business
         private void saveExtras(Payroll payroll)
         {
             foreach (Extra extra in payroll.Extras)
+            {
+                extra.Payroll = payroll;
                 if (extra.Id == 0)
                     extraDAO.saveExtra(extra);
                 else
                     extraDAO.updateExtra(extra);
+            }
+                
+        }
+
+        private void updateTrackingEntries(Payroll payroll)
+        {
+            foreach (TrackingEntry entry in payroll.TrackingEntries)
+            {
+                entry.Payroll = payroll;
+                trackingEntryDAO.updateTrackingEntry(entry);
+            }
+        }
+
+        private void getTrackingEntriesAndExtras(Payroll payroll)
+        {
+            payroll.TrackingEntries = trackingEntryDAO.getTrackingEntries(payroll.Worker.Id, payroll.PeriodStart, payroll.PeriodEnd);
+            if (payroll.Id != 0)
+                payroll.Extras = extraDAO.getExtras(payroll.Id);
+            foreach (TrackingEntry entry in payroll.TrackingEntries)
+            {
+                entry.Worker = payroll.Worker;
+                entry.Payroll = payroll;
+            }
+            foreach (Extra extra in payroll.Extras)
+                extra.Payroll = payroll;
         }
 
         private string payRateTypeString(PayRateType payRateType)
