@@ -48,7 +48,6 @@ namespace simple_payroll_desktop.local_dao
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "id", extra.Id },
                 { "concept", extra.Concept },
                 { "amount", extra.Amount },
                 { "type", extra.Type },
