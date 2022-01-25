@@ -103,13 +103,34 @@ namespace simple_payroll_desktop.printing
             drawer.DrawString("Amount", mainFont, mainBrush, rectangle, rightText);
             currentYPosition += mainFont.GetHeight() * 4;
 
-            rectangle = new RectangleF(leftMargin, currentYPosition, width, mainFont.GetHeight());
-            drawer.DrawString(paySlip.TrackedWorkConcept, mainFont, mainBrush, rectangle, leftText);
-            drawer.DrawString(paySlip.TrackedWorkAmount.ToString("#,00"), mainFont, mainBrush, rectangle, rightText);
-            currentYPosition += mainFont.GetHeight() * 2;
+            drawDetailRow(paySlip.TrackedWorkConcept, paySlip.TrackedWorkAmount);
 
-            // TODO print Additionals
+            drawExtras();
+
+            rectangle = new RectangleF(leftMargin, currentYPosition, width, mainFont.GetHeight() * 2);
+            drawer.DrawLine(mainPen, rectangle.X, rectangle.Y, rectangle.X + rectangle.Width, rectangle.Y);
+            drawer.DrawLine(mainPen, rectangle.X, rectangle.Y + rectangle.Height, rectangle.X + rectangle.Width, rectangle.Y + rectangle.Height);
+
+            drawDetailRow("Total", paySlip.PayrollTotal);
+            drawDetailRow("Pagado previamente", paySlip.PreviouslyPaid);
+            drawDetailRow("A pagar", paySlip.Amount);
+            drawDetailRow("Saldo", paySlip.ToBePaid);
+
             // TODO print Total row
+        }
+
+        private void drawExtras()
+        {
+            foreach (Extra extra in paySlip.Extras)
+                drawDetailRow(extra.Concept, extra.Amount);
+        }
+
+        private void drawDetailRow(string concept, decimal amount)
+        {
+            RectangleF rectangle = new RectangleF(leftMargin, currentYPosition, width, mainFont.GetHeight());
+            drawer.DrawString(concept, mainFont, mainBrush, rectangle, leftText);
+            drawer.DrawString(amount.ToString("#,00"), mainFont, mainBrush, rectangle, rightText);
+            currentYPosition += mainFont.GetHeight() * 2;
         }
 
         private void drawSignatureLines(SignaturesPosition position)
