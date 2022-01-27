@@ -10,6 +10,8 @@ namespace simple_payroll_desktop.local_dao
     public class DbExecuter
     {
 
+        private int lastId;
+
         public void executeQuery(string query, Dictionary<string, object> parameters)
         {
             using (var connection = DbContext.GetInstance())
@@ -22,20 +24,23 @@ namespace simple_payroll_desktop.local_dao
                     }
                     command.ExecuteNonQuery();
                 }
+                lastId = selectLastIdRow(connection);
+            }
+        }
+
+        private int selectLastIdRow(SQLiteConnection connection)
+        {
+            string query = "select last_insert_rowid()";
+            using (var command = new SQLiteCommand(query, connection))
+            {
+                Int64 result = (Int64)command.ExecuteScalar();
+                return (int)result;
             }
         }
 
         public int getLastId()
         {
-            string query = "select last_insert_rowid()";
-            using (var connection = DbContext.GetInstance())
-            {
-                using (var command = new SQLiteCommand(query, connection))
-                {
-                    Int64 result = (Int64)command.ExecuteScalar();
-                    return (int)result;
-                }
-            }
+            return lastId;
         }
 
         public IList<T> selectFromTable<T>(string tableName, Func<SQLiteDataReader, T> mapFunction)

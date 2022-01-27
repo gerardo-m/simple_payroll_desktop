@@ -9,7 +9,7 @@ CREATE TABLE tracking_entries(id INTEGER PRIMARY KEY, period INTEGER, tracking_u
 CREATE TABLE payrolls(id INTEGER PRIMARY KEY, period_start INTEGER, period_end INTEGER, date INTEGER, pay_rate REAL, 
                       pay_rate_type INTEGER, tracked_time REAL, tracked_amount REAL, additionals_amount REAL,
                       balance_due REAL, pay_schedule_id INTEGER, worker_id INTEGER, pay_schedule_type INTEGER, status INTEGER);
-CREATE TABLE pay_slips(id INTEGER PRIMARY KEY, worker_ci TEXT, worker_full_name TEXT, tracked_work_concept TEXT, tracket_work_amount REAL,
+CREATE TABLE pay_slips(id INTEGER PRIMARY KEY, worker_ci TEXT, worker_full_name TEXT, tracked_work_concept TEXT, tracked_work_amount REAL,
                        payroll_total REAL, previously_paid REAL, amount REAL, is_valid INTEGER, payroll_id INTEGER);
 CREATE TABLE extras(id INTEGER PRIMARY KEY, type INTEGER, concept TEXT, amount REAL, payroll_id INTEGER);
 

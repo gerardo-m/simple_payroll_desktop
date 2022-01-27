@@ -39,15 +39,15 @@ namespace simple_payroll_desktop.local_dao
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "@worker_ci", paySlip.WorkerCI },
-                { "@worker_full_name", paySlip.WorkerFullName },
-                { "@tracked_work_concept", paySlip.TrackedWorkConcept },
-                { "@tracked_work_amount", paySlip.TrackedWorkAmount },
-                { "@payroll_total", paySlip.PayrollTotal },
-                { "@previously_paid", paySlip.PreviouslyPaid },
-                { "@amount", paySlip.Amount },
-                { "@is_valid", paySlip.IsValid ? 1 : 0 },
-                { "@payroll_id", paySlip.Payroll.Id }
+                { "worker_ci", paySlip.WorkerCI },
+                { "worker_full_name", paySlip.WorkerFullName },
+                { "tracked_work_concept", paySlip.TrackedWorkConcept },
+                { "tracked_work_amount", paySlip.TrackedWorkAmount },
+                { "payroll_total", paySlip.PayrollTotal },
+                { "previously_paid", paySlip.PreviouslyPaid },
+                { "amount", paySlip.Amount },
+                { "is_valid", paySlip.IsValid ? 1 : 0 },
+                { "payroll_id", paySlip.Payroll.Id }
             };
             crudHelper.create(tableName, parameters);
         }
