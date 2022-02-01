@@ -36,18 +36,13 @@ namespace simple_payroll_desktop.business
             paySlip.WorkerCI = payroll.Worker.CI;
             paySlip.WorkerFullName = payroll.Worker.ToString();
             paySlip.PayrollTotal = payroll.TotalAmount;
-            paySlip.PreviouslyPaid = calculatePreviouslyPaidForPayroll(payroll);
+            paySlip.PreviouslyPaid = payroll.TotalAmount - payroll.BalanceDue;
             paySlip.TrackedWorkAmount = payroll.TrackedAmount;
             paySlip.TrackedWorkConcept = payrollManager.getTrackedTimeLocalizedDetails(payroll);
             paySlip.IsValid = true;
             paySlip.Payroll = payroll;
+            paySlip.Amount = paySlip.ToBePaid;
             return paySlip;
-        }
-
-        private decimal calculatePreviouslyPaidForPayroll(Payroll payroll)
-        {
-            // TODO
-            return 0;
         }
 
         public void savePaySlip(PaySlip paySlip)
@@ -56,6 +51,8 @@ namespace simple_payroll_desktop.business
                 paySlipDAO.savePaySlip(paySlip);
             else
                 throw new ArgumentException("Can't modify a saved Pay Slip");
+            payrollManager.updatePayrollBalance(paySlip);
         }
+
     }
 }

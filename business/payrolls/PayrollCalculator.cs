@@ -20,7 +20,7 @@ namespace simple_payroll_desktop.business.payrolls
             payroll.ExtrasAmount = calculateAdditionalsAmount(payroll.Extras);
             payroll.TrackedTime = calculateTrackedTime(payroll.TrackingEntries);
             payroll.TrackedAmount = payroll.TrackedTime * payroll.PayRate;
-            payroll.BalanceDue = calculateBalanceDue(payroll);
+            //payroll.BalanceDue = calculateBalanceDue(payroll);
             return payroll;
         }
 

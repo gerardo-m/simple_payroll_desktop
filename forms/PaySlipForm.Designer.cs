@@ -30,7 +30,7 @@ namespace simple_payroll_desktop.forms
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.additionalsTableContainer = new System.Windows.Forms.TableLayoutPanel();
+            this.extrasTableContainer = new System.Windows.Forms.TableLayoutPanel();
             this.trackedWorkAmountTextBox = new System.Windows.Forms.TextBox();
             this.trackedWorkConceptDataLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,27 +51,27 @@ namespace simple_payroll_desktop.forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.additionalsTableContainer);
+            this.groupBox1.Controls.Add(this.extrasTableContainer);
             this.groupBox1.Location = new System.Drawing.Point(29, 197);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(543, 150);
+            this.groupBox1.Size = new System.Drawing.Size(543, 220);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adicionales";
             // 
-            // additionalsTableContainer
+            // extrasTableContainer
             // 
-            this.additionalsTableContainer.AutoSize = true;
-            this.additionalsTableContainer.ColumnCount = 1;
-            this.additionalsTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.additionalsTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.additionalsTableContainer.Location = new System.Drawing.Point(6, 30);
-            this.additionalsTableContainer.Name = "additionalsTableContainer";
-            this.additionalsTableContainer.RowCount = 2;
-            this.additionalsTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.additionalsTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.additionalsTableContainer.Size = new System.Drawing.Size(531, 40);
-            this.additionalsTableContainer.TabIndex = 0;
+            this.extrasTableContainer.AutoSize = true;
+            this.extrasTableContainer.ColumnCount = 1;
+            this.extrasTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.extrasTableContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.extrasTableContainer.Location = new System.Drawing.Point(6, 30);
+            this.extrasTableContainer.Name = "extrasTableContainer";
+            this.extrasTableContainer.RowCount = 2;
+            this.extrasTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.extrasTableContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.extrasTableContainer.Size = new System.Drawing.Size(531, 40);
+            this.extrasTableContainer.TabIndex = 0;
             // 
             // trackedWorkAmountTextBox
             // 
@@ -79,7 +79,8 @@ namespace simple_payroll_desktop.forms
             this.trackedWorkAmountTextBox.Name = "trackedWorkAmountTextBox";
             this.trackedWorkAmountTextBox.ReadOnly = true;
             this.trackedWorkAmountTextBox.Size = new System.Drawing.Size(100, 20);
-            this.trackedWorkAmountTextBox.TabIndex = 15;
+            this.trackedWorkAmountTextBox.TabIndex = 23;
+            this.trackedWorkAmountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // trackedWorkConceptDataLabel
             // 
@@ -111,7 +112,7 @@ namespace simple_payroll_desktop.forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 372);
+            this.label3.Location = new System.Drawing.Point(29, 442);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 18;
@@ -119,16 +120,17 @@ namespace simple_payroll_desktop.forms
             // 
             // payrollTotalTextBox
             // 
-            this.payrollTotalTextBox.Location = new System.Drawing.Point(447, 369);
+            this.payrollTotalTextBox.Location = new System.Drawing.Point(447, 439);
             this.payrollTotalTextBox.Name = "payrollTotalTextBox";
             this.payrollTotalTextBox.ReadOnly = true;
             this.payrollTotalTextBox.Size = new System.Drawing.Size(100, 20);
             this.payrollTotalTextBox.TabIndex = 19;
+            this.payrollTotalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 401);
+            this.label7.Location = new System.Drawing.Point(32, 471);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(111, 13);
             this.label7.TabIndex = 20;
@@ -136,40 +138,46 @@ namespace simple_payroll_desktop.forms
             // 
             // previouslyPaidTextBox
             // 
-            this.previouslyPaidTextBox.Location = new System.Drawing.Point(447, 398);
+            this.previouslyPaidTextBox.Location = new System.Drawing.Point(447, 468);
             this.previouslyPaidTextBox.Name = "previouslyPaidTextBox";
             this.previouslyPaidTextBox.ReadOnly = true;
             this.previouslyPaidTextBox.Size = new System.Drawing.Size(100, 20);
             this.previouslyPaidTextBox.TabIndex = 21;
+            this.previouslyPaidTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // amountTextBox
             // 
-            this.amountTextBox.Location = new System.Drawing.Point(447, 429);
+            this.amountTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.amountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountTextBox.Location = new System.Drawing.Point(447, 499);
             this.amountTextBox.Name = "amountTextBox";
             this.amountTextBox.Size = new System.Drawing.Size(100, 20);
-            this.amountTextBox.TabIndex = 23;
+            this.amountTextBox.TabIndex = 15;
+            this.amountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 432);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(32, 502);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 13);
+            this.label8.Size = new System.Drawing.Size(143, 13);
             this.label8.TabIndex = 22;
             this.label8.Text = "A pagar con esta boleta";
             // 
             // toBePaidTextBox
             // 
-            this.toBePaidTextBox.Location = new System.Drawing.Point(447, 461);
+            this.toBePaidTextBox.Location = new System.Drawing.Point(447, 531);
             this.toBePaidTextBox.Name = "toBePaidTextBox";
             this.toBePaidTextBox.ReadOnly = true;
             this.toBePaidTextBox.Size = new System.Drawing.Size(100, 20);
             this.toBePaidTextBox.TabIndex = 25;
+            this.toBePaidTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(32, 464);
+            this.label9.Location = new System.Drawing.Point(32, 534);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(84, 13);
             this.label9.TabIndex = 24;
@@ -177,7 +185,7 @@ namespace simple_payroll_desktop.forms
             // 
             // saveAndPrintButton
             // 
-            this.saveAndPrintButton.Location = new System.Drawing.Point(440, 506);
+            this.saveAndPrintButton.Location = new System.Drawing.Point(440, 576);
             this.saveAndPrintButton.Name = "saveAndPrintButton";
             this.saveAndPrintButton.Size = new System.Drawing.Size(109, 23);
             this.saveAndPrintButton.TabIndex = 26;
@@ -206,7 +214,7 @@ namespace simple_payroll_desktop.forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 565);
+            this.ClientSize = new System.Drawing.Size(583, 620);
             this.Controls.Add(this.workerTextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.saveAndPrintButton);
@@ -251,6 +259,6 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Button saveAndPrintButton;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox workerTextBox;
-        private System.Windows.Forms.TableLayoutPanel additionalsTableContainer;
+        private System.Windows.Forms.TableLayoutPanel extrasTableContainer;
     }
 }

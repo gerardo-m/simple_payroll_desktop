@@ -461,9 +461,9 @@ namespace simple_payroll_desktop.forms
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(12, 68);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 13);
+            this.label15.Size = new System.Drawing.Size(69, 13);
             this.label15.TabIndex = 2;
-            this.label15.Text = "Total a pagar:";
+            this.label15.Text = "Total planilla:";
             // 
             // label14
             // 
@@ -542,6 +542,7 @@ namespace simple_payroll_desktop.forms
             this.Text = "GeneratePayrollForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GeneratePayrollForm_FormClosed);
             this.Load += new System.EventHandler(this.GeneratePayrollForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.GeneratePayrollForm_VisibleChanged);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extraAmountSpinner)).EndInit();

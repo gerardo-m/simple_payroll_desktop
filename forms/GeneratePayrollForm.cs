@@ -343,5 +343,10 @@ namespace simple_payroll_desktop.forms
                 handleException(ex);
             }
         }
+
+        private void GeneratePayrollForm_VisibleChanged(object sender, EventArgs e)
+        {
+            loadPayroll();
+        }
     }
 }

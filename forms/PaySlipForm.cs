@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using simple_payroll_desktop.entities;
 using simple_payroll_desktop.business;
 using simple_payroll_desktop.printing;
+using simple_payroll_desktop.forms.controls;
 
 namespace simple_payroll_desktop.forms
 {
@@ -25,6 +26,9 @@ namespace simple_payroll_desktop.forms
 
         private PaySlip currentPaySlip;
         private Payroll selectedPayroll;
+
+        private bool saved;
+
         public PaySlipForm(ILogger<GeneratePayrollForm> logger,
                            I18nService i18n,
                            PaySlipManager paySlipManager)
@@ -56,15 +60,30 @@ namespace simple_payroll_desktop.forms
         private void showPaySlip()
         {
             trackedWorkConceptDataLabel.Text = currentPaySlip.TrackedWorkConcept;
-            trackedWorkAmountTextBox.Text = currentPaySlip.TrackedWorkAmount.ToString();
-            payrollTotalTextBox.Text = currentPaySlip.PayrollTotal.ToString();
-            previouslyPaidTextBox.Text = currentPaySlip.PreviouslyPaid.ToString();
-            toBePaidTextBox.Text = currentPaySlip.ToBePaid.ToString();
+            trackedWorkAmountTextBox.Text = currentPaySlip.TrackedWorkAmount.ToString("#0.00");
+            payrollTotalTextBox.Text = currentPaySlip.PayrollTotal.ToString("#0.00");
+            previouslyPaidTextBox.Text = currentPaySlip.PreviouslyPaid.ToString("#0.00");
+            amountTextBox.Text = currentPaySlip.Amount.ToString("#0.00");
+            toBePaidTextBox.Text = currentPaySlip.ToBePaid.ToString("#0.00");
             workerTextBox.Text = currentPaySlip.WorkerFullName + currentPaySlip.WorkerCI;
+            showExtras();
+        }
+
+        private void showExtras()
+        {
+            IList<Extra> extras = currentPaySlip.Extras;
+            extrasTableContainer.RowCount = extras.Count;
+            for (int i = 0; i < extras.Count; i++)
+            {
+                AdditionalRowForPaySlip rowControl = new AdditionalRowForPaySlip(extras[i]);
+                extrasTableContainer.Controls.Add(rowControl);
+                extrasTableContainer.SetRow(rowControl, i);
+            }
         }
 
         private void savePaySlip()
         {
+            currentPaySlip.Amount = Convert.ToDecimal(amountTextBox.Text);
             paySlipManager.savePaySlip(currentPaySlip);
         }
 
@@ -91,6 +110,7 @@ namespace simple_payroll_desktop.forms
             {
                 loadPaySlip();
                 showPaySlip();
+                saved = false;
             }
             catch (Exception ex)
             {
@@ -102,7 +122,12 @@ namespace simple_payroll_desktop.forms
         {
             try
             {
-                savePaySlip();
+                if (!saved)
+                {
+                    savePaySlip();
+                    saved = true;
+                    saveAndPrintButton.Text = i18n.Placeholder("Imprimir");
+                }
                 print();
             }
             catch (Exception ex)
