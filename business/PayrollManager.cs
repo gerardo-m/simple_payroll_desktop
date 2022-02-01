@@ -52,6 +52,7 @@ namespace simple_payroll_desktop.business
             payroll.PeriodStart = period.PeriodStart;
             payroll.PeriodEnd = period.PeriodEnd;
             payroll.Status = PayrollStatus.Open;
+            payroll.BalanceDue = 0;
             payroll.Worker = worker;
             return payroll;
         }
@@ -72,6 +73,13 @@ namespace simple_payroll_desktop.business
             decimal time = payroll.TrackedTime;
             string payRateType = payRateTypeString(payroll.PayRateType);
             return  $"{time} {payRateType}";
+        }
+
+        public void updatePayrollBalance(PaySlip payslip)
+        {
+            Payroll payroll = payslip.Payroll;
+            payroll.BalanceDue = payroll.BalanceDue - payslip.Amount;
+            payrollDAO.updatePayroll(payroll);
         }
 
         private void saveExtras(Payroll payroll)
