@@ -59,6 +59,34 @@ namespace simple_payroll_desktop.forms
             statusLabel.Text = status;
         }
 
+        private void setToOpenStatus()
+        {
+            newExtraButton.Enabled = true;
+            saveExtraButton.Enabled = true;
+            deleteExtraButton.Enabled = true;
+            saveButton.Enabled = true;
+            saveAndCloseButton.Enabled = true;
+            generatePaySlipButton.Enabled = false;
+        }
+
+        private void setToClosedStatus()
+        {
+            newExtraButton.Enabled = false;
+            saveExtraButton.Enabled = false;
+            deleteExtraButton.Enabled = false;
+            saveButton.Enabled = false;
+            saveAndCloseButton.Enabled = false;
+            generatePaySlipButton.Enabled = true;
+        }
+
+        private void setFormStatus()
+        {
+            if (currentPayroll.Status == PayrollStatus.Open)
+                setToOpenStatus();
+            else
+                setToClosedStatus();
+        }
+
         private void updateControlsStates()
         {
             if (extrasGridView.SelectedRows.Count == 0)
@@ -176,6 +204,13 @@ namespace simple_payroll_desktop.forms
                 currentPayroll.Extras.Add(selectedExtra);
         }
 
+        private void showSelectedExtra()
+        {
+            extraConceptTextBox.Text = selectedExtra.Concept;
+            extraTypeComboBox.SelectedItem = selectedExtra.Type;
+            extraAmountSpinner.Value = selectedExtra.Amount;
+        }
+
         private void deleteSelectedExtra()
         {
             currentPayroll.Extras.Remove(selectedExtra);
@@ -208,6 +243,7 @@ namespace simple_payroll_desktop.forms
                 setPeriod(DateTime.Today);
                 loadExtrasTypes();
                 selectedExtra = new Extra();
+                setFormStatus();
             }
             catch (Exception ex)
             {
@@ -245,6 +281,7 @@ namespace simple_payroll_desktop.forms
             try
             {
                 nextPeriod();
+                setFormStatus();
             }
             catch (Exception ex)
             {
@@ -257,6 +294,7 @@ namespace simple_payroll_desktop.forms
             try
             {
                 previousPeriod();
+                setFormStatus();
             }
             catch (Exception ex)
             {
@@ -270,6 +308,7 @@ namespace simple_payroll_desktop.forms
             {
                 savePayroll();
                 loadPayroll();
+                setFormStatus();
             }
             catch (Exception ex)
             {
@@ -329,6 +368,7 @@ namespace simple_payroll_desktop.forms
                     if (extrasGridView.SelectedRows.Count > 0)
                     {
                         selectedExtra = (Extra)extrasGridView.SelectedRows[0].DataBoundItem;
+                        showSelectedExtra();
                         updateControlsStates();
                         showStatus(i18n.Placeholder("Calendario seleccionado"));
                     }
@@ -347,6 +387,20 @@ namespace simple_payroll_desktop.forms
         private void GeneratePayrollForm_VisibleChanged(object sender, EventArgs e)
         {
             loadPayroll();
+        }
+
+        private void saveAndCloseButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                savePayroll();
+                payrollManager.closePayroll(currentPayroll);
+                loadPayroll();
+                setFormStatus();
+            }catch(Exception ex)
+            {
+                handleException(ex);
+            }
         }
     }
 }

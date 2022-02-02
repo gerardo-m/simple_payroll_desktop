@@ -69,7 +69,7 @@ namespace simple_payroll_desktop.forms
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.saveAndCloseButton = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -483,14 +483,15 @@ namespace simple_payroll_desktop.forms
             this.label13.TabIndex = 0;
             this.label13.Text = "Total por trabajo registrado:";
             // 
-            // button5
+            // saveAndCloseButton
             // 
-            this.button5.Location = new System.Drawing.Point(362, 732);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(114, 23);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "Guardar y Cerrar";
-            this.button5.UseVisualStyleBackColor = true;
+            this.saveAndCloseButton.Location = new System.Drawing.Point(362, 732);
+            this.saveAndCloseButton.Name = "saveAndCloseButton";
+            this.saveAndCloseButton.Size = new System.Drawing.Size(114, 23);
+            this.saveAndCloseButton.TabIndex = 20;
+            this.saveAndCloseButton.Text = "Guardar y Cerrar";
+            this.saveAndCloseButton.UseVisualStyleBackColor = true;
+            this.saveAndCloseButton.Click += new System.EventHandler(this.saveAndCloseButton_Click);
             // 
             // button6
             // 
@@ -524,7 +525,7 @@ namespace simple_payroll_desktop.forms
             this.ClientSize = new System.Drawing.Size(633, 789);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.saveAndCloseButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusDataLabel);
@@ -602,7 +603,7 @@ namespace simple_payroll_desktop.forms
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button saveAndCloseButton;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
