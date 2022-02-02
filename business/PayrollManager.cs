@@ -79,6 +79,16 @@ namespace simple_payroll_desktop.business
         {
             Payroll payroll = payslip.Payroll;
             payroll.BalanceDue = payroll.BalanceDue - payslip.Amount;
+            if (payroll.BalanceDue == 0)
+            {
+                payroll.Status = PayrollStatus.ClosedAndPaid;
+            }
+            payrollDAO.updatePayroll(payroll);
+        }
+
+        public void closePayroll(Payroll payroll)
+        {
+            payroll.Status = PayrollStatus.Closed;
             payrollDAO.updatePayroll(payroll);
         }
 
