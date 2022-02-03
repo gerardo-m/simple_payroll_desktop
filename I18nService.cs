@@ -22,6 +22,11 @@ namespace simple_payroll_desktop
             return $"P {message}";
         }
 
+        public string Enum(Enum enumValue)
+        {
+            return stringLocalizer.GetString($"Enum_{enumValue.GetType().Name}_{enumValue}");
+        }
+
         public string GeneralFormControls(string option)
         {
             return stringLocalizer.GetString($"GeneralFormControls_{option}");

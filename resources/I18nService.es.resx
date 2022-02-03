@@ -141,6 +141,84 @@
   <data name="DenominationsForm_title" xml:space="preserve">
     <value>Gestionar calendarios de pagos</value>
   </data>
+  <data name="Enum_ExtraType_AdditionalPay" xml:space="preserve">
+    <value>Pago extra</value>
+  </data>
+  <data name="Enum_ExtraType_Discount" xml:space="preserve">
+    <value>Descuento</value>
+  </data>
+  <data name="Enum_PayRateType_Daily" xml:space="preserve">
+    <value>Por Día</value>
+  </data>
+  <data name="Enum_PayRateType_FixedPay" xml:space="preserve">
+    <value>Pago fijo</value>
+  </data>
+  <data name="Enum_PayRateType_Hourly" xml:space="preserve">
+    <value>Por hora</value>
+  </data>
+  <data name="Enum_PayRateType_Monthly" xml:space="preserve">
+    <value>Por mes</value>
+  </data>
+  <data name="Enum_PayRateType_Weekly" xml:space="preserve">
+    <value>Por Semana</value>
+  </data>
+  <data name="Enum_PayrollStatus_Cancelled" xml:space="preserve">
+    <value>Cancelada</value>
+  </data>
+  <data name="Enum_PayrollStatus_Closed" xml:space="preserve">
+    <value>Cerrada</value>
+  </data>
+  <data name="Enum_PayrollStatus_ClosedAndPaid" xml:space="preserve">
+    <value>Cerrada y pagada</value>
+  </data>
+  <data name="Enum_PayrollStatus_Open" xml:space="preserve">
+    <value>Abierta</value>
+  </data>
+  <data name="Enum_PayScheduleType_Biweekly" xml:space="preserve">
+    <value>Bisemanal</value>
+  </data>
+  <data name="Enum_PayScheduleType_Monthly" xml:space="preserve">
+    <value>Mensual</value>
+  </data>
+  <data name="Enum_PayScheduleType_OneTime" xml:space="preserve">
+    <value>Única vez</value>
+  </data>
+  <data name="Enum_PayScheduleType_Weekly" xml:space="preserve">
+    <value>Semanal</value>
+  </data>
+  <data name="Enum_TrackingType_DayPerDayInAMonth" xml:space="preserve">
+    <value>Días por día en un mes</value>
+  </data>
+  <data name="Enum_TrackingType_DayPerDayInAWeek" xml:space="preserve">
+    <value>Dias por día en una semana</value>
+  </data>
+  <data name="Enum_TrackingType_DaysPerMonthInAMonth" xml:space="preserve">
+    <value>Días por mes en un mes</value>
+  </data>
+  <data name="Enum_TrackingType_DaysPerWeekIn4Weeks" xml:space="preserve">
+    <value>Días por semana en 4 semanas</value>
+  </data>
+  <data name="Enum_TrackingType_DaysPerWeekInAWeek" xml:space="preserve">
+    <value>Días por semana en una semana</value>
+  </data>
+  <data name="Enum_TrackingType_HoursPerDayInAMonth" xml:space="preserve">
+    <value>Horas por día en un mes </value>
+  </data>
+  <data name="Enum_TrackingType_HoursPerDayInAWeek" xml:space="preserve">
+    <value>Horas por día en una semana</value>
+  </data>
+  <data name="Enum_TrackingType_HoursPerWeekInAMonth" xml:space="preserve">
+    <value>Horas por semana en un mes</value>
+  </data>
+  <data name="Enum_TrackingType_MonthsPerMonthInAMonth" xml:space="preserve">
+    <value>Mes por mes en un mes</value>
+  </data>
+  <data name="Enum_TrackingType_WeekPerWeekInAMonth" xml:space="preserve">
+    <value>Semanas por semana en un mes</value>
+  </data>
+  <data name="Enum_TrackingType_WeeksPerMonthInAMonth" xml:space="preserve">
+    <value>Semanas por mes en un mes</value>
+  </data>
   <data name="Form1_exitButton" xml:space="preserve">
     <value>SALIR</value>
   </data>

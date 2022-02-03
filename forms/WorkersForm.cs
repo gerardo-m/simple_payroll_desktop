@@ -17,6 +17,7 @@ namespace simple_payroll_desktop.forms
     {
         private readonly ILogger logger;
         private readonly I18nService i18n;
+        private readonly ControlUtils utils;
         private readonly WorkersManager workersManager;
         private readonly DenominationsManager denominationsManager;
         private readonly PaySchedulesManager paySchedulesManager;
@@ -36,6 +37,7 @@ namespace simple_payroll_desktop.forms
             this.denominationsManager = denominationsManager;
             this.paySchedulesManager = paySchedulesManager;
             this.denominationsForm = denominationsForm;
+            utils = new ControlUtils(i18n);
             InitializeComponent();
         }
 
@@ -62,6 +64,8 @@ namespace simple_payroll_desktop.forms
         private void loadPayRateTypes()
         {
             payRateTypeComboBox.DataSource = new List<PayRateType>((IEnumerable<PayRateType>)Enum.GetValues(typeof(PayRateType)));
+            payRateTypeComboBox.FormattingEnabled = true;
+            payRateTypeComboBox.Format += utils.comboBoxEnumDelegate;
         }
 
         private void loadPaySchedules()
