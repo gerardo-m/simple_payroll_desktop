@@ -177,6 +177,7 @@
       <DependentUpon>DefaultTrackerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\controls\track_work\TrackerControlSelector.cs" />
+    <Compile Include="forms\ControlUtils.cs" />
     <Compile Include="forms\DenominationsForm.cs">
       <SubType>Form</SubType>
     </Compile>

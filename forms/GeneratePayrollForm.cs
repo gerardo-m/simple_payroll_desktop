@@ -18,6 +18,7 @@ namespace simple_payroll_desktop.forms
 
         private readonly ILogger logger;
         private readonly I18nService i18n;
+        private readonly ControlUtils utils;
 
         private readonly PaySlipForm paySlipForm;
 
@@ -43,6 +44,7 @@ namespace simple_payroll_desktop.forms
             this.payrollManager = payrollManager;
             this.paySchedulesManager = paySchedulesManager;
             this.workersManager = workersManager;
+            utils = new ControlUtils(i18n);
             InitializeComponent();
         }
 
@@ -154,6 +156,8 @@ namespace simple_payroll_desktop.forms
         private void loadExtrasTypes()
         {
             extraTypeComboBox.DataSource = Enum.GetValues(typeof(ExtraType));
+            extraTypeComboBox.FormattingEnabled = true;
+            extraTypeComboBox.Format += utils.comboBoxEnumDelegate;
         }
 
         private void loadPayroll()

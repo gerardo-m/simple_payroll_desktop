@@ -19,6 +19,7 @@ namespace simple_payroll_desktop.forms
         private readonly ILogger logger;
         private readonly I18nService i18n;
         private readonly PaySchedulesManager paySchedulesManager;
+        private readonly ControlUtils utils;
 
         private PaySchedule currentPaySchedule;
         public PaySchedulesForm(ILogger<PaySchedulesForm> logger,
@@ -28,6 +29,7 @@ namespace simple_payroll_desktop.forms
             this.logger = logger;
             this.i18n = i18n;
             this.paySchedulesManager = paySchedulesManager;
+            utils = new ControlUtils(i18n);
             InitializeComponent();
             loadStrings();
         }
@@ -52,6 +54,8 @@ namespace simple_payroll_desktop.forms
         private void loadPaySchedulesTypes()
         {
             typeComboBox.DataSource = Enum.GetValues(typeof(PayScheduleType));
+            typeComboBox.FormattingEnabled = true;
+            typeComboBox.Format += utils.comboBoxEnumDelegate;
         }
 
         private void loadPayRateTypes()
@@ -65,12 +69,16 @@ namespace simple_payroll_desktop.forms
                     payRateTypesComboBox.SelectedItem = selectedItem;
                 }
             }
+            payRateTypesComboBox.FormattingEnabled = true;
+            payRateTypesComboBox.Format += utils.comboBoxEnumDelegate;
         }
 
         private void loadTrackingTypes()
         {
             //TODO keep selected value when possible
             trackingTypesComboBox.DataSource = paySchedulesManager.trackingTypeForPayRateType((PayRateType)payRateTypesComboBox.SelectedItem);
+            trackingTypesComboBox.FormattingEnabled = true;
+            trackingTypesComboBox.Format += utils.comboBoxEnumDelegate;
         }
 
         private void updateControlsStates()
