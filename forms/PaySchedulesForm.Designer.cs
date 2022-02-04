@@ -29,10 +29,10 @@ namespace simple_payroll_desktop.forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.newPayScheduleButton = new System.Windows.Forms.Button();
-            this.savePayScheduleButton = new System.Windows.Forms.Button();
-            this.deletePayScheduleButton = new System.Windows.Forms.Button();
             this.currentPayPeriodGroupBox = new System.Windows.Forms.GroupBox();
+            this.currentPayDayDataLabel = new System.Windows.Forms.Label();
+            this.currentPeriodEndDataLabel = new System.Windows.Forms.Label();
+            this.currentPeriodStartDataLabel = new System.Windows.Forms.Label();
             this.currentPayDayLabel = new System.Windows.Forms.Label();
             this.currentPeriodEndLabel = new System.Windows.Forms.Label();
             this.currentPeriodStartLabel = new System.Windows.Forms.Label();
@@ -53,43 +53,13 @@ namespace simple_payroll_desktop.forms
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.trackingTypeLabel = new System.Windows.Forms.Label();
             this.trackingTypesComboBox = new System.Windows.Forms.ComboBox();
-            this.currentPeriodStartDataLabel = new System.Windows.Forms.Label();
-            this.currentPeriodEndDataLabel = new System.Windows.Forms.Label();
-            this.currentPayDayDataLabel = new System.Windows.Forms.Label();
+            this.newPayScheduleButton = new System.Windows.Forms.Button();
+            this.savePayScheduleButton = new System.Windows.Forms.Button();
+            this.deletePayScheduleButton = new System.Windows.Forms.Button();
             this.currentPayPeriodGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paySchedulesGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // newPayScheduleButton
-            // 
-            this.newPayScheduleButton.Location = new System.Drawing.Point(610, 350);
-            this.newPayScheduleButton.Name = "newPayScheduleButton";
-            this.newPayScheduleButton.Size = new System.Drawing.Size(75, 23);
-            this.newPayScheduleButton.TabIndex = 33;
-            this.newPayScheduleButton.Text = "Nuevo";
-            this.newPayScheduleButton.UseVisualStyleBackColor = true;
-            this.newPayScheduleButton.Click += new System.EventHandler(this.newPayScheduleButton_Click);
-            // 
-            // savePayScheduleButton
-            // 
-            this.savePayScheduleButton.Location = new System.Drawing.Point(691, 350);
-            this.savePayScheduleButton.Name = "savePayScheduleButton";
-            this.savePayScheduleButton.Size = new System.Drawing.Size(75, 23);
-            this.savePayScheduleButton.TabIndex = 32;
-            this.savePayScheduleButton.Text = "Guardar";
-            this.savePayScheduleButton.UseVisualStyleBackColor = true;
-            this.savePayScheduleButton.Click += new System.EventHandler(this.savePayScheduleButton_Click);
-            // 
-            // deletePayScheduleButton
-            // 
-            this.deletePayScheduleButton.Location = new System.Drawing.Point(772, 350);
-            this.deletePayScheduleButton.Name = "deletePayScheduleButton";
-            this.deletePayScheduleButton.Size = new System.Drawing.Size(75, 23);
-            this.deletePayScheduleButton.TabIndex = 31;
-            this.deletePayScheduleButton.Text = "Eliminar";
-            this.deletePayScheduleButton.UseVisualStyleBackColor = true;
-            this.deletePayScheduleButton.Click += new System.EventHandler(this.deletePayScheduleButton_Click);
             // 
             // currentPayPeriodGroupBox
             // 
@@ -105,6 +75,30 @@ namespace simple_payroll_desktop.forms
             this.currentPayPeriodGroupBox.TabIndex = 30;
             this.currentPayPeriodGroupBox.TabStop = false;
             this.currentPayPeriodGroupBox.Text = "Período de pago actual";
+            // 
+            // currentPayDayDataLabel
+            // 
+            this.currentPayDayDataLabel.AutoSize = true;
+            this.currentPayDayDataLabel.Location = new System.Drawing.Point(155, 102);
+            this.currentPayDayDataLabel.Name = "currentPayDayDataLabel";
+            this.currentPayDayDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPayDayDataLabel.TabIndex = 5;
+            // 
+            // currentPeriodEndDataLabel
+            // 
+            this.currentPeriodEndDataLabel.AutoSize = true;
+            this.currentPeriodEndDataLabel.Location = new System.Drawing.Point(155, 69);
+            this.currentPeriodEndDataLabel.Name = "currentPeriodEndDataLabel";
+            this.currentPeriodEndDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPeriodEndDataLabel.TabIndex = 4;
+            // 
+            // currentPeriodStartDataLabel
+            // 
+            this.currentPeriodStartDataLabel.AutoSize = true;
+            this.currentPeriodStartDataLabel.Location = new System.Drawing.Point(155, 41);
+            this.currentPeriodStartDataLabel.Name = "currentPeriodStartDataLabel";
+            this.currentPeriodStartDataLabel.Size = new System.Drawing.Size(0, 13);
+            this.currentPeriodStartDataLabel.TabIndex = 3;
             // 
             // currentPayDayLabel
             // 
@@ -283,29 +277,44 @@ namespace simple_payroll_desktop.forms
             this.trackingTypesComboBox.Size = new System.Drawing.Size(200, 21);
             this.trackingTypesComboBox.TabIndex = 36;
             // 
-            // currentPeriodStartDataLabel
+            // newPayScheduleButton
             // 
-            this.currentPeriodStartDataLabel.AutoSize = true;
-            this.currentPeriodStartDataLabel.Location = new System.Drawing.Point(155, 41);
-            this.currentPeriodStartDataLabel.Name = "currentPeriodStartDataLabel";
-            this.currentPeriodStartDataLabel.Size = new System.Drawing.Size(0, 13);
-            this.currentPeriodStartDataLabel.TabIndex = 3;
+            this.newPayScheduleButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_add_32;
+            this.newPayScheduleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newPayScheduleButton.Location = new System.Drawing.Point(566, 341);
+            this.newPayScheduleButton.Name = "newPayScheduleButton";
+            this.newPayScheduleButton.Size = new System.Drawing.Size(90, 40);
+            this.newPayScheduleButton.TabIndex = 33;
+            this.newPayScheduleButton.Text = "Nuevo";
+            this.newPayScheduleButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newPayScheduleButton.UseVisualStyleBackColor = true;
+            this.newPayScheduleButton.Click += new System.EventHandler(this.newPayScheduleButton_Click);
             // 
-            // currentPeriodEndDataLabel
+            // savePayScheduleButton
             // 
-            this.currentPeriodEndDataLabel.AutoSize = true;
-            this.currentPeriodEndDataLabel.Location = new System.Drawing.Point(155, 69);
-            this.currentPeriodEndDataLabel.Name = "currentPeriodEndDataLabel";
-            this.currentPeriodEndDataLabel.Size = new System.Drawing.Size(0, 13);
-            this.currentPeriodEndDataLabel.TabIndex = 4;
+            this.savePayScheduleButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_32;
+            this.savePayScheduleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.savePayScheduleButton.Location = new System.Drawing.Point(662, 341);
+            this.savePayScheduleButton.Name = "savePayScheduleButton";
+            this.savePayScheduleButton.Size = new System.Drawing.Size(90, 40);
+            this.savePayScheduleButton.TabIndex = 32;
+            this.savePayScheduleButton.Text = "Guardar";
+            this.savePayScheduleButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.savePayScheduleButton.UseVisualStyleBackColor = true;
+            this.savePayScheduleButton.Click += new System.EventHandler(this.savePayScheduleButton_Click);
             // 
-            // currentPayDayDataLabel
+            // deletePayScheduleButton
             // 
-            this.currentPayDayDataLabel.AutoSize = true;
-            this.currentPayDayDataLabel.Location = new System.Drawing.Point(155, 102);
-            this.currentPayDayDataLabel.Name = "currentPayDayDataLabel";
-            this.currentPayDayDataLabel.Size = new System.Drawing.Size(0, 13);
-            this.currentPayDayDataLabel.TabIndex = 5;
+            this.deletePayScheduleButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_remove_32;
+            this.deletePayScheduleButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deletePayScheduleButton.Location = new System.Drawing.Point(758, 341);
+            this.deletePayScheduleButton.Name = "deletePayScheduleButton";
+            this.deletePayScheduleButton.Size = new System.Drawing.Size(90, 40);
+            this.deletePayScheduleButton.TabIndex = 31;
+            this.deletePayScheduleButton.Text = "Eliminar";
+            this.deletePayScheduleButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deletePayScheduleButton.UseVisualStyleBackColor = true;
+            this.deletePayScheduleButton.Click += new System.EventHandler(this.deletePayScheduleButton_Click);
             // 
             // PaySchedulesForm
             // 
@@ -333,7 +342,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.typeLabel);
             this.Name = "PaySchedulesForm";
-            this.Text = "ManagePaySchedulesForm";
+            this.Text = "Gestionar calendario de pagos";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ManagePaySchedulesForm_FormClosed);
             this.Load += new System.EventHandler(this.PaySchedulesForm_Load);
             this.currentPayPeriodGroupBox.ResumeLayout(false);
