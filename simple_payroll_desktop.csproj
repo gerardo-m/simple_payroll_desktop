@@ -297,6 +297,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\icons\icons8-save-32.png" />
+    <None Include="resources\icons\icons8-add-32.png" />
+    <None Include="resources\icons\icons8-calendar-96.png" />
+    <None Include="resources\icons\icons8-paycheque-96.png" />
+    <None Include="resources\icons\icons8-alarm-clock-96.png" />
+    <None Include="resources\icons\icons8-remove-32.png" />
+    <None Include="resources\icons\icons8-worker-beard-96.png" />
+    <None Include="resources\icons\icons8-close-32.png" />
+    <None Include="resources\icons\icons8-save-close-32.png" />
+    <None Include="resources\icons\icons8-payment-check-32 %281%29.png" />
+    <None Include="resources\icons\icons8-send-to-printer-32.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

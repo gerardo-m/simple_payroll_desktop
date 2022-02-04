@@ -43,9 +43,9 @@ namespace simple_payroll_desktop.forms
             this.label8 = new System.Windows.Forms.Label();
             this.toBePaidTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.saveAndPrintButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.workerTextBox = new System.Windows.Forms.TextBox();
+            this.saveAndPrintButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,16 +183,6 @@ namespace simple_payroll_desktop.forms
             this.label9.TabIndex = 24;
             this.label9.Text = "Saldo pendiente";
             // 
-            // saveAndPrintButton
-            // 
-            this.saveAndPrintButton.Location = new System.Drawing.Point(440, 576);
-            this.saveAndPrintButton.Name = "saveAndPrintButton";
-            this.saveAndPrintButton.Size = new System.Drawing.Size(109, 23);
-            this.saveAndPrintButton.TabIndex = 26;
-            this.saveAndPrintButton.Text = "Guardar E Imprimir";
-            this.saveAndPrintButton.UseVisualStyleBackColor = true;
-            this.saveAndPrintButton.Click += new System.EventHandler(this.saveAndPrintButton_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -209,6 +199,19 @@ namespace simple_payroll_desktop.forms
             this.workerTextBox.ReadOnly = true;
             this.workerTextBox.Size = new System.Drawing.Size(411, 20);
             this.workerTextBox.TabIndex = 28;
+            // 
+            // saveAndPrintButton
+            // 
+            this.saveAndPrintButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_send_to_printer_32;
+            this.saveAndPrintButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveAndPrintButton.Location = new System.Drawing.Point(436, 568);
+            this.saveAndPrintButton.Name = "saveAndPrintButton";
+            this.saveAndPrintButton.Size = new System.Drawing.Size(130, 40);
+            this.saveAndPrintButton.TabIndex = 26;
+            this.saveAndPrintButton.Text = "Guardar E Imprimir";
+            this.saveAndPrintButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveAndPrintButton.UseVisualStyleBackColor = true;
+            this.saveAndPrintButton.Click += new System.EventHandler(this.saveAndPrintButton_Click);
             // 
             // PaySlipForm
             // 
@@ -232,7 +235,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Name = "PaySlipForm";
-            this.Text = "PaySlipForm";
+            this.Text = "Recibo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaySlipForm_FormClosed);
             this.Load += new System.EventHandler(this.PaySlipForm_Load);
             this.groupBox1.ResumeLayout(false);

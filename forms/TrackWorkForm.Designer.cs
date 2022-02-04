@@ -40,9 +40,9 @@ namespace simple_payroll_desktop.forms
             this.label3 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.saveTrackingEntriesButton = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.workersComboBox = new System.Windows.Forms.ComboBox();
+            this.saveTrackingEntriesButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -126,7 +126,7 @@ namespace simple_payroll_desktop.forms
             this.trackingBoxPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.trackingBoxPanel.Location = new System.Drawing.Point(17, 106);
             this.trackingBoxPanel.Name = "trackingBoxPanel";
-            this.trackingBoxPanel.Size = new System.Drawing.Size(6, 5);
+            this.trackingBoxPanel.Size = new System.Drawing.Size(6, 19);
             this.trackingBoxPanel.TabIndex = 3;
             this.trackingBoxPanel.TabStop = false;
             this.trackingBoxPanel.Text = "Trabajador";
@@ -144,7 +144,7 @@ namespace simple_payroll_desktop.forms
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 442);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 463);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(807, 22);
             this.statusStrip1.TabIndex = 3;
@@ -155,16 +155,6 @@ namespace simple_payroll_desktop.forms
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(118, 17);
             this.statusLabel.Text = "toolStripStatusLabel1";
-            // 
-            // saveTrackingEntriesButton
-            // 
-            this.saveTrackingEntriesButton.Location = new System.Drawing.Point(720, 416);
-            this.saveTrackingEntriesButton.Name = "saveTrackingEntriesButton";
-            this.saveTrackingEntriesButton.Size = new System.Drawing.Size(75, 23);
-            this.saveTrackingEntriesButton.TabIndex = 4;
-            this.saveTrackingEntriesButton.Text = "Guardar";
-            this.saveTrackingEntriesButton.UseVisualStyleBackColor = true;
-            this.saveTrackingEntriesButton.Click += new System.EventHandler(this.saveTrackingEntriesButton_Click);
             // 
             // label19
             // 
@@ -185,11 +175,24 @@ namespace simple_payroll_desktop.forms
             this.workersComboBox.TabIndex = 6;
             this.workersComboBox.SelectedIndexChanged += new System.EventHandler(this.workersComboBox_SelectedIndexChanged);
             // 
+            // saveTrackingEntriesButton
+            // 
+            this.saveTrackingEntriesButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_32;
+            this.saveTrackingEntriesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveTrackingEntriesButton.Location = new System.Drawing.Point(705, 406);
+            this.saveTrackingEntriesButton.Name = "saveTrackingEntriesButton";
+            this.saveTrackingEntriesButton.Size = new System.Drawing.Size(90, 40);
+            this.saveTrackingEntriesButton.TabIndex = 4;
+            this.saveTrackingEntriesButton.Text = "Guardar";
+            this.saveTrackingEntriesButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveTrackingEntriesButton.UseVisualStyleBackColor = true;
+            this.saveTrackingEntriesButton.Click += new System.EventHandler(this.saveTrackingEntriesButton_Click);
+            // 
             // TrackWorkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 464);
+            this.ClientSize = new System.Drawing.Size(807, 485);
             this.Controls.Add(this.workersComboBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.saveTrackingEntriesButton);
@@ -198,7 +201,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.paySchedulesComboBox);
             this.Controls.Add(this.label1);
             this.Name = "TrackWorkForm";
-            this.Text = "TrackWorkForm";
+            this.Text = "Seguimiento de trabajo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TrackWorkForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TrackWorkForm_FormClosed);
             this.Load += new System.EventHandler(this.TrackWorkForm_Load);

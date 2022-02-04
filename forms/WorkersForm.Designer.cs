@@ -42,9 +42,6 @@ namespace simple_payroll_desktop.forms
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.workersGrid = new System.Windows.Forms.DataGridView();
-            this.deleteWorkerButton = new System.Windows.Forms.Button();
-            this.saveWorkerButton = new System.Windows.Forms.Button();
-            this.newWorkerButton = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,6 +49,9 @@ namespace simple_payroll_desktop.forms
             this.label8 = new System.Windows.Forms.Label();
             this.denominationComboBox = new System.Windows.Forms.ComboBox();
             this.manageDenominationsButton = new System.Windows.Forms.Button();
+            this.newWorkerButton = new System.Windows.Forms.Button();
+            this.saveWorkerButton = new System.Windows.Forms.Button();
+            this.deleteWorkerButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.payRateSpinner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workersGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -173,36 +173,6 @@ namespace simple_payroll_desktop.forms
             this.workersGrid.TabIndex = 12;
             this.workersGrid.SelectionChanged += new System.EventHandler(this.workersGrid_SelectionChanged);
             // 
-            // deleteWorkerButton
-            // 
-            this.deleteWorkerButton.Location = new System.Drawing.Point(750, 310);
-            this.deleteWorkerButton.Name = "deleteWorkerButton";
-            this.deleteWorkerButton.Size = new System.Drawing.Size(75, 23);
-            this.deleteWorkerButton.TabIndex = 13;
-            this.deleteWorkerButton.Text = "Eliminar";
-            this.deleteWorkerButton.UseVisualStyleBackColor = true;
-            this.deleteWorkerButton.Click += new System.EventHandler(this.deleteWorkerButton_Click);
-            // 
-            // saveWorkerButton
-            // 
-            this.saveWorkerButton.Location = new System.Drawing.Point(669, 310);
-            this.saveWorkerButton.Name = "saveWorkerButton";
-            this.saveWorkerButton.Size = new System.Drawing.Size(75, 23);
-            this.saveWorkerButton.TabIndex = 14;
-            this.saveWorkerButton.Text = "Guardar";
-            this.saveWorkerButton.UseVisualStyleBackColor = true;
-            this.saveWorkerButton.Click += new System.EventHandler(this.saveWorkerButton_Click);
-            // 
-            // newWorkerButton
-            // 
-            this.newWorkerButton.Location = new System.Drawing.Point(588, 310);
-            this.newWorkerButton.Name = "newWorkerButton";
-            this.newWorkerButton.Size = new System.Drawing.Size(75, 23);
-            this.newWorkerButton.TabIndex = 15;
-            this.newWorkerButton.Text = "Nuevo";
-            this.newWorkerButton.UseVisualStyleBackColor = true;
-            this.newWorkerButton.Click += new System.EventHandler(this.newWorkerButton_Click);
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -265,6 +235,45 @@ namespace simple_payroll_desktop.forms
             this.manageDenominationsButton.Text = "...";
             this.manageDenominationsButton.UseVisualStyleBackColor = true;
             this.manageDenominationsButton.Click += new System.EventHandler(this.manageDenominationsButton_Click);
+            // 
+            // newWorkerButton
+            // 
+            this.newWorkerButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_add_32;
+            this.newWorkerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newWorkerButton.Location = new System.Drawing.Point(543, 294);
+            this.newWorkerButton.Name = "newWorkerButton";
+            this.newWorkerButton.Size = new System.Drawing.Size(90, 40);
+            this.newWorkerButton.TabIndex = 15;
+            this.newWorkerButton.Text = "Nuevo";
+            this.newWorkerButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newWorkerButton.UseVisualStyleBackColor = true;
+            this.newWorkerButton.Click += new System.EventHandler(this.newWorkerButton_Click);
+            // 
+            // saveWorkerButton
+            // 
+            this.saveWorkerButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_32;
+            this.saveWorkerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveWorkerButton.Location = new System.Drawing.Point(639, 294);
+            this.saveWorkerButton.Name = "saveWorkerButton";
+            this.saveWorkerButton.Size = new System.Drawing.Size(90, 40);
+            this.saveWorkerButton.TabIndex = 14;
+            this.saveWorkerButton.Text = "Guardar";
+            this.saveWorkerButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveWorkerButton.UseVisualStyleBackColor = true;
+            this.saveWorkerButton.Click += new System.EventHandler(this.saveWorkerButton_Click);
+            // 
+            // deleteWorkerButton
+            // 
+            this.deleteWorkerButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_remove_32;
+            this.deleteWorkerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteWorkerButton.Location = new System.Drawing.Point(735, 294);
+            this.deleteWorkerButton.Name = "deleteWorkerButton";
+            this.deleteWorkerButton.Size = new System.Drawing.Size(90, 40);
+            this.deleteWorkerButton.TabIndex = 13;
+            this.deleteWorkerButton.Text = "Eliminar";
+            this.deleteWorkerButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteWorkerButton.UseVisualStyleBackColor = true;
+            this.deleteWorkerButton.Click += new System.EventHandler(this.deleteWorkerButton_Click);
             // 
             // WorkersForm
             // 

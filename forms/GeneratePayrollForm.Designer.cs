@@ -37,16 +37,11 @@ namespace simple_payroll_desktop.forms
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.extraTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.saveExtraButton = new System.Windows.Forms.Button();
-            this.deleteExtraButton = new System.Windows.Forms.Button();
             this.extraAmountSpinner = new System.Windows.Forms.NumericUpDown();
             this.extrasGridView = new System.Windows.Forms.DataGridView();
-            this.newExtraButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.extraConceptTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.generatePaySlipButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.previosPayPeriodButton = new System.Windows.Forms.Button();
             this.nextPayPeriodButton = new System.Windows.Forms.Button();
@@ -69,10 +64,15 @@ namespace simple_payroll_desktop.forms
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.saveAndCloseButton = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.saveAndCloseButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.generatePaySlipButton = new System.Windows.Forms.Button();
+            this.saveExtraButton = new System.Windows.Forms.Button();
+            this.deleteExtraButton = new System.Windows.Forms.Button();
+            this.newExtraButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extraAmountSpinner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extrasGridView)).BeginInit();
@@ -143,7 +143,7 @@ namespace simple_payroll_desktop.forms
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(42, 299);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(576, 266);
+            this.groupBox2.Size = new System.Drawing.Size(576, 282);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adicionales";
@@ -166,27 +166,6 @@ namespace simple_payroll_desktop.forms
             this.label17.TabIndex = 16;
             this.label17.Text = "Tipo";
             // 
-            // saveExtraButton
-            // 
-            this.saveExtraButton.AutoSize = true;
-            this.saveExtraButton.Location = new System.Drawing.Point(416, 74);
-            this.saveExtraButton.Name = "saveExtraButton";
-            this.saveExtraButton.Size = new System.Drawing.Size(64, 23);
-            this.saveExtraButton.TabIndex = 7;
-            this.saveExtraButton.Text = "Guardar";
-            this.saveExtraButton.UseVisualStyleBackColor = true;
-            this.saveExtraButton.Click += new System.EventHandler(this.saveExtraButton_Click);
-            // 
-            // deleteExtraButton
-            // 
-            this.deleteExtraButton.Location = new System.Drawing.Point(486, 74);
-            this.deleteExtraButton.Name = "deleteExtraButton";
-            this.deleteExtraButton.Size = new System.Drawing.Size(64, 23);
-            this.deleteExtraButton.TabIndex = 6;
-            this.deleteExtraButton.Text = "Borrar";
-            this.deleteExtraButton.UseVisualStyleBackColor = true;
-            this.deleteExtraButton.Click += new System.EventHandler(this.deleteExtraButton_Click);
-            // 
             // extraAmountSpinner
             // 
             this.extraAmountSpinner.DecimalPlaces = 2;
@@ -204,22 +183,12 @@ namespace simple_payroll_desktop.forms
             // 
             this.extrasGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.extrasGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.extrasGridView.Location = new System.Drawing.Point(10, 116);
+            this.extrasGridView.Location = new System.Drawing.Point(10, 128);
             this.extrasGridView.Name = "extrasGridView";
             this.extrasGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.extrasGridView.Size = new System.Drawing.Size(540, 138);
             this.extrasGridView.TabIndex = 15;
             this.extrasGridView.SelectionChanged += new System.EventHandler(this.extrasGridView_SelectionChanged);
-            // 
-            // newExtraButton
-            // 
-            this.newExtraButton.Location = new System.Drawing.Point(346, 74);
-            this.newExtraButton.Name = "newExtraButton";
-            this.newExtraButton.Size = new System.Drawing.Size(64, 23);
-            this.newExtraButton.TabIndex = 4;
-            this.newExtraButton.Text = "Nuevo";
-            this.newExtraButton.UseVisualStyleBackColor = true;
-            this.newExtraButton.Click += new System.EventHandler(this.newExtraButton_Click);
             // 
             // label9
             // 
@@ -245,26 +214,6 @@ namespace simple_payroll_desktop.forms
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 0;
             this.label10.Text = "Concepto";
-            // 
-            // generatePaySlipButton
-            // 
-            this.generatePaySlipButton.Location = new System.Drawing.Point(482, 732);
-            this.generatePaySlipButton.Name = "generatePaySlipButton";
-            this.generatePaySlipButton.Size = new System.Drawing.Size(139, 23);
-            this.generatePaySlipButton.TabIndex = 12;
-            this.generatePaySlipButton.Text = "Generar Boleta de Pago";
-            this.generatePaySlipButton.UseVisualStyleBackColor = true;
-            this.generatePaySlipButton.Click += new System.EventHandler(this.generatePaySlipButton_Click);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(290, 732);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(66, 23);
-            this.saveButton.TabIndex = 13;
-            this.saveButton.Text = "Guardar";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // panel1
             // 
@@ -483,30 +432,11 @@ namespace simple_payroll_desktop.forms
             this.label13.TabIndex = 0;
             this.label13.Text = "Total por trabajo registrado:";
             // 
-            // saveAndCloseButton
-            // 
-            this.saveAndCloseButton.Location = new System.Drawing.Point(362, 732);
-            this.saveAndCloseButton.Name = "saveAndCloseButton";
-            this.saveAndCloseButton.Size = new System.Drawing.Size(114, 23);
-            this.saveAndCloseButton.TabIndex = 20;
-            this.saveAndCloseButton.Text = "Guardar y Cerrar";
-            this.saveAndCloseButton.UseVisualStyleBackColor = true;
-            this.saveAndCloseButton.Click += new System.EventHandler(this.saveAndCloseButton_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(13, 732);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "Anular";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 767);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 779);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(633, 22);
             this.statusStrip1.TabIndex = 22;
@@ -518,11 +448,102 @@ namespace simple_payroll_desktop.forms
             this.statusLabel.Size = new System.Drawing.Size(118, 17);
             this.statusLabel.Text = "toolStripStatusLabel1";
             // 
+            // button6
+            // 
+            this.button6.Image = global::simple_payroll_desktop.Properties.Resources.icons8_close_32;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(13, 732);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(90, 40);
+            this.button6.TabIndex = 21;
+            this.button6.Text = "Anular";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // saveAndCloseButton
+            // 
+            this.saveAndCloseButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_close_32;
+            this.saveAndCloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveAndCloseButton.Location = new System.Drawing.Point(322, 732);
+            this.saveAndCloseButton.Name = "saveAndCloseButton";
+            this.saveAndCloseButton.Size = new System.Drawing.Size(130, 40);
+            this.saveAndCloseButton.TabIndex = 20;
+            this.saveAndCloseButton.Text = "Guardar y Cerrar";
+            this.saveAndCloseButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveAndCloseButton.UseVisualStyleBackColor = true;
+            this.saveAndCloseButton.Click += new System.EventHandler(this.saveAndCloseButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_32;
+            this.saveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveButton.Location = new System.Drawing.Point(221, 732);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(90, 40);
+            this.saveButton.TabIndex = 13;
+            this.saveButton.Text = "Guardar";
+            this.saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // generatePaySlipButton
+            // 
+            this.generatePaySlipButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_payment_check_32__1_;
+            this.generatePaySlipButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.generatePaySlipButton.Location = new System.Drawing.Point(461, 732);
+            this.generatePaySlipButton.Name = "generatePaySlipButton";
+            this.generatePaySlipButton.Size = new System.Drawing.Size(160, 40);
+            this.generatePaySlipButton.TabIndex = 12;
+            this.generatePaySlipButton.Text = "Generar Boleta de Pago";
+            this.generatePaySlipButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.generatePaySlipButton.UseVisualStyleBackColor = true;
+            this.generatePaySlipButton.Click += new System.EventHandler(this.generatePaySlipButton_Click);
+            // 
+            // saveExtraButton
+            // 
+            this.saveExtraButton.AutoSize = true;
+            this.saveExtraButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_save_32;
+            this.saveExtraButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.saveExtraButton.Location = new System.Drawing.Point(364, 70);
+            this.saveExtraButton.Name = "saveExtraButton";
+            this.saveExtraButton.Size = new System.Drawing.Size(90, 40);
+            this.saveExtraButton.TabIndex = 7;
+            this.saveExtraButton.Text = "Guardar";
+            this.saveExtraButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveExtraButton.UseVisualStyleBackColor = true;
+            this.saveExtraButton.Click += new System.EventHandler(this.saveExtraButton_Click);
+            // 
+            // deleteExtraButton
+            // 
+            this.deleteExtraButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_remove_32;
+            this.deleteExtraButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteExtraButton.Location = new System.Drawing.Point(460, 70);
+            this.deleteExtraButton.Name = "deleteExtraButton";
+            this.deleteExtraButton.Size = new System.Drawing.Size(90, 40);
+            this.deleteExtraButton.TabIndex = 6;
+            this.deleteExtraButton.Text = "Borrar";
+            this.deleteExtraButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteExtraButton.UseVisualStyleBackColor = true;
+            this.deleteExtraButton.Click += new System.EventHandler(this.deleteExtraButton_Click);
+            // 
+            // newExtraButton
+            // 
+            this.newExtraButton.Image = global::simple_payroll_desktop.Properties.Resources.icons8_add_32;
+            this.newExtraButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newExtraButton.Location = new System.Drawing.Point(268, 70);
+            this.newExtraButton.Name = "newExtraButton";
+            this.newExtraButton.Size = new System.Drawing.Size(90, 40);
+            this.newExtraButton.TabIndex = 4;
+            this.newExtraButton.Text = "Nuevo";
+            this.newExtraButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newExtraButton.UseVisualStyleBackColor = true;
+            this.newExtraButton.Click += new System.EventHandler(this.newExtraButton_Click);
+            // 
             // GeneratePayrollForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 789);
+            this.ClientSize = new System.Drawing.Size(633, 801);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.saveAndCloseButton);
@@ -540,7 +561,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.workerComboBox);
             this.Controls.Add(this.label1);
             this.Name = "GeneratePayrollForm";
-            this.Text = "GeneratePayrollForm";
+            this.Text = "Generar planilla";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GeneratePayrollForm_FormClosed);
             this.Load += new System.EventHandler(this.GeneratePayrollForm_Load);
             this.VisibleChanged += new System.EventHandler(this.GeneratePayrollForm_VisibleChanged);

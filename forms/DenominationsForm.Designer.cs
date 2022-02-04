@@ -104,7 +104,7 @@ namespace simple_payroll_desktop.forms
             this.Controls.Add(this.deleteDenominationButton);
             this.Controls.Add(this.denominationsListBox);
             this.Name = "DenominationsForm";
-            this.Text = "DenominationsForm";
+            this.Text = "Denominaciones";
             this.Load += new System.EventHandler(this.DenominationsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

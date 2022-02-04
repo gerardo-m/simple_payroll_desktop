@@ -79,5 +79,10 @@ namespace simple_payroll_desktop
         {
             loadStrings();
         }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
