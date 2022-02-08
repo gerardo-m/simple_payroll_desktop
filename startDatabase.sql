@@ -16,8 +16,8 @@ CREATE TABLE extras(id INTEGER PRIMARY KEY, type INTEGER, concept TEXT, amount R
 INSERT INTO denominations(name) values("Trabajador");
 INSERT INTO denominations(name) values("Contratista");
 
-INSERT INTO pay_schedules(name, type, pay_rate_type, tracking_type, base_period_start, base_period_end, base_pay_day)
-values ("Prueba", 0, 1, 3, 637749504000000000, 637753824000000000, 637753824000000000);
+--INSERT INTO pay_schedules(name, type, pay_rate_type, tracking_type, base_period_start, base_period_end, base_pay_day)
+--values ("Prueba", 0, 1, 3, 637749504000000000, 637753824000000000, 637753824000000000);
 
-INSERT INTO workers(first_name, last_name_1, last_name_2, ci, pay_rate, pay_rate_type, pay_schedule_id, denomination_id)
-values ("Trabajador", "Prueba", "1", "123412312", 100, 1, 1, 1);
+--INSERT INTO workers(first_name, last_name_1, last_name_2, ci, pay_rate, pay_rate_type, pay_schedule_id, denomination_id)
+--values ("Trabajador", "Prueba", "1", "123412312", 100, 1, 1, 1);

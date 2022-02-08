@@ -16,16 +16,18 @@ namespace simple_payroll_desktop.business
         private PayrollDAO payrollDAO;
         private TrackingEntryDAO trackingEntryDAO;
         private ExtraDAO extraDAO;
+        private PaySlipDAO paySlipDAO;
 
         private PayrollCalculator payrollCalculator;
 
-        public PayrollManager(I18nService i18n, PayrollDAO payrollDAO, TrackingEntryDAO trackingEntryDAO, ExtraDAO extraDAO)
+        public PayrollManager(I18nService i18n, PayrollDAO payrollDAO, TrackingEntryDAO trackingEntryDAO, ExtraDAO extraDAO, PaySlipDAO paySlipDAO)
         {
             this.i18n = i18n;
             this.payrollDAO = payrollDAO;
             this.trackingEntryDAO = trackingEntryDAO;
             this.extraDAO = extraDAO;
-            this.payrollCalculator = new PayrollCalculator();
+            this.paySlipDAO = paySlipDAO;
+            this.payrollCalculator = new PayrollCalculator(paySlipDAO);
         }
 
         public Payroll getPayroll(Worker worker, PayPeriod period)
@@ -36,6 +38,13 @@ namespace simple_payroll_desktop.business
             getTrackingEntriesAndExtras(payroll);
             if (payroll.Status == PayrollStatus.Open)
                 payroll = payrollCalculator.calculate(payroll);
+            return payroll;
+        }
+
+        public Payroll recalculateExtras(Payroll payroll)
+        {
+            payroll.ExtrasAmount = payrollCalculator.calculateExtrasAmount(payroll.Extras);
+            payroll.BalanceDue = payrollCalculator.calculateBalanceDue(payroll);
             return payroll;
         }
 

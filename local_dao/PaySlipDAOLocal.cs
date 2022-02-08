@@ -31,7 +31,7 @@ namespace simple_payroll_desktop.local_dao
             {
                 { "@payrollId", payrollId }
             };
-            IList<PaySlip> paySlips = executer.selectFromTable(tableName, mapFromReader);
+            IList<PaySlip> paySlips = executer.selectFromTable(tableName, "payroll_id = ?", parameters, mapFromReader);
             return paySlips;
         }
 

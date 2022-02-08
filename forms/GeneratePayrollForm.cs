@@ -53,7 +53,6 @@ namespace simple_payroll_desktop.forms
             logger.LogError(ex.Message);
             logger.LogTrace(ex, ex.Message);
             MessageBox.Show(ex.Message);
-            throw ex;
         }
 
         private void showStatus(string status)
@@ -225,6 +224,8 @@ namespace simple_payroll_desktop.forms
             extrasGridView.DataSource = currentPayroll.Extras.ToList();
             extrasGridView.Columns["Id"].Visible = false;
             extrasGridView.Columns["Payroll"].Visible = false;
+            currentPayroll = payrollManager.recalculateExtras(currentPayroll);
+            showTotals();
         }
 
         private void GeneratePayrollForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -244,7 +245,6 @@ namespace simple_payroll_desktop.forms
             try
             {
                 loadPaySchedules();
-                setPeriod(DateTime.Today);
                 loadExtrasTypes();
                 selectedExtra = new Extra();
                 setFormStatus();

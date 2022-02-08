@@ -66,7 +66,6 @@ namespace simple_payroll_desktop.forms
             logger.LogError(ex.Message);
             logger.LogTrace(ex, ex.Message);
             MessageBox.Show(ex.Message);
-            throw ex;
         }
 
         private void showStatus(string status)
