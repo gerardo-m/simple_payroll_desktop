@@ -47,9 +47,11 @@ namespace simple_payroll_desktop.local_dao
                 { "previously_paid", paySlip.PreviouslyPaid },
                 { "amount", paySlip.Amount },
                 { "is_valid", paySlip.IsValid ? 1 : 0 },
+                { "issue_date", paySlip.IssueDate.Ticks },
                 { "payroll_id", paySlip.Payroll.Id }
             };
             crudHelper.create(tableName, parameters);
+            paySlip.Id = executer.getLastId();
         }
 
         public PaySlip mapFromReader(SQLiteDataReader reader)
@@ -65,6 +67,7 @@ namespace simple_payroll_desktop.local_dao
                 PreviouslyPaid = Convert.ToDecimal(reader["previously_paid"].ToString()),
                 Amount = Convert.ToDecimal(reader["amount"].ToString()),
                 IsValid = Convert.ToInt32(reader["is_valid"].ToString()) == 1,
+                IssueDate = new DateTime(Convert.ToInt64(reader["issue_date"].ToString())),
                 Payroll = payrollDAOLocal.getPayroll(Convert.ToInt32(reader["payroll_id"].ToString()))
             };
         }

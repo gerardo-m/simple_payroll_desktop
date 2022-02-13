@@ -42,6 +42,7 @@ namespace simple_payroll_desktop.business
             paySlip.IsValid = true;
             paySlip.Payroll = payroll;
             paySlip.Amount = paySlip.ToBePaid;
+            paySlip.IssueDate = DateTime.Today;
             return paySlip;
         }
 

@@ -238,6 +238,7 @@ namespace simple_payroll_desktop.forms
             this.Text = "Recibo";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PaySlipForm_FormClosed);
             this.Load += new System.EventHandler(this.PaySlipForm_Load);
+            this.VisibleChanged += new System.EventHandler(this.PaySlipForm_VisibleChanged);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

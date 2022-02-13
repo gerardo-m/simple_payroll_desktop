@@ -17,6 +17,7 @@ namespace simple_payroll_desktop.entities
         public decimal PayrollTotal { get; set; }
         public decimal PreviouslyPaid { get; set; }
         public decimal Amount { get; set; }
+        public DateTime IssueDate { get; set; }
 
         public bool IsValid { get; set; }
         public decimal ToBePaid { 

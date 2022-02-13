@@ -14,6 +14,7 @@ namespace simple_payroll_desktop.local_dao
         private const string DBName = "database.sqlite";
         private const string DBStartingFileName = "startDatabase.sql";
         private static bool IsDbRecentlyCreated = false;
+        private static string DBFilePath;
 
         public static void up()
         {
@@ -31,7 +32,7 @@ namespace simple_payroll_desktop.local_dao
         public static SQLiteConnection GetInstance()
         {
             var db = new SQLiteConnection(
-                string.Format("Data Source={0};Version=3;", DBName)
+                string.Format("Data Source={0};Version=3;", DBFilePath)
             );
             db.Open();
             return db;
@@ -39,9 +40,14 @@ namespace simple_payroll_desktop.local_dao
 
         private static void createDbFile()
         {
-            if (!File.Exists(Path.GetFullPath(DBName)))
+            string myDocumentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string dbPath = Path.Combine(myDocumentsFolder, "Simple Payroll Desktop");
+            if (!Directory.Exists(dbPath))
+                Directory.CreateDirectory(dbPath);
+            DBFilePath = Path.Combine(dbPath, DBName);
+            if (!File.Exists(DBFilePath))
             {
-                SQLiteConnection.CreateFile(DBName);
+                SQLiteConnection.CreateFile(DBFilePath);
                 IsDbRecentlyCreated = true;
             }
         }

@@ -139,7 +139,7 @@ namespace simple_payroll_desktop.forms
         {
             if (unsavedChanges)
             {
-                DialogResult result = MessageBox.Show(i18n.Placeholder("?"), i18n.Placeholder("?"), MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show(i18n.Placeholder("Hay cambios sin guardar ¿Desea continuar?"), i18n.Placeholder("¿Continuar?"), MessageBoxButtons.YesNo);
                 return result == DialogResult.Yes;
             }
             return true;

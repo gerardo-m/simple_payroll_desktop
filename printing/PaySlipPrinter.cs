@@ -118,8 +118,7 @@ namespace simple_payroll_desktop.printing
             // TODO put the name of the company in  preferences and actual date
             RectangleF rectangle = new RectangleF(leftMargin, currentYPosition, width, mainFont.GetHeight());
             drawer.DrawString("TRAMEM", mainFont, mainBrush, rectangle, centeredText);
-            drawer.DrawString("04/01/2022", mainFont, mainBrush, rectangle, leftText);
-            paySlip.Id = 10; // TODO remove this
+            drawer.DrawString(paySlip.IssueDate.ToString("d"), mainFont, mainBrush, rectangle, leftText);
             drawer.DrawString(paySlip.Id.ToString("000000"), mainFont, mainBrush, rectangle, rightText);
             currentYPosition += mainFont.GetHeight() * 2;
         }

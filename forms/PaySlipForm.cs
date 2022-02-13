@@ -65,6 +65,10 @@ namespace simple_payroll_desktop.forms
             amountTextBox.Text = currentPaySlip.Amount.ToString("#0.00");
             toBePaidTextBox.Text = currentPaySlip.ToBePaid.ToString("#0.00");
             workerTextBox.Text = currentPaySlip.WorkerFullName + currentPaySlip.WorkerCI;
+            if (saved)
+                saveAndPrintButton.Text = i18n.Placeholder("Imprimir");
+            else
+                saveAndPrintButton.Text = i18n.Placeholder("Guardar e Imprimir");
             showExtras();
         }
 
@@ -105,16 +109,7 @@ namespace simple_payroll_desktop.forms
 
         private void PaySlipForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                loadPaySlip();
-                showPaySlip();
-                saved = false;
-            }
-            catch (Exception ex)
-            {
-                handleException(ex);
-            }
+            
         }
 
         private void saveAndPrintButton_Click(object sender, EventArgs e)
@@ -128,6 +123,23 @@ namespace simple_payroll_desktop.forms
                     saveAndPrintButton.Text = i18n.Placeholder("Imprimir");
                 }
                 print();
+            }
+            catch (Exception ex)
+            {
+                handleException(ex);
+            }
+        }
+
+        private void PaySlipForm_VisibleChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Visible)
+                {
+                    saved = false;
+                    loadPaySlip();
+                    showPaySlip();
+                }
             }
             catch (Exception ex)
             {

@@ -273,6 +273,7 @@ namespace simple_payroll_desktop.forms
             {
                 selectWorker();
                 setPeriod(DateTime.Today);
+                setFormStatus();
             }
             catch (Exception ex)
             {
